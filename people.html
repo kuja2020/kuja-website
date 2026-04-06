@@ -20,22 +20,41 @@
 </nav>
 
 <div class="container">
+<div class="container">
   <h2>People</h2>
 
   <div style="margin-bottom:20px;">
-    <button onclick="showHonor()" id="honorBtn">Honor Board</button>
-    <button onclick="showCurrent()" id="currentBtn">Current Members</button>
+    <button class="tab-btn active" onclick="showHonor()" id="honorBtn">Honor Board</button>
+    <button class="tab-btn" onclick="showCurrent()" id="currentBtn">Current Members</button>
   </div>
 
   <div id="honorBoard">
     <h3>Honor Board</h3>
-    <p>Honor Board data will load here after admin panel setup.</p>
+    <p>Honor Board data will appear here after admin panel setup.</p>
   </div>
 
   <div id="currentMembers" style="display:none;">
     <h3>Current Members</h3>
-    <p>Current Members data will load here after admin panel setup.</p>
+    <p>Current Members data will appear here after admin panel setup.</p>
   </div>
+</div>
+
+<script>
+function showHonor() {
+  document.getElementById("honorBoard").style.display = "block";
+  document.getElementById("currentMembers").style.display = "none";
+  document.getElementById("honorBtn").classList.add("active");
+  document.getElementById("currentBtn").classList.remove("active");
+}
+
+function showCurrent() {
+  document.getElementById("honorBoard").style.display = "none";
+  document.getElementById("currentMembers").style.display = "block";
+  document.getElementById("honorBtn").classList.remove("active");
+  document.getElementById("currentBtn").classList.add("active");
+}
+</script>
+
 </div>
 
 <script>
