@@ -1,5 +1,5 @@
 {
-  "name": "Sample President",
+  "name": "Sample GS",
   "photo": "assets/images/sample.jpg",
   "address": "Sample Address",
   "contact": "0123456789",
