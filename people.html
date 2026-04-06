@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>People – KUJA</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header>
+  <h1>Khulna University Journalists Association</h1>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="people.html">People</a>
+  <a href="news.html">News</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<div class="container">
+  <h2>People</h2>
+
+  <div style="margin-bottom:20px;">
+    <button onclick="showHonor()" id="honorBtn">Honor Board</button>
+    <button onclick="showCurrent()" id="currentBtn">Current Members</button>
+  </div>
+
+  <div id="honorBoard">
+    <h3>Honor Board</h3>
+    <p>Honor Board data will load here after admin panel setup.</p>
+  </div>
+
+  <div id="currentMembers" style="display:none;">
+    <h3>Current Members</h3>
+    <p>Current Members data will load here after admin panel setup.</p>
+  </div>
+</div>
+
+<script>
+function showHonor() {
+  document.getElementById("honorBoard").style.display = "block";
+  document.getElementById("currentMembers").style.display = "none";
+}
+
+function showCurrent() {
+  document.getElementById("honorBoard").style.display = "none";
+  document.getElementById("currentMembers").style.display = "block";
+}
+</script>
+
+</body>
+</html>
