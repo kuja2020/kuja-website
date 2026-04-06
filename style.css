@@ -1,0 +1,32 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Hero section with red overlay */
+.hero-section {
+  background: url('images/kuja-banner.jpg') no-repeat center center/cover;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(220, 53, 69, 0.7); /* red overlay */
+  background-blend-mode: multiply;
+}
+
+.hero-section h1,
+.hero-section p {
+  color: #fff;
+}
+
+.card img {
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Navbar active link */
+.navbar .nav-link.active {
+  font-weight: bold;
+  color: #fff !important;
+  background-color: #dc3545; /* red */
+  border-radius: 5px;
+}
