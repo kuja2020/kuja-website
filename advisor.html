@@ -91,9 +91,13 @@
     <span>Honor Board</span>
   </a>
 &nbsp;&nbsp;
-<h6 style="color: #082465; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0; margin-right: 15px;">
-    Current Board
-  </h6>
+  <a href="current.html" class="call_to-btn">
+    <span>Current Board</span>
+  </a>
+&nbsp;&nbsp;
+    <a href="advisor.html" class="call_to-btn">
+    <span>Advisory Board</span>
+  </a>
 
 </div>
 
@@ -107,8 +111,8 @@
   <!-- member section -->
 <section class="teacher_section layout_padding-bottom">
   <div class="container">
-    <h2 class="main-heading">Executive Committee</h2>
-    <p class="text-center">Meet the dedicated leaders of the current session.</p>
+    <h2 class="main-heading">Advisory Board</h2>
+    <p class="text-center">Meet the advisory board of current session.</p>
     
     <div class="teacher_container layout_padding2">
       <div class="card-deck" id="member-list">
@@ -125,59 +129,56 @@
 </section>
 
 <script>
-
-  const members = [
-{ name: "Al Kama Romin", img: "Profile/images/committee/president.jpg" },
-    { name: "H.M. Masum Hasan", img: "Profile/images/committee/gs.jpg" },
-    { name: "Md. Mirazul Islam", img: "Profile/images/committee/3.jpg" },
-    { name: "Arko Mondol", img: "Profile/images/committee/4.jpg" },
-    { name: "Aminur Rahman", img: "Profile/images/committee/5.jpg" },
-    { name: "Golam Mostofa", img: "Profile/images/committee/6.jpg" },
-    { name: "Ebrahim Khalil", img: "Profile/images/committee/7.jpg" },
-    { name: "Md. Hasibul Hassan", img: "Profile/images/committee/8.jpg" },
-    { name: "Fahad Khandokar", img: "Profile/images/committee/9.jpg" },
-    { name: "Ratul Khan", img: "Profile/images/committee/10.jpg" },
-    { name: "Md. Maruf Ahmmed", img: "Profile/images/committee/11.jpg" },
-    { name: "Faruk Khan", img: "Profile/images/committee/12.jpg" },
-    { name: "Sanjida Akter", img: "Profile/images/committee/13.jpg" },
-    { name: "Nahid Hassan", img: "Profile/images/committee/14.jpg" },
-    { name: "Md. Abid Hasan", img: "Profile/images/committee/15.jpg" },
-    { name: "Md. Mahmud Shaikh", img: "Profile/images/committee/16.jpg" },
-    { name: "Nusrat Sultana", img: "Profile/images/committee/17.jpg" },
-    { name: "Md. Mahfuz Ahmed", img: "Profile/images/committee/18.jpg" },
-    { name: "Yousuf Sadiq", img: "Profile/images/committee/19.jpg" },
-    { name: "Saiful Islam", img: "Profile/images/committee/20.jpg" },
-    { name: "Tania Tabassum", img: "Profile/images/committee/21.jpg" },
-    { name: "Mokarrom Billah", img: "Profile/images/committee/22.jpg" },
-    { name: "Jahida Sultana Rima", img: "Profile/images/committee/23.jpg" },
-    { name: "Arpita", img: "Profile/images/committee/24.jpg" },
-    { name: "Ahmed Mostofa", img: "Profile/images/committee/25.jpg" },
-    { name: "Al Mamun", img: "Profile/images/committee/26.jpg" },
-    { name: "Sohan Sakib", img: "Profile/images/committee/27.jpg" },
-    { name: "Fauzia Faria Jeba", img: "Profile/images/committee/28.jpg" },
-    { name: "Miftahul Islam Mahin", img: "Profile/images/committee/29.jpg" },
-    { name: "Shafiul Islam", img: "Profile/images/committee/30.jpg" },
-    { name: "Jahangir Julfikar", img: "Profile/images/committee/31.jpg" },
-    { name: "Md. Sohan Sheikh", img: "Profile/images/committee/32.jpg" },
-    { name: "Md. Jahid Hasan Shawon", img: "Profile/images/committee/33.jpg" },
-    { name: "Mehedi Hasan", img: "Profile/images/committee/34.jpg" },
-    { name: "Saif Rasul Khan", img: "Profile/images/committee/35.jpg" },
-    { name: "Md. Aman Ullah", img: "Profile/images/committee/36.jpg" },
-    { name: "Sayed Jawwad Hossain Sami", img: "Profile/images/committee/37.jpg" },
-    { name: "Mahidul Islam", img: "Profile/images/committee/38.jpg" },
-    { name: "Firoz Hasan", img: "Profile/images/committee/39.jpg" }
+  // উপদেষ্টাদের তথ্য এখানে আপডেট করুন
+  const advisors = [
+    { 
+      name: "Al Kama Romin", 
+      designation: "Chief Advisor", 
+      discipline: "Mass Communication & Journalism", 
+      img: "Profile/images/advisor/1.jpg" 
+    },
+    { 
+      name: "H.M. Masum Hasan", 
+      designation: "Advisor", 
+      discipline: "Economics", 
+      img: "Profile/images/advisor/2.jpg" 
+    },
+    { 
+      name: "Md. Mirazul Islam", 
+      designation: "Advisor", 
+      discipline: "Social Work", 
+      img: "Profile/images/advisor/3.jpg" 
+    },
+    { 
+      name: "Arko Mondol", 
+      designation: "Advisor", 
+      discipline: "English", 
+      img: "Profile/images/advisor/4.jpg" 
+    },
+    { 
+      name: "Md. Jahid Hasan Shawon", 
+      designation: "Advisor", 
+      discipline: "Development Studies", 
+      img: "Profile/images/advisor/5.jpg" 
+    }
   ];
-
 
   const memberListContainer = document.getElementById('member-list');
   
-  members.forEach(member => {
+  // কার্ডগুলো রেন্ডার করা
+  advisors.forEach(member => {
     const cardHTML = `
-      <div class="card" style="min-width: 220px; margin-bottom: 20px;">
-        <img class="card-img-top" src="${member.img}" alt="${member.name}" 
-             style="height: 250px; object-fit: cover;">
-        <div class="card-body">
-          <h5 class="card-title" style="text-align: center; color: #082465;">${member.name}</h5>
+      <div class="col-md-4 col-lg-3 mb-4">
+        <div class="card h-100 shadow-sm border-0" style="border-radius: 15px; overflow: hidden; transition: 0.3s;">
+          <div style="height: 250px; overflow: hidden;">
+            <img class="card-img-top" src="${member.img}" alt="${member.name}" 
+                 style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <div class="card-body text-center p-3">
+            <h5 class="card-title font-weight-bold" style="color: #082465; margin-bottom: 5px;">${member.name}</h5>
+            <p class="text-warning font-weight-bold mb-1" style="font-size: 13px; text-transform: uppercase;">${member.designation}</p>
+            <p class="text-muted" style="font-size: 12px; line-height: 1.2;">${member.discipline}</p>
+          </div>
         </div>
       </div>
     `;
@@ -185,14 +186,13 @@
   });
 </script>
 
-
-
-
-
-
-
-
-
+<style>
+  /* কার্ডের ওপর মাউস নিলে হালকা ওপরে উঠবে */
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+  }
+</style>
 
       </div>
           </div>
