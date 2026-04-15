@@ -12,8 +12,8 @@
     <div id="login-screen" class="flex items-center justify-center min-h-screen">
         <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-sm border-t-4 border-[#082465]">
             <h2 class="text-2xl font-bold text-[#082465] text-center mb-6">KUJA LOGIN</h2>
-            <input type="email" id="login-email" placeholder="Email" class="w-full border p-2 mb-4 rounded shadow-sm outline-none focus:border-[#082465]">
-            <input type="password" id="login-pass" placeholder="Password" class="w-full border p-2 mb-6 rounded shadow-sm outline-none focus:border-[#082465]">
+            <input type="email" id="login-email" placeholder="Email" class="w-full border p-2 mb-4 rounded shadow-sm outline-none">
+            <input type="password" id="login-pass" placeholder="Password" class="w-full border p-2 mb-6 rounded shadow-sm outline-none">
             <button onclick="handleLogin()" class="w-full bg-[#082465] text-white py-2 rounded font-bold hover:bg-blue-900 transition">LOGIN</button>
             <p id="login-error" class="text-red-500 text-xs mt-3 text-center font-bold"></p>
         </div>
@@ -77,8 +77,7 @@
                             <th class="p-3 border text-center">Action</th>
                         </tr>
                     </thead>
-                    <tbody id="manage-list" class="text-sm">
-                        </tbody>
+                    <tbody id="manage-list" class="text-sm"></tbody>
                 </table>
             </div>
         </div>
@@ -89,7 +88,16 @@
         import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
         import { getFirestore, addDoc, collection, serverTimestamp, query, orderBy, onSnapshot, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        const firebaseConfig = { /* আপনার সঠিক Config এখানে বসান */ };
+        // Apnar Firebase Config ekhane bosiye diyechi
+        const firebaseConfig = {
+            apiKey: "AIzaSyBMMbqW-hZEAGFbLgCkLkwD7-KDR3976lg",
+            authDomain: "kuja-web.firebaseapp.com",
+            projectId: "kuja-web",
+            storageBucket: "kuja-web.firebasestorage.app",
+            messagingSenderId: "66586196424",
+            appId: "1:66586196424:web:d018284928f5e0021068fd"
+        };
+
         const IMGBB_KEY = "4ce47b896218489099e0f7b7acf5c023";
         const SUPER_ADMIN_EMAIL = "kuja2020.21@gmail.com";
 
@@ -106,7 +114,7 @@
             const email = document.getElementById('login-email').value;
             const pass = document.getElementById('login-pass').value;
             signInWithEmailAndPassword(auth, email, pass).catch(err => {
-                document.getElementById('login-error').innerText = "Login Failed: Check credentials.";
+                document.getElementById('login-error').innerText = "Login Failed: " + err.message;
             });
         };
 
@@ -132,7 +140,7 @@
             const btn = document.getElementById('submitBtn');
             const msg = document.getElementById('statusMsg');
             btn.disabled = true;
-            msg.innerText = "Processing... Uploading Image.";
+            msg.innerText = "Publishing... Please wait.";
             
             const cat = document.getElementById('category').value;
             const imageFile = document.getElementById('image').files[0];
@@ -167,15 +175,13 @@
 
         function loadManager() {
             const list = document.getElementById('manage-list');
-            list.innerHTML = ""; // Clear list initially
-            
+            list.innerHTML = "";
             ['notices', 'people'].forEach(cat => {
                 const q = query(collection(db, cat), orderBy("createdAt", "desc"));
                 onSnapshot(q, (snaps) => {
                     snaps.docChanges().forEach(change => {
                         const id = change.doc.id;
                         if (change.type === "added") {
-                            // চেক করা হচ্ছে আইডিটি অলরেডি লিস্টে আছে কি না
                             if (!document.getElementById(`row-${id}`)) {
                                 const data = change.doc.data();
                                 const tr = document.createElement('tr');
@@ -185,9 +191,7 @@
                                     <td class="p-3 font-medium text-gray-700">${data.subject}</td>
                                     <td class="p-3 uppercase text-xs text-gray-500">${cat}</td>
                                     <td class="p-3 text-center">
-                                        <button onclick="del('${cat}','${id}')" class="bg-red-100 text-red-600 px-3 py-1 rounded-full hover:bg-red-600 hover:text-white transition font-bold text-xs">
-                                            <i class="fa fa-trash"></i> Delete
-                                        </button>
+                                        <button onclick="del('${cat}','${id}')" class="text-red-600 font-bold text-xs"><i class="fa fa-trash"></i> DELETE</button>
                                     </td>`;
                                 list.appendChild(tr);
                             }
@@ -202,13 +206,7 @@
         }
 
         window.del = async (cat, id) => {
-            if(confirm("Confirm Delete? This cannot be undone.")) {
-                try {
-                    await deleteDoc(doc(db, cat, id));
-                } catch (e) {
-                    alert("Delete failed!");
-                }
-            }
+            if(confirm("Are you sure?")) await deleteDoc(doc(db, cat, id));
         };
     </script>
 </body>
