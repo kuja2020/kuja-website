@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KUJA Admin</title>
+    <title>KUJA Admin Panel</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -21,7 +21,7 @@
 
     <div id="admin-dashboard" class="hidden container mx-auto py-8 px-4">
         <div class="flex justify-between items-center mb-6 bg-[#082465] p-4 rounded-lg text-white shadow-lg">
-            <h2 class="text-lg font-bold uppercase tracking-wide">KUJA Management Hub</h2>
+            <h2 class="text-lg font-bold uppercase tracking-wide">KUJA Web Management Hub</h2>
             <button onclick="handleLogout()" class="bg-red-500 hover:bg-red-700 px-4 py-1 rounded text-sm font-bold transition">LOGOUT</button>
         </div>
 
@@ -79,7 +79,7 @@
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Upload Image (Optional for Notices)</label>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Upload Image (Optional)</label>
                     <input type="file" id="image" class="w-full border p-2 rounded bg-gray-50" accept="image/*">
                 </div>
 
@@ -110,7 +110,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { getFirestore, addDoc, collection, serverTimestamp, query, orderBy, onSnapshot, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, addDoc, collection, serverTimestamp, query, orderBy, onSnapshot, doc, deleteDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyBMMbqW-hZEAGFbLgCkLkwD7-KDR3976lg",
@@ -122,16 +122,54 @@
         };
 
         const IMGBB_KEY = "4ce47b896218489099e0f7b7acf5c023";
-        const SUPER_ADMIN_EMAIL = "kuja2020.21@gmail.com";
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // UI Helpers
+        // Role-Based Access Setup
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                const adminDoc = await getDoc(doc(db, "admins", user.email));
+                if (adminDoc.exists()) {
+                    const role = adminDoc.data().role;
+                    setupUIByRole(role);
+                    document.getElementById('login-screen').classList.add('hidden');
+                    document.getElementById('admin-dashboard').classList.remove('hidden');
+                } else {
+                    alert("Unauthorized Access!");
+                    signOut(auth);
+                }
+            } else {
+                document.getElementById('login-screen').classList.remove('hidden');
+                document.getElementById('admin-dashboard').classList.add('hidden');
+            }
+        });
+
+        function setupUIByRole(role) {
+            const catSelect = document.getElementById('category');
+            const superSec = document.getElementById('super-admin-section');
+
+            if (role === 'super_admin') {
+                catSelect.innerHTML = '<option value="notices">Notice Board</option><option value="people">Committee Member</option>';
+                superSec.classList.remove('hidden');
+                loadManager();
+            } else if (role === 'editor_admin') {
+                catSelect.innerHTML = '<option value="notices">Notice Board</option><option value="people">Committee Member</option>';
+                superSec.classList.add('hidden');
+            } else if (role === 'only_notice') {
+                catSelect.innerHTML = '<option value="notices">Notice Board</option>';
+                superSec.classList.add('hidden');
+            } else if (role === 'only_member') {
+                catSelect.innerHTML = '<option value="people">Committee Member</option>';
+                superSec.classList.add('hidden');
+            }
+            toggleFields();
+        }
+
         window.toggleFields = () => {
-            const cat = document.getElementById('category').value;
-            document.getElementById('member-fields').classList.toggle('hidden', cat !== 'people');
+            const isPeople = document.getElementById('category').value === 'people';
+            document.getElementById('member-fields').classList.toggle('hidden', !isPeople);
         };
 
         window.handleLogin = () => {
@@ -143,20 +181,6 @@
         };
 
         window.handleLogout = () => signOut(auth);
-
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                document.getElementById('login-screen').classList.add('hidden');
-                document.getElementById('admin-dashboard').classList.remove('hidden');
-                if(user.email === SUPER_ADMIN_EMAIL) {
-                    document.getElementById('super-admin-section').classList.remove('hidden');
-                    loadManager();
-                }
-            } else {
-                document.getElementById('login-screen').classList.remove('hidden');
-                document.getElementById('admin-dashboard').classList.add('hidden');
-            }
-        });
 
         const form = document.getElementById('contentForm');
         form.addEventListener('submit', async (e) => {
@@ -204,36 +228,27 @@
             const list = document.getElementById('manage-list');
             list.innerHTML = "";
             ['notices', 'people'].forEach(cat => {
-                const q = query(collection(db, cat), orderBy("createdAt", "desc"));
-                onSnapshot(q, (snaps) => {
+                onSnapshot(query(collection(db, cat), orderBy("createdAt", "desc")), (snaps) => {
                     snaps.docChanges().forEach(change => {
                         const id = change.doc.id;
                         if (change.type === "added") {
                             if (!document.getElementById(`row-${id}`)) {
-                                const data = change.doc.data();
                                 const tr = document.createElement('tr');
                                 tr.id = `row-${id}`;
-                                tr.className = "border-b hover:bg-gray-50 transition";
-                                tr.innerHTML = `<td class="p-3 font-medium">${data.subject}</td><td class="p-3 uppercase text-xs text-gray-500 font-bold">${cat}</td>
-                                    <td class="p-3 text-center"><button onclick="del('${cat}','${id}')" class="text-red-600 hover:text-red-900 font-bold text-xs"><i class="fa fa-trash"></i> DELETE</button></td>`;
+                                tr.className = "border-b hover:bg-gray-50";
+                                tr.innerHTML = `<td class="p-3">${change.doc.data().subject}</td><td class="p-3 uppercase text-xs font-bold">${cat}</td>
+                                    <td class="p-3 text-center"><button onclick="del('${cat}','${id}')" class="text-red-600 font-bold text-xs hover:underline">DELETE</button></td>`;
                                 list.appendChild(tr);
                             }
                         }
-                        if (change.type === "removed") {
-                            const el = document.getElementById(`row-${id}`);
-                            if(el) el.remove();
-                        }
+                        if (change.type === "removed") document.getElementById(`row-${id}`)?.remove();
                     });
                 });
             });
         }
 
         window.del = async (cat, id) => {
-            if(confirm("Are you sure you want to delete this content?")) {
-                try {
-                    await deleteDoc(doc(db, cat, id));
-                } catch (e) { alert("Delete failed!"); }
-            }
+            if(confirm("Are you sure?")) await deleteDoc(doc(db, cat, id));
         };
     </script>
 </body>
