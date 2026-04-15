@@ -120,7 +120,6 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
   import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-  // আপনার সেই একই firebaseConfig এখানেও দিন
   const firebaseConfig = {
     apiKey: "AIzaSyBMMbqW-hZEAGFbLgCkLkwD7-KDR3976lg",
     authDomain: "kuja-web.firebaseapp.com",
@@ -133,18 +132,34 @@
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  // ডাটাবেস থেকে নোটিশগুলো সময় অনুযায়ী (নতুনটা আগে) নিয়ে আসা
-  const q = query(collection(db, "notices"), orderBy("createdAt", "desc"));
+  // ছবি দেখার ফাংশনটিকে গ্লোবাল (window) স্কোপে দিয়ে দিচ্ছি যাতে বাটন খুঁজে পায়
+  window.openNotice = function(src) {
+    const modal = document.getElementById('noticeModal');
+    const modalImg = document.getElementById('noticeImg');
+    if (modal && modalImg) {
+      modalImg.src = src;
+      modal.style.display = 'flex';
+    }
+  };
 
+  const q = query(collection(db, "notices"), orderBy("createdAt", "desc"));
   const noticeBody = document.getElementById('notice-list');
 
-  // Real-time listener: ডাটাবেসে কিছু পরিবর্তন হলে অটো আপডেট হবে
   onSnapshot(q, (snapshot) => {
-    noticeBody.innerHTML = ""; // আগের লিস্ট ক্লিয়ার করা
+    noticeBody.innerHTML = ""; 
     let sl = 1;
 
     snapshot.forEach((doc) => {
       const notice = doc.data();
+      
+      // লিঙ্ক না থাকলে বা '#' থাকলে বাটনটি দেখাবে না
+      const hasLink = notice.link && notice.link !== "#" && notice.link !== "";
+      const detailButton = hasLink 
+        ? `<a href="${notice.link}" target="_blank" class="btn btn-sm" style="background: #fcc334; color: #082465; border-radius: 20px; padding: 5px 20px; font-weight: bold; border: none;">
+             <i class="fa fa-info-circle"></i> Detail
+           </a>`
+        : `<span class="text-muted" style="font-size: 12px;">No Link</span>`;
+
       const htmlRow = `
         <tr>
           <td class="p-md-3"><strong>${sl++}</strong></td>
@@ -155,9 +170,7 @@
             </button>
           </td>
           <td class="p-md-3 text-center">
-            <a href="${notice.link}" target="_blank" class="btn btn-sm" style="background: #fcc334; color: #082465; border-radius: 20px; padding: 5px 20px; font-weight: bold; border: none;">
-              <i class="fa fa-info-circle"></i> Detail
-            </a>
+            ${detailButton}
           </td>
         </tr>
       `;
@@ -165,7 +178,6 @@
     });
   });
 </script>
-
   <!-- notice section -->
 
 
