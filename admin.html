@@ -1,150 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KUJA Admin Hub</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KUJA Master Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body class="bg-slate-50 min-h-screen font-sans">
+<body class="bg-gray-100 min-h-screen">
 
-  <div id="login-screen" class="flex items-center justify-center min-h-screen">
-    <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-sm border-t-4 border-[#fcc334]">
-      <h2 class="text-2xl font-bold text-[#082465] text-center mb-6">ADMIN LOGIN</h2>
-      <input type="email" id="login-email" placeholder="Email" class="w-full border p-2 mb-4 rounded focus:outline-[#082465]">
-      <input type="password" id="login-pass" placeholder="Password" class="w-full border p-2 mb-6 rounded focus:outline-[#082465]">
-      <button onclick="handleLogin()" class="w-full bg-[#082465] text-white py-2 rounded font-bold hover:bg-blue-900 transition">LOGIN</button>
-      <p id="login-error" class="text-red-500 text-xs mt-3 text-center"></p>
-    </div>
-  </div>
-
-  <div id="admin-dashboard" class="hidden container mx-auto py-10 px-4">
-    <div class="flex justify-between items-center mb-8 bg-[#082465] p-4 rounded-lg shadow-lg text-white">
-      <h2 class="text-xl font-bold">KUJA CONTENT MANAGER</h2>
-      <button onclick="handleLogout()" class="bg-red-500 px-4 py-1 rounded text-sm font-bold">LOGOUT</button>
+    <div id="login-screen" class="flex items-center justify-center min-h-screen">
+        <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-sm border-t-4 border-[#082465]">
+            <h2 class="text-2xl font-bold text-[#082465] text-center mb-6">KUJA LOGIN</h2>
+            <input type="email" id="login-email" placeholder="Email" class="w-full border p-2 mb-4 rounded shadow-sm">
+            <input type="password" id="login-pass" placeholder="Password" class="w-full border p-2 mb-6 rounded shadow-sm">
+            <button onclick="handleLogin()" class="w-full bg-[#082465] text-white py-2 rounded font-bold hover:bg-blue-900 transition">LOGIN</button>
+            <p id="login-error" class="text-red-500 text-xs mt-3 text-center font-bold"></p>
+        </div>
     </div>
 
-    <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-lg border-t-8 border-[#fcc334] p-8">
-      <form id="contentForm" class="space-y-5">
-        
-        <div>
-          <label class="block text-sm font-bold text-gray-700 mb-1">Select Category</label>
-          <select id="category" class="w-full border-2 p-2 rounded-lg focus:border-[#082465] outline-none">
-            <option value="notices">Notice Board</option>
-            <option value="news">Published News/Articles</option>
-            <option value="people">Honor Board / Members</option>
-          </select>
+    <div id="admin-dashboard" class="hidden container mx-auto py-8 px-4">
+        <div class="flex justify-between items-center mb-6 bg-[#082465] p-4 rounded-lg text-white shadow-lg">
+            <h2 class="text-lg font-bold uppercase">KUJA Management Hub</h2>
+            <button onclick="handleLogout()" class="bg-red-500 hover:bg-red-700 px-4 py-1 rounded text-sm font-bold transition">LOGOUT</button>
         </div>
 
-        <div>
-          <label class="block text-sm font-bold text-gray-700 mb-1">Subject / Name / Title</label>
-          <input type="text" id="title" class="w-full border-2 p-2 rounded-lg outline-none focus:border-[#082465]" required>
+        <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-md border-t-4 border-[#fcc334] p-6 mb-10">
+            <h3 class="text-lg font-bold mb-4 text-[#082465] border-b pb-2"><i class="fa fa-plus-circle"></i> Add New Content</h3>
+            <form id="contentForm" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase">Category</label>
+                    <select id="category" onchange="toggleFields()" class="w-full border p-2 rounded bg-gray-50">
+                        <option value="notices">Notice Board</option>
+                        <option value="people">Committee Member</option>
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase">Subject / Name</label>
+                        <input type="text" id="title" class="w-full border p-2 rounded focus:border-[#082465] outline-none" required>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase">Link / Portfolio URL (Optional)</label>
+                        <input type="url" id="details" class="w-full border p-2 rounded focus:border-[#082465] outline-none" placeholder="https://...">
+                    </div>
+                </div>
+
+                <div id="member-fields" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-blue-50 rounded-lg border border-blue-100">
+                    <input type="text" id="status" placeholder="Designation (e.g. President)" class="w-full border p-2 rounded">
+                    <input type="text" id="discipline" placeholder="Discipline & Batch" class="w-full border p-2 rounded">
+                    <input type="text" id="phone" placeholder="Phone Number" class="w-full border p-2 rounded">
+                    <input type="email" id="email" placeholder="Email Address" class="w-full border p-2 rounded">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase">Upload Image</label>
+                    <input type="file" id="image" class="w-full border p-2 rounded bg-gray-50" accept="image/*" required>
+                </div>
+
+                <button type="submit" id="submitBtn" class="w-full bg-[#082465] text-white font-bold py-3 rounded-lg hover:bg-[#fcc334] hover:text-[#082465] transition duration-300">
+                    PUBLISH NOW
+                </button>
+                <p id="statusMsg" class="text-center text-sm font-bold mt-2"></p>
+            </form>
         </div>
 
-        <div>
-          <label class="block text-sm font-bold text-gray-700 mb-1">Upload Image</label>
-          <input type="file" id="image" class="w-full text-sm" accept="image/*" required>
+        <div id="super-admin-section" class="hidden max-w-4xl mx-auto bg-white rounded-xl shadow-md border-t-4 border-red-500 p-6">
+            <h3 class="text-lg font-bold mb-4 text-red-600 border-b pb-2"><i class="fa fa-trash"></i> Manage / Delete Content</h3>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-gray-100 text-xs uppercase text-gray-600">
+                            <th class="p-3">Title</th>
+                            <th class="p-3">Category</th>
+                            <th class="p-3 text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="manage-list" class="text-sm">
+                        </tbody>
+                </table>
+            </div>
         </div>
-
-        <div>
-          <label class="block text-sm font-bold text-gray-700 mb-1">Link (Optional)</label>
-          <input type="url" id="details" class="w-full border-2 p-2 rounded-lg outline-none focus:border-[#082465]" placeholder="https://...">
-        </div>
-
-        <button type="submit" id="submitBtn" class="w-full bg-[#082465] text-white font-bold py-3 rounded-lg hover:bg-opacity-90 transition">
-          PUBLISH CONTENT
-        </button>
-        <p id="status" class="text-center font-medium mt-4"></p>
-      </form>
     </div>
-  </div>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-    import { getFirestore, addDoc, collection, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, addDoc, collection, serverTimestamp, query, orderBy, onSnapshot, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-    const firebaseConfig = {
-        apiKey: "AIzaSyBMMbqW-hZEAGFbLgCkLkwD7-KDR3976lg",
-        authDomain: "kuja-web.firebaseapp.com",
-        projectId: "kuja-web",
-        storageBucket: "kuja-web.firebasestorage.app",
-        messagingSenderId: "66586196424",
-        appId: "1:66586196424:web:d018284928f5e0021068fd"
-    };
+        const firebaseConfig = { /* Your Config Here */ };
+        const IMGBB_KEY = "4ce47b896218489099e0f7b7acf5c023";
+        const SUPER_ADMIN_EMAIL = "kuja2020.21@gmail.com"; // আপনার ইমেইলটি এখানে দিন
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
 
-    // Login Function
-    window.handleLogin = () => {
-      const email = document.getElementById('login-email').value;
-      const pass = document.getElementById('login-pass').value;
-      signInWithEmailAndPassword(auth, email, pass)
-        .catch(err => document.getElementById('login-error').innerText = "Invalid Login!");
-    };
+        // UI Functions
+        window.toggleFields = () => {
+            const cat = document.getElementById('category').value;
+            document.getElementById('member-fields').classList.toggle('hidden', cat !== 'people');
+        };
 
-    // Logout Function
-    window.handleLogout = () => signOut(auth);
+        window.handleLogin = () => {
+            const email = document.getElementById('login-email').value;
+            const pass = document.getElementById('login-pass').value;
+            signInWithEmailAndPassword(auth, email, pass).catch(err => alert("Login Failed!"));
+        };
 
-    // Auth State Observer (Check if logged in)
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        document.getElementById('login-screen').classList.add('hidden');
-        document.getElementById('admin-dashboard').classList.remove('hidden');
-      } else {
-        document.getElementById('login-screen').classList.remove('hidden');
-        document.getElementById('admin-dashboard').classList.add('hidden');
-      }
-    });
+        window.handleLogout = () => signOut(auth);
 
-    // Form Submit (Data Upload)
-    const form = document.getElementById('contentForm');
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const status = document.getElementById('status');
-      const btn = document.getElementById('submitBtn');
-      
-      btn.disabled = true;
-      status.innerText = "Uploading to ImgBB...";
-      status.className = "text-center text-blue-600";
-
-      const category = document.getElementById('category').value;
-      const title = document.getElementById('title').value;
-      const details = document.getElementById('details').value;
-      const imageFile = document.getElementById('image').files[0];
-
-      const formData = new FormData();
-      formData.append("image", imageFile);
-
-      try {
-        // 1. Upload to ImgBB
-        const imgResponse = await fetch("https://api.imgbb.com/1/upload?key=4ce47b896218489099e0f7b7acf5c023", {
-          method: "POST",
-          body: formData
-        });
-        const imgData = await imgResponse.json();
-        const imageUrl = imgData.data.url;
-
-        // 2. Save to Firebase Database based on selected category
-        await addDoc(collection(db, category), {
-          subject: title,
-          img: imageUrl,
-          link: details || "#",
-          createdAt: serverTimestamp()
+        // Role Based View
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                document.getElementById('login-screen').classList.add('hidden');
+                document.getElementById('admin-dashboard').classList.remove('hidden');
+                
+                // যদি আপনি লগইন করেন, তবে ডিলিট অপশন দেখাবে
+                if(user.email === SUPER_ADMIN_EMAIL) {
+                    document.getElementById('super-admin-section').classList.remove('hidden');
+                    loadManager();
+                }
+            } else {
+                document.getElementById('login-screen').classList.remove('hidden');
+                document.getElementById('admin-dashboard').classList.add('hidden');
+            }
         });
 
-        status.innerText = "Published Successfully in " + category + "!";
-        status.className = "text-center text-green-600";
-        form.reset();
-      } catch (error) {
-        status.innerText = "Error: " + error.message;
-        status.className = "text-center text-red-600";
-      }
-      btn.disabled = false;
-    });
-  </script>
+        // Form Handling
+        const form = document.getElementById('contentForm');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const msg = document.getElementById('statusMsg');
+            btn.disabled = true;
+            msg.innerText = "Processing... Uploading Image.";
+            
+            const cat = document.getElementById('category').value;
+            const imageFile = document.getElementById('image').files[0];
+            const formData = new FormData();
+            formData.append("image", imageFile);
+
+            try {
+                const imgRes = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_KEY}`, {method: "POST", body: formData});
+                const imgData = await imgRes.json();
+                
+                await addDoc(collection(db, cat), {
+                    subject: document.getElementById('title').value,
+                    img: imgData.data.url,
+                    link: document.getElementById('details').value || "#",
+                    status: document.getElementById('status').value || "",
+                    discipline: document.getElementById('discipline').value || "",
+                    phone: document.getElementById('phone').value || "",
+                    email: document.getElementById('email').value || "",
+                    createdAt: serverTimestamp()
+                });
+
+                msg.innerHTML = "<span class='text-green-600'>Success! Content Published.</span>";
+                form.reset();
+                toggleFields();
+            } catch (err) {
+                msg.innerHTML = "<span class='text-red-600'>Error: " + err.message + "</span>";
+            }
+            btn.disabled = false;
+        });
+
+        // Delete Management Logic
+        function loadManager() {
+            const list = document.getElementById('manage-list');
+            ['notices', 'people'].forEach(cat => {
+                const q = query(collection(db, cat), orderBy("createdAt", "desc"));
+                onSnapshot(q, (snaps) => {
+                    snaps.docChanges().forEach(change => {
+                        if (change.type === "added") {
+                            const data = change.doc.data();
+                            const tr = document.createElement('tr');
+                            tr.id = change.doc.id;
+                            tr.className = "border-b hover:bg-gray-50";
+                            tr.innerHTML = `<td class="p-3 font-medium">${data.subject}</td><td class="p-3 uppercase text-xs">${cat}</td>
+                                <td class="p-3 text-center"><button onclick="del('${cat}','${change.doc.id}')" class="text-red-600 font-bold">Delete</button></td>`;
+                            list.appendChild(tr);
+                        }
+                        if (change.type === "removed") document.getElementById(change.doc.id)?.remove();
+                    });
+                });
+            });
+        }
+
+        window.del = async (cat, id) => {
+            if(confirm("Are you sure?")) await deleteDoc(doc(db, cat, id));
+        };
+    </script>
 </body>
 </html>
