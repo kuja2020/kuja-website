@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Advisors | KUJA</title>
+
+
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <!-- progress barstle -->
+  <link rel="stylesheet" href="css/css-circular-prog-bar.css">
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+  <!-- font wesome stylesheet -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+
+
+
+
+  <link rel="stylesheet" href="css/css-circular-prog-bar.css">
+
+
+</head>
+
+<body>
+  <div class="top_container sub_pages">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="index.html">
+            <img src="images/logo.png" alt="">
+            <span>
+              KUJA
+            </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+              <ul class="navbar-nav  ">
+<li class="nav-item active">
+                  <a class="nav-link" href="index.html"> Home <span class="sr-only">(current)</span></a>
+                </li>
+
+                <li class="nav-item ">
+                  <a class="nav-link" href="people.html"> People </a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="notices.html"> Notices </a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="gallery.html"> Gallery </a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="contact.html">Contact Us</a>
+                </li>
+
+
+              </ul>
+              <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
+                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
+              </form>
+            </div>
+        </nav>
+      </div>
+</br>
+<div class="d-flex align-items-center justify-content-center">
+  <a href="people.html" class="call_to-btn">
+    <span>Honor Board</span>
+  </a>
+&nbsp;&nbsp;
+<h6 style="color: #082465; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0; margin-right: 15px;">
+    Current Board
+  </h6>
+
+</div>
+
+
+    </header>
+  </div>
+  <!-- end header section -->
+
+
+
+  <!-- member section -->
+<section class="teacher_section layout_padding-bottom">
+  <div class="container">
+    <h2 class="main-heading">Executive Committee</h2>
+    <p class="text-center">Meet the dedicated leaders of the current session.</p>
+    
+    <div class="teacher_container layout_padding2">
+      <div class="card-deck" id="member-list">
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center mt-3">
+      <a href="people.html" class="call_to-btn">
+        <span>Honor Board</span>
+        <img src="images/right-arrow.png" alt="">
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+
+  const members = [
+{ name: "Al Kama Romin", img: "Profile/images/committee/president.jpg" },
+    { name: "H.M. Masum Hasan", img: "Profile/images/committee/gs.jpg" },
+    { name: "Md. Mirazul Islam", img: "Profile/images/committee/3.jpg" },
+    { name: "Arko Mondol", img: "Profile/images/committee/4.jpg" },
+    { name: "Aminur Rahman", img: "Profile/images/committee/5.jpg" },
+    { name: "Golam Mostofa", img: "Profile/images/committee/6.jpg" },
+    { name: "Ebrahim Khalil", img: "Profile/images/committee/7.jpg" },
+    { name: "Md. Hasibul Hassan", img: "Profile/images/committee/8.jpg" },
+    { name: "Fahad Khandokar", img: "Profile/images/committee/9.jpg" },
+    { name: "Ratul Khan", img: "Profile/images/committee/10.jpg" },
+    { name: "Md. Maruf Ahmmed", img: "Profile/images/committee/11.jpg" },
+    { name: "Faruk Khan", img: "Profile/images/committee/12.jpg" },
+    { name: "Sanjida Akter", img: "Profile/images/committee/13.jpg" },
+    { name: "Nahid Hassan", img: "Profile/images/committee/14.jpg" },
+    { name: "Md. Abid Hasan", img: "Profile/images/committee/15.jpg" },
+    { name: "Md. Mahmud Shaikh", img: "Profile/images/committee/16.jpg" },
+    { name: "Nusrat Sultana", img: "Profile/images/committee/17.jpg" },
+    { name: "Md. Mahfuz Ahmed", img: "Profile/images/committee/18.jpg" },
+    { name: "Yousuf Sadiq", img: "Profile/images/committee/19.jpg" },
+    { name: "Saiful Islam", img: "Profile/images/committee/20.jpg" },
+    { name: "Tania Tabassum", img: "Profile/images/committee/21.jpg" },
+    { name: "Mokarrom Billah", img: "Profile/images/committee/22.jpg" },
+    { name: "Jahida Sultana Rima", img: "Profile/images/committee/23.jpg" },
+    { name: "Arpita", img: "Profile/images/committee/24.jpg" },
+    { name: "Ahmed Mostofa", img: "Profile/images/committee/25.jpg" },
+    { name: "Al Mamun", img: "Profile/images/committee/26.jpg" },
+    { name: "Sohan Sakib", img: "Profile/images/committee/27.jpg" },
+    { name: "Fauzia Faria Jeba", img: "Profile/images/committee/28.jpg" },
+    { name: "Miftahul Islam Mahin", img: "Profile/images/committee/29.jpg" },
+    { name: "Shafiul Islam", img: "Profile/images/committee/30.jpg" },
+    { name: "Jahangir Julfikar", img: "Profile/images/committee/31.jpg" },
+    { name: "Md. Sohan Sheikh", img: "Profile/images/committee/32.jpg" },
+    { name: "Md. Jahid Hasan Shawon", img: "Profile/images/committee/33.jpg" },
+    { name: "Mehedi Hasan", img: "Profile/images/committee/34.jpg" },
+    { name: "Saif Rasul Khan", img: "Profile/images/committee/35.jpg" },
+    { name: "Md. Aman Ullah", img: "Profile/images/committee/36.jpg" },
+    { name: "Sayed Jawwad Hossain Sami", img: "Profile/images/committee/37.jpg" },
+    { name: "Mahidul Islam", img: "Profile/images/committee/38.jpg" },
+    { name: "Firoz Hasan", img: "Profile/images/committee/39.jpg" }
+  ];
+
+
+  const memberListContainer = document.getElementById('member-list');
+  
+  members.forEach(member => {
+    const cardHTML = `
+      <div class="card" style="min-width: 220px; margin-bottom: 20px;">
+        <img class="card-img-top" src="${member.img}" alt="${member.name}" 
+             style="height: 250px; object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title" style="text-align: center; color: #082465;">${member.name}</h5>
+        </div>
+      </div>
+    `;
+    memberListContainer.innerHTML += cardHTML;
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+      </div>
+          </div>
+  </section>
+
+  <!-- member section -->
+
+
+  <!-- footer section -->
+<style>
+
+  .footer_col {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+  }
+
+
+  @media (max-width: 768px) {
+    .footer_col {
+      flex: 0 0 100% !important;
+      max-width: 100% !important;
+      text-align: center; 
+    }
+
+    .footer_col p, .footer_col h4 {
+      text-align: center !important;
+      border-left: none !important;
+    }
+  }
+</style>
+
+<footer class="footer_section" style="background-color: #082465; color: #ffffff; padding: 60px 0 30px 0; font-family: 'Poppins', sans-serif;">
+  <div class="container" style="max-width: 1140px; margin: 0 auto; padding: 0 15px;">
+    <div class="row" style="display: flex; flex-wrap: wrap; margin-right: -15px; margin-left: -15px;">
+      
+      <div class="footer_col" style="padding: 0 15px; margin-bottom: 30px;">
+        <h4 style="font-size: 20px; font-weight: 700; margin-bottom: 20px; border-left: 4px solid #fff; padding-left: 10px; color: #fcc334;">Khulna University Journalists' Association (KUJA)</h4>
+        <p style="color: #cbd5e0; line-height: 1.6; font-size: 14px; text-align: left;">
+          Powered by the passion of Khulna University students.
+        </p>
+      </div>
+
+      <div class="footer_col" style="padding: 0 15px; margin-bottom: 30px;">
+        <h4 style="font-size: 20px; font-weight: 700; margin-bottom: 20px; border-left: 4px solid #fff; padding-left: 10px; color: #fff;">Quick Links</h4>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="margin-bottom: 10px;"><a href="index.html" style="color: #cbd5e0; text-decoration: none; font-size: 14px;">Home</a></li>
+          <li style="margin-bottom: 10px;"><a href="about.html" style="color: #cbd5e0; text-decoration: none; font-size: 14px;">About</a></li>
+          <li style="margin-bottom: 10px;"><a href="people.html" style="color: #cbd5e0; text-decoration: none; font-size: 14px;">Honor-board</a></li>
+          <li style="margin-bottom: 10px;"><a href="https://ku.ac.bd/" style="color: #cbd5e0; text-decoration: none; font-size: 14px;">Khulna University</a></li>
+          <li style="margin-bottom: 10px;"><a href="https://ku.ac.bd/all-news" style="color: #cbd5e0; text-decoration: none; font-size: 14px;">Khulna University News</a></li>
+          <li style="margin-bottom: 10px;"><a href="contact.html" style="color: #cbd5e0; text-decoration: none; font-size: 14px;">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer_col" style="padding: 0 15px; margin-bottom: 30px;">
+        <h4 style="font-size: 20px; font-weight: 700; margin-bottom: 20px; border-left: 4px solid #fff; padding-left: 10px; color: #fff;">Contact</h4>
+        <p style="color: #cbd5e0; font-size: 14px; margin-bottom: 10px; text-align: left;">
+          <i class="fa fa-map-marker" aria-hidden="true" style="margin-right: 10px; color: #fff;"></i> Room No: 121, Prof Dr. Golam Rahman Administrative Building, Khulna University, Khulna-9208
+        </p>
+        <p style="color: #cbd5e0; font-size: 14px; margin-bottom: 10px; text-align: left;">
+          <i class="fa fa-envelope" aria-hidden="true" style="margin-right: 10px; color: #fff;"></i> kuja2020.21@gmail.com
+        </p>
+        <div style="margin-top: 20px;">
+          <a href="https://www.facebook.com/kujaofficial2020" style="color: #082465; background: #fff; padding: 8px 12px; margin-right: 5px; border-radius: 4px;"><i class="fa fa-facebook"></i></a>
+          <a href="https://www.linkedin.com/company/kuja2020/" style="color: #082465; background: #fff; padding: 8px 12px; margin-right: 5px; border-radius: 4px;"><i class="fa fa-linkedin"></i></a>
+          <a href="#" style="color: #082465; background: #fff; padding: 8px 12px; border-radius: 4px;"><i class="fa fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; margin-top: 20px; text-align: center;">
+      <p style="color: #a0aec0; font-size: 13px;">
+        &copy; 2026 All Rights Reserved By <span style="color: #fff; font-weight: bold;">KUJA</span>
+      </p>
+    </div>
+  </div>
+</footer>
+  <!-- footer section -->
+
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <!-- progreesbar script -->
+
+  </script>
+  <script>
+    // This example adds a marker to indicate the position of Bondi Beach in Sydney,
+    // Australia.
+    function initMap() {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 11,
+        center: {
+          lat: 40.645037,
+          lng: -73.880224
+        },
+      });
+
+      var image = 'images/maps-and-flags.png';
+      var beachMarker = new google.maps.Marker({
+        position: {
+          lat: 40.645037,
+          lng: -73.880224
+        },
+        map: map,
+        icon: image
+      });
+    }
+  </script>
+  <!-- google map js -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap">
+  </script>
+  <!-- end google map js -->
+</body>
+
+</html>
