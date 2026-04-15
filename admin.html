@@ -47,6 +47,11 @@
                     </div>
                 </div>
 
+                <div id="notice-fields">
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Notice Date</label>
+                    <input type="date" id="notice-date" class="w-full border p-2 rounded focus:border-[#082465] outline-none bg-white">
+                </div>
+
                 <div id="member-fields" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-blue-50 rounded-lg border border-blue-100">
                     <div>
                         <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Designation</label>
@@ -122,18 +127,15 @@
         };
 
         const IMGBB_KEY = "4ce47b896218489099e0f7b7acf5c023";
-
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // Role-Based Access Setup
         onAuthStateChanged(auth, async (user) => {
             if (user) {
                 const adminDoc = await getDoc(doc(db, "admins", user.email));
                 if (adminDoc.exists()) {
-                    const role = adminDoc.data().role;
-                    setupUIByRole(role);
+                    setupUIByRole(adminDoc.data().role);
                     document.getElementById('login-screen').classList.add('hidden');
                     document.getElementById('admin-dashboard').classList.remove('hidden');
                 } else {
@@ -149,7 +151,6 @@
         function setupUIByRole(role) {
             const catSelect = document.getElementById('category');
             const superSec = document.getElementById('super-admin-section');
-
             if (role === 'super_admin') {
                 catSelect.innerHTML = '<option value="notices">Notice Board</option><option value="people">Committee Member</option>';
                 superSec.classList.remove('hidden');
@@ -168,8 +169,9 @@
         }
 
         window.toggleFields = () => {
-            const isPeople = document.getElementById('category').value === 'people';
-            document.getElementById('member-fields').classList.toggle('hidden', !isPeople);
+            const cat = document.getElementById('category').value;
+            document.getElementById('member-fields').classList.toggle('hidden', cat !== 'people');
+            document.getElementById('notice-fields').classList.toggle('hidden', cat !== 'notices');
         };
 
         window.handleLogin = () => {
@@ -187,8 +189,7 @@
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
             const msg = document.getElementById('statusMsg');
-            btn.disabled = true;
-            msg.innerText = "Processing...";
+            btn.disabled = true; msg.innerText = "Processing...";
             
             const cat = document.getElementById('category').value;
             const imageFile = document.getElementById('image').files[0];
@@ -204,10 +205,14 @@
                     if(imgData.success) imageUrl = imgData.data.url;
                 }
 
+                const today = new Date().toISOString().split('T')[0];
+                const selectedDate = document.getElementById('notice-date').value;
+
                 await addDoc(collection(db, cat), {
                     subject: document.getElementById('title').value,
                     img: imageUrl,
                     link: document.getElementById('details').value || "#",
+                    date: cat === 'notices' ? (selectedDate || today) : "",
                     status: cat === 'people' ? document.getElementById('status').value : "",
                     discipline: document.getElementById('discipline').value || "",
                     phone: document.getElementById('phone').value || "",
@@ -215,12 +220,9 @@
                     createdAt: serverTimestamp()
                 });
 
-                msg.innerHTML = "<span class='text-green-600 font-bold'>✓ Published Successfully!</span>";
-                form.reset();
-                toggleFields();
-            } catch (err) {
-                msg.innerHTML = "<span class='text-red-600 font-bold'>Error: " + err.message + "</span>";
-            }
+                msg.innerHTML = "<span class='text-green-600 font-bold'>✓ Published!</span>";
+                form.reset(); toggleFields();
+            } catch (err) { msg.innerHTML = "<span class='text-red-600'>Error: " + err.message + "</span>"; }
             btn.disabled = false;
         });
 
@@ -231,15 +233,13 @@
                 onSnapshot(query(collection(db, cat), orderBy("createdAt", "desc")), (snaps) => {
                     snaps.docChanges().forEach(change => {
                         const id = change.doc.id;
-                        if (change.type === "added") {
-                            if (!document.getElementById(`row-${id}`)) {
-                                const tr = document.createElement('tr');
-                                tr.id = `row-${id}`;
-                                tr.className = "border-b hover:bg-gray-50";
-                                tr.innerHTML = `<td class="p-3">${change.doc.data().subject}</td><td class="p-3 uppercase text-xs font-bold">${cat}</td>
-                                    <td class="p-3 text-center"><button onclick="del('${cat}','${id}')" class="text-red-600 font-bold text-xs hover:underline">DELETE</button></td>`;
-                                list.appendChild(tr);
-                            }
+                        if (change.type === "added" && !document.getElementById(`row-${id}`)) {
+                            const tr = document.createElement('tr');
+                            tr.id = `row-${id}`;
+                            tr.className = "border-b hover:bg-gray-50";
+                            tr.innerHTML = `<td class="p-3">${change.doc.data().subject}</td><td class="p-3 uppercase text-xs font-bold">${cat}</td>
+                                <td class="p-3 text-center"><button onclick="del('${cat}','${id}')" class="text-red-600 font-bold text-xs hover:underline">DELETE</button></td>`;
+                            list.appendChild(tr);
                         }
                         if (change.type === "removed") document.getElementById(`row-${id}`)?.remove();
                     });
@@ -247,9 +247,7 @@
             });
         }
 
-        window.del = async (cat, id) => {
-            if(confirm("Are you sure?")) await deleteDoc(doc(db, cat, id));
-        };
+        window.del = async (cat, id) => { if(confirm("Are you sure?")) await deleteDoc(doc(db, cat, id)); };
     </script>
 </body>
 </html>
