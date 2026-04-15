@@ -12,8 +12,8 @@
     <div id="login-screen" class="flex items-center justify-center min-h-screen">
         <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-sm border-t-4 border-[#082465]">
             <h2 class="text-2xl font-bold text-[#082465] text-center mb-6">KUJA LOGIN</h2>
-            <input type="email" id="login-email" placeholder="Email" class="w-full border p-2 mb-4 rounded shadow-sm">
-            <input type="password" id="login-pass" placeholder="Password" class="w-full border p-2 mb-6 rounded shadow-sm">
+            <input type="email" id="login-email" placeholder="Email" class="w-full border p-2 mb-4 rounded shadow-sm outline-none focus:border-[#082465]">
+            <input type="password" id="login-pass" placeholder="Password" class="w-full border p-2 mb-6 rounded shadow-sm outline-none focus:border-[#082465]">
             <button onclick="handleLogin()" class="w-full bg-[#082465] text-white py-2 rounded font-bold hover:bg-blue-900 transition">LOGIN</button>
             <p id="login-error" class="text-red-500 text-xs mt-3 text-center font-bold"></p>
         </div>
@@ -21,7 +21,7 @@
 
     <div id="admin-dashboard" class="hidden container mx-auto py-8 px-4">
         <div class="flex justify-between items-center mb-6 bg-[#082465] p-4 rounded-lg text-white shadow-lg">
-            <h2 class="text-lg font-bold uppercase">KUJA Management Hub</h2>
+            <h2 class="text-lg font-bold uppercase tracking-wide">KUJA Management Hub</h2>
             <button onclick="handleLogout()" class="bg-red-500 hover:bg-red-700 px-4 py-1 rounded text-sm font-bold transition">LOGOUT</button>
         </div>
 
@@ -30,7 +30,7 @@
             <form id="contentForm" class="space-y-4">
                 <div>
                     <label class="block text-xs font-bold text-gray-500 uppercase">Category</label>
-                    <select id="category" onchange="toggleFields()" class="w-full border p-2 rounded bg-gray-50">
+                    <select id="category" onchange="toggleFields()" class="w-full border p-2 rounded bg-gray-50 outline-none">
                         <option value="notices">Notice Board</option>
                         <option value="people">Committee Member</option>
                     </select>
@@ -48,10 +48,10 @@
                 </div>
 
                 <div id="member-fields" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-blue-50 rounded-lg border border-blue-100">
-                    <input type="text" id="status" placeholder="Designation (e.g. President)" class="w-full border p-2 rounded">
-                    <input type="text" id="discipline" placeholder="Discipline & Batch" class="w-full border p-2 rounded">
-                    <input type="text" id="phone" placeholder="Phone Number" class="w-full border p-2 rounded">
-                    <input type="email" id="email" placeholder="Email Address" class="w-full border p-2 rounded">
+                    <input type="text" id="status" placeholder="Designation (e.g. President)" class="w-full border p-2 rounded outline-none">
+                    <input type="text" id="discipline" placeholder="Discipline & Batch" class="w-full border p-2 rounded outline-none">
+                    <input type="text" id="phone" placeholder="Phone Number" class="w-full border p-2 rounded outline-none">
+                    <input type="email" id="email" placeholder="Email Address" class="w-full border p-2 rounded outline-none">
                 </div>
 
                 <div>
@@ -67,14 +67,14 @@
         </div>
 
         <div id="super-admin-section" class="hidden max-w-4xl mx-auto bg-white rounded-xl shadow-md border-t-4 border-red-500 p-6">
-            <h3 class="text-lg font-bold mb-4 text-red-600 border-b pb-2"><i class="fa fa-trash"></i> Manage / Delete Content</h3>
+            <h3 class="text-lg font-bold mb-4 text-red-600 border-b pb-2"><i class="fa fa-trash"></i> Manage Content</h3>
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse">
                     <thead>
                         <tr class="bg-gray-100 text-xs uppercase text-gray-600">
-                            <th class="p-3">Title</th>
-                            <th class="p-3">Category</th>
-                            <th class="p-3 text-center">Action</th>
+                            <th class="p-3 border">Title</th>
+                            <th class="p-3 border">Category</th>
+                            <th class="p-3 border text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody id="manage-list" class="text-sm">
@@ -89,15 +89,14 @@
         import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
         import { getFirestore, addDoc, collection, serverTimestamp, query, orderBy, onSnapshot, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        const firebaseConfig = { /* Your Config Here */ };
+        const firebaseConfig = { /* আপনার সঠিক Config এখানে বসান */ };
         const IMGBB_KEY = "4ce47b896218489099e0f7b7acf5c023";
-        const SUPER_ADMIN_EMAIL = "kuja2020.21@gmail.com"; // আপনার ইমেইলটি এখানে দিন
+        const SUPER_ADMIN_EMAIL = "kuja2020.21@gmail.com";
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // UI Functions
         window.toggleFields = () => {
             const cat = document.getElementById('category').value;
             document.getElementById('member-fields').classList.toggle('hidden', cat !== 'people');
@@ -106,18 +105,17 @@
         window.handleLogin = () => {
             const email = document.getElementById('login-email').value;
             const pass = document.getElementById('login-pass').value;
-            signInWithEmailAndPassword(auth, email, pass).catch(err => alert("Login Failed!"));
+            signInWithEmailAndPassword(auth, email, pass).catch(err => {
+                document.getElementById('login-error').innerText = "Login Failed: Check credentials.";
+            });
         };
 
         window.handleLogout = () => signOut(auth);
 
-        // Role Based View
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 document.getElementById('login-screen').classList.add('hidden');
                 document.getElementById('admin-dashboard').classList.remove('hidden');
-                
-                // যদি আপনি লগইন করেন, তবে ডিলিট অপশন দেখাবে
                 if(user.email === SUPER_ADMIN_EMAIL) {
                     document.getElementById('super-admin-section').classList.remove('hidden');
                     loadManager();
@@ -128,7 +126,6 @@
             }
         });
 
-        // Form Handling
         const form = document.getElementById('contentForm');
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -146,6 +143,8 @@
                 const imgRes = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_KEY}`, {method: "POST", body: formData});
                 const imgData = await imgRes.json();
                 
+                if(!imgData.success) throw new Error("Image Upload Failed");
+
                 await addDoc(collection(db, cat), {
                     subject: document.getElementById('title').value,
                     img: imgData.data.url,
@@ -157,39 +156,59 @@
                     createdAt: serverTimestamp()
                 });
 
-                msg.innerHTML = "<span class='text-green-600'>Success! Content Published.</span>";
+                msg.innerHTML = "<span class='text-green-600 font-bold'>✓ Published Successfully!</span>";
                 form.reset();
                 toggleFields();
             } catch (err) {
-                msg.innerHTML = "<span class='text-red-600'>Error: " + err.message + "</span>";
+                msg.innerHTML = "<span class='text-red-600 font-bold'>Error: " + err.message + "</span>";
             }
             btn.disabled = false;
         });
 
-        // Delete Management Logic
         function loadManager() {
             const list = document.getElementById('manage-list');
+            list.innerHTML = ""; // Clear list initially
+            
             ['notices', 'people'].forEach(cat => {
                 const q = query(collection(db, cat), orderBy("createdAt", "desc"));
                 onSnapshot(q, (snaps) => {
                     snaps.docChanges().forEach(change => {
+                        const id = change.doc.id;
                         if (change.type === "added") {
-                            const data = change.doc.data();
-                            const tr = document.createElement('tr');
-                            tr.id = change.doc.id;
-                            tr.className = "border-b hover:bg-gray-50";
-                            tr.innerHTML = `<td class="p-3 font-medium">${data.subject}</td><td class="p-3 uppercase text-xs">${cat}</td>
-                                <td class="p-3 text-center"><button onclick="del('${cat}','${change.doc.id}')" class="text-red-600 font-bold">Delete</button></td>`;
-                            list.appendChild(tr);
+                            // চেক করা হচ্ছে আইডিটি অলরেডি লিস্টে আছে কি না
+                            if (!document.getElementById(`row-${id}`)) {
+                                const data = change.doc.data();
+                                const tr = document.createElement('tr');
+                                tr.id = `row-${id}`;
+                                tr.className = "border-b hover:bg-gray-50 transition";
+                                tr.innerHTML = `
+                                    <td class="p-3 font-medium text-gray-700">${data.subject}</td>
+                                    <td class="p-3 uppercase text-xs text-gray-500">${cat}</td>
+                                    <td class="p-3 text-center">
+                                        <button onclick="del('${cat}','${id}')" class="bg-red-100 text-red-600 px-3 py-1 rounded-full hover:bg-red-600 hover:text-white transition font-bold text-xs">
+                                            <i class="fa fa-trash"></i> Delete
+                                        </button>
+                                    </td>`;
+                                list.appendChild(tr);
+                            }
                         }
-                        if (change.type === "removed") document.getElementById(change.doc.id)?.remove();
+                        if (change.type === "removed") {
+                            const el = document.getElementById(`row-${id}`);
+                            if (el) el.remove();
+                        }
                     });
                 });
             });
         }
 
         window.del = async (cat, id) => {
-            if(confirm("Are you sure?")) await deleteDoc(doc(db, cat, id));
+            if(confirm("Confirm Delete? This cannot be undone.")) {
+                try {
+                    await deleteDoc(doc(db, cat, id));
+                } catch (e) {
+                    alert("Delete failed!");
+                }
+            }
         };
     </script>
 </body>
