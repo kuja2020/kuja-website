@@ -116,60 +116,54 @@
   <img id="noticeImg" style="max-width:100%; max-height:100%; border: 3px solid #fcc334; border-radius: 8px;">
 </div>
 
-<script>
-  const sheetLink = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmXFI9h0BDSekvFjht_WOze5MY8uDKWvjM1BZW5gSxC_jcgGShOXu4YyWfxjFuLf9UsCla8a4ttglK/pub?gid=0&single=true&output=csv";
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-  async function loadNotices() {
-    try {
-      const response = await fetch(sheetLink);
-      const data = await response.text();
-      // CSV parsing ঠিকঠাক করার জন্য split(/\r?\n/) ব্যবহার করা ভালো
-      const rows = data.split(/\r?\n/).slice(1); 
+  // আপনার সেই একই firebaseConfig এখানেও দিন
+  const firebaseConfig = {
+    apiKey: "AIzaSyBMMbqW-hZEAGFbLgCkLkwD7-KDR3976lg",
+    authDomain: "kuja-web.firebaseapp.com",
+    projectId: "kuja-web",
+    storageBucket: "kuja-web.firebasestorage.app",
+    messagingSenderId: "66586196424",
+    appId: "1:66586196424:web:d018284928f5e0021068fd"
+  };
 
-      const noticeBody = document.getElementById('notice-list');
-      noticeBody.innerHTML = ""; 
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
 
-      rows.forEach(row => {
-        const columns = row.split(',');
-        if (columns.length < 4) return; 
+  // ডাটাবেস থেকে নোটিশগুলো সময় অনুযায়ী (নতুনটা আগে) নিয়ে আসা
+  const q = query(collection(db, "notices"), orderBy("createdAt", "desc"));
 
-        const notice = {
-          sl: columns[0].trim(),
-          subject: columns[1].trim(),
-          img: columns[2].trim(),
-          link: columns[3].trim()
-        };
+  const noticeBody = document.getElementById('notice-list');
 
-        const htmlRow = `
-          <tr>
-            <td class="p-3"><strong>${notice.sl}</strong></td>
-            <td class="p-3" style="color: #082465; font-weight: 500;">${notice.subject}</td>
-            <td class="p-3 text-center">
-              <button onclick="openNotice('${notice.img}')" class="btn btn-sm" style="background: #082465; color: white; border-radius: 20px; padding: 5px 20px;">
-                <i class="fa fa-image"></i> View
-              </button>
-            </td>
-            <td class="p-3 text-center">
-              <a href="${notice.link}" target="_blank" class="btn btn-sm" style="background: #fcc334; color: #082465; border-radius: 20px; padding: 5px 20px; font-weight: bold; border: none;">
-                <i class="fa fa-info-circle"></i> Detail
-              </a>
-            </td>
-          </tr>
-        `;
-        noticeBody.innerHTML += htmlRow;
-      });
-    } catch (error) {
-      console.error("Error loading notices:", error);
-    }
-  }
+  // Real-time listener: ডাটাবেসে কিছু পরিবর্তন হলে অটো আপডেট হবে
+  onSnapshot(q, (snapshot) => {
+    noticeBody.innerHTML = ""; // আগের লিস্ট ক্লিয়ার করা
+    let sl = 1;
 
-  // পপ-আপ খোলার ফাংশন
-  function openNotice(src) {
-    document.getElementById('noticeImg').src = src;
-    document.getElementById('noticeModal').style.display = 'flex';
-  }
-
-  window.onload = loadNotices;
+    snapshot.forEach((doc) => {
+      const notice = doc.data();
+      const htmlRow = `
+        <tr>
+          <td class="p-md-3"><strong>${sl++}</strong></td>
+          <td class="p-md-3" style="color: #082465; font-weight: 500;">${notice.subject}</td>
+          <td class="p-md-3 text-center">
+            <button onclick="openNotice('${notice.img}')" class="btn btn-sm" style="background: #082465; color: white; border-radius: 20px; padding: 5px 20px;">
+              <i class="fa fa-image"></i> View
+            </button>
+          </td>
+          <td class="p-md-3 text-center">
+            <a href="${notice.link}" target="_blank" class="btn btn-sm" style="background: #fcc334; color: #082465; border-radius: 20px; padding: 5px 20px; font-weight: bold; border: none;">
+              <i class="fa fa-info-circle"></i> Detail
+            </a>
+          </td>
+        </tr>
+      `;
+      noticeBody.innerHTML += htmlRow;
+    });
+  });
 </script>
 
   <!-- notice section -->
