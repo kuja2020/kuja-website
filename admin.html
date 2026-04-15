@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KUJA Master Admin</title>
+    <title>KUJA Admin</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body class="bg-gray-100 min-h-screen">
+<body class="bg-gray-100 min-h-screen font-sans">
 
     <div id="login-screen" class="flex items-center justify-center min-h-screen">
         <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-sm border-t-4 border-[#082465]">
-            <h2 class="text-2xl font-bold text-[#082465] text-center mb-6">KUJA LOGIN</h2>
-            <input type="email" id="login-email" placeholder="Email" class="w-full border p-2 mb-4 rounded shadow-sm outline-none">
-            <input type="password" id="login-pass" placeholder="Password" class="w-full border p-2 mb-6 rounded shadow-sm outline-none">
-            <button onclick="handleLogin()" class="w-full bg-[#082465] text-white py-2 rounded font-bold hover:bg-blue-900 transition">LOGIN</button>
+            <h2 class="text-2xl font-bold text-[#082465] text-center mb-6 uppercase tracking-wider">KUJA Login</h2>
+            <input type="email" id="login-email" placeholder="Email" class="w-full border p-2 mb-4 rounded shadow-sm outline-none focus:border-[#082465]">
+            <input type="password" id="login-pass" placeholder="Password" class="w-full border p-2 mb-6 rounded shadow-sm outline-none focus:border-[#082465]">
+            <button onclick="handleLogin()" class="w-full bg-[#082465] text-white py-2 rounded font-bold hover:bg-blue-900 transition duration-300">LOGIN</button>
             <p id="login-error" class="text-red-500 text-xs mt-3 text-center font-bold"></p>
         </div>
     </div>
@@ -26,11 +26,11 @@
         </div>
 
         <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-md border-t-4 border-[#fcc334] p-6 mb-10">
-            <h3 class="text-lg font-bold mb-4 text-[#082465] border-b pb-2"><i class="fa fa-plus-circle"></i> Add New Content</h3>
+            <h3 class="text-lg font-bold mb-4 text-[#082465] border-b pb-2"><i class="fa fa-plus-circle mr-2"></i>Add New Content</h3>
             <form id="contentForm" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-bold text-gray-500 uppercase">Category</label>
-                    <select id="category" onchange="toggleFields()" class="w-full border p-2 rounded bg-gray-50 outline-none">
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Category</label>
+                    <select id="category" onchange="toggleFields()" class="w-full border p-2 rounded bg-gray-50 outline-none focus:border-[#082465]">
                         <option value="notices">Notice Board</option>
                         <option value="people">Committee Member</option>
                     </select>
@@ -38,24 +38,48 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-bold text-gray-500 uppercase">Subject / Name</label>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Subject / Name</label>
                         <input type="text" id="title" class="w-full border p-2 rounded focus:border-[#082465] outline-none" required>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-gray-500 uppercase">Link / URL (Optional)</label>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Link / URL (Optional)</label>
                         <input type="url" id="details" class="w-full border p-2 rounded focus:border-[#082465] outline-none" placeholder="https://...">
                     </div>
                 </div>
 
                 <div id="member-fields" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-blue-50 rounded-lg border border-blue-100">
-                    <input type="text" id="status" placeholder="Designation (e.g. President)" class="w-full border p-2 rounded outline-none">
-                    <input type="text" id="discipline" placeholder="Discipline & Batch" class="w-full border p-2 rounded outline-none">
-                    <input type="text" id="phone" placeholder="Phone Number" class="w-full border p-2 rounded outline-none">
-                    <input type="email" id="email" placeholder="Email Address" class="w-full border p-2 rounded outline-none">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Designation</label>
+                        <select id="status" class="w-full border p-2 rounded outline-none bg-white focus:border-[#082465]">
+                            <option value="President">President</option>
+                            <option value="General Secretary">General Secretary</option>
+                            <option value="Vice President">Vice President</option>
+                            <option value="Joint General Secretary">Joint General Secretary</option>
+                            <option value="Treasurer">Treasurer</option>
+                            <option value="Organizing Secretary">Organizing Secretary</option>
+                            <option value="Office Secretary">Office Secretary</option>
+                            <option value="Secretary of Publicity & Publication">Secretary of Publicity & Publication</option>
+                            <option value="Executive Member">Executive Member</option>
+                            <option value="General Member">General Member</option>
+                            <option value="Associate Member">Associate Member</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Discipline & Batch</label>
+                        <input type="text" id="discipline" placeholder="e.g. MCJ 20" class="w-full border p-2 rounded outline-none focus:border-[#082465]">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Phone Number</label>
+                        <input type="text" id="phone" placeholder="017..." class="w-full border p-2 rounded outline-none focus:border-[#082465]">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Email Address</label>
+                        <input type="email" id="email" placeholder="example@gmail.com" class="w-full border p-2 rounded outline-none focus:border-[#082465]">
+                    </div>
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold text-gray-500 uppercase">Upload Image (Optional for Notices)</label>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Upload Image (Optional for Notices)</label>
                     <input type="file" id="image" class="w-full border p-2 rounded bg-gray-50" accept="image/*">
                 </div>
 
@@ -67,12 +91,12 @@
         </div>
 
         <div id="super-admin-section" class="hidden max-w-4xl mx-auto bg-white rounded-xl shadow-md border-t-4 border-red-500 p-6">
-            <h3 class="text-lg font-bold mb-4 text-red-600 border-b pb-2"><i class="fa fa-trash"></i> Manage Content</h3>
+            <h3 class="text-lg font-bold mb-4 text-red-600 border-b pb-2"><i class="fa fa-trash mr-2"></i>Manage Content</h3>
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse">
                     <thead>
                         <tr class="bg-gray-100 text-xs uppercase text-gray-600">
-                            <th class="p-3 border">Title</th>
+                            <th class="p-3 border">Title / Name</th>
                             <th class="p-3 border">Category</th>
                             <th class="p-3 border text-center">Action</th>
                         </tr>
@@ -104,6 +128,7 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
+        // UI Helpers
         window.toggleFields = () => {
             const cat = document.getElementById('category').value;
             document.getElementById('member-fields').classList.toggle('hidden', cat !== 'people');
@@ -113,7 +138,7 @@
             const email = document.getElementById('login-email').value;
             const pass = document.getElementById('login-pass').value;
             signInWithEmailAndPassword(auth, email, pass).catch(err => {
-                document.getElementById('login-error').innerText = "Login Failed: Check credentials.";
+                document.getElementById('login-error').innerText = "Login Failed: " + err.message;
             });
         };
 
@@ -159,14 +184,14 @@
                     subject: document.getElementById('title').value,
                     img: imageUrl,
                     link: document.getElementById('details').value || "#",
-                    status: document.getElementById('status').value || "",
+                    status: cat === 'people' ? document.getElementById('status').value : "",
                     discipline: document.getElementById('discipline').value || "",
                     phone: document.getElementById('phone').value || "",
                     email: document.getElementById('email').value || "",
                     createdAt: serverTimestamp()
                 });
 
-                msg.innerHTML = "<span class='text-green-600 font-bold'>✓ Success!</span>";
+                msg.innerHTML = "<span class='text-green-600 font-bold'>✓ Published Successfully!</span>";
                 form.reset();
                 toggleFields();
             } catch (err) {
@@ -188,20 +213,27 @@
                                 const data = change.doc.data();
                                 const tr = document.createElement('tr');
                                 tr.id = `row-${id}`;
-                                tr.className = "border-b hover:bg-gray-50";
-                                tr.innerHTML = `<td class="p-3">${data.subject}</td><td class="p-3 uppercase text-xs">${cat}</td>
-                                    <td class="p-3 text-center"><button onclick="del('${cat}','${id}')" class="text-red-600 font-bold">Delete</button></td>`;
+                                tr.className = "border-b hover:bg-gray-50 transition";
+                                tr.innerHTML = `<td class="p-3 font-medium">${data.subject}</td><td class="p-3 uppercase text-xs text-gray-500 font-bold">${cat}</td>
+                                    <td class="p-3 text-center"><button onclick="del('${cat}','${id}')" class="text-red-600 hover:text-red-900 font-bold text-xs"><i class="fa fa-trash"></i> DELETE</button></td>`;
                                 list.appendChild(tr);
                             }
                         }
-                        if (change.type === "removed") document.getElementById(`row-${id}`)?.remove();
+                        if (change.type === "removed") {
+                            const el = document.getElementById(`row-${id}`);
+                            if(el) el.remove();
+                        }
                     });
                 });
             });
         }
 
         window.del = async (cat, id) => {
-            if(confirm("Delete this?")) await deleteDoc(doc(db, cat, id));
+            if(confirm("Are you sure you want to delete this content?")) {
+                try {
+                    await deleteDoc(doc(db, cat, id));
+                } catch (e) { alert("Delete failed!"); }
+            }
         };
     </script>
 </body>
