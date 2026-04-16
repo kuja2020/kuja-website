@@ -101,22 +101,7 @@
       </p>
       <div class="layout_padding-top">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="vehicle_img-box ">
-                <img src="images/gallery/1.jpg" alt="" class="img-fluid w-100">
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="vehicle_img-box ">
-                <img src="images/gallery/2.jpg" alt="" class="img-fluid w-100">
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="vehicle_img-box ">
-                <img src="images/gallery/3.jpg" alt="" class="img-fluid w-100">
-              </div>
-            </div>
+          <div class="carousel-inner" id="gallery-content">
           </div>
           <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -239,6 +224,37 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap">
   </script>
   <!-- end google map js -->
+
+  <script>
+  // Ekhane shudhu image er nam ar caption add koro
+  const galleryData = [
+    { name: "11.jpg", caption: "KUJA-r barshik shommelon 2024" },
+    { name: "12.jpg", caption: "Workshop-e ongshogrohonkari shikharthibrindo" },
+    { name: "13.jpg", caption: "Campus news cover korar ekti muhurto" },
+    { name: "14.jpg", caption: "Noutun image-er caption ekhane likhun" } 
+    // Proyojone uporer moto kore aro line barhao
+  ];
+
+  const galleryContainer = document.getElementById('gallery-content');
+
+  galleryData.forEach((item, index) => {
+    const isActive = index === 0 ? 'active' : ''; // Prothom image-ke active korbe
+    
+    const slideHTML = `
+      <div class="carousel-item ${isActive}">
+        <div class="vehicle_img-box">
+          <img src="images/gallery/${item.name}" alt="${item.caption}" class="img-fluid w-100">
+        </div>
+        <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.6); bottom: 0; left: 0; right: 0; padding: 10px;">
+          <p style="margin: 0; color: #fcc334; font-weight: bold;">${item.caption}</p>
+        </div>
+      </div>
+    `;
+    
+    galleryContainer.innerHTML += slideHTML;
+  });
+</script>
+
 </body>
 
 </html>
