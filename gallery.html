@@ -226,7 +226,6 @@
   <!-- end google map js -->
 
   <script>
-
   const galleryData = [
     { name: "11.jpg", caption: "খুবিসাস সাধারণ সদস্যরা (০৯ এপ্রিল ২০২৬)" },
     { name: "12.jpg", caption: "খুবিসাস ৬ষ্ঠ প্রতিষ্ঠাবার্ষিকীর দিনে (২৫ ফেব্রুয়ারী ২০২৬)" },
@@ -237,21 +236,21 @@
     { name: "17.jpg", caption: "পিআইবি মহাপরিচালকের সাথে খুবিসাস সদদ্যদের সৌজন্য সাক্ষাৎ (১০ আগস্ট ২০২৫)" },
     { name: "18.jpg", caption: "খুবিসাস ৫ম প্রতিষ্ঠাবার্ষিকীর দিনে (২৫ ফেব্রুয়ারী ২০২৫)" },
     { name: "19.jpg", caption: "খুবিসাস ৫ম প্রতিষ্ঠাবার্ষিকীর দিনে (২৫ ফেব্রুয়ারী ২০২৫)" },
-    { name: "30.jpg", caption: "খুবিসাস ১ম প্রতিষ্ঠাবার্ষিকীর দিনে (২৫ ফেব্রুয়ারী ২০২১)" } 
+    { name: "30.jpg", caption: "খুবিসাস ১ম প্রতিষ্ঠাবার্ষিকীর দিনে (২৫ ফেব্রুয়ারী ২০২১)" }
   ];
 
   const galleryContainer = document.getElementById('gallery-content');
 
   galleryData.forEach((item, index) => {
-    const isActive = index === 0 ? 'active' : ''; 
+    const isActive = index === 0 ? 'active' : '';
     
     const slideHTML = `
       <div class="carousel-item ${isActive}">
         <div class="vehicle_img-box">
-          <img src="images/gallery/${item.name}" alt="${item.caption}" class="img-fluid w-100">
+          <img src="images/gallery/${item.name}" alt="${item.caption}" class="img-fluid w-100" style="display: block;">
         </div>
-        <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.6); bottom: 0; left: 0; right: 0; padding: 10px;">
-          <p style="margin: 0; color: #fcc334; font-weight: bold;">${item.caption}</p>
+        <div class="custom-caption" style="background: #f8f9fa; padding: 15px; text-align: center; border-bottom: 3px solid #fcc334;">
+          <p style="margin: 0; color: #082465; font-weight: 600; font-size: 16px;">${item.caption}</p>
         </div>
       </div>
     `;
