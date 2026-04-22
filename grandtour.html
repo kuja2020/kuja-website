@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KUJA Kuakata Tour | Ultra Slider</title>
+    <title>KUJA Kuakata Tour 2026 | Mega Slider</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:400,700,900&display=swap');
 
         body {
             background-color: #082465;
@@ -23,24 +23,58 @@
             height: 100vh;
         }
 
+        .swiper-slide {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         .swiper-slide img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.4);
-            /* দ্রুত পরিবর্তনের জন্য এনিমেশন */
-            animation: zoomInFast 3s infinite alternate; 
+            filter: brightness(0.6);
+            /* স্লাইডারের ছবির জন্য এনিমেশন */
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
         }
 
-        @keyframes zoomInFast {
-            0% { transform: scale(1) rotate(0deg); }
-            100% { transform: scale(1.15) rotate(2deg); }
+        /* Jikjak Transition: ডান, বাম, উপর বা নিচ থেকে ছবি আসবে */
+        .swiper-slide-active img {
+            animation: jikjakEntrance 0.8s ease forwards;
         }
 
-        /* Upper Text Design */
-        .upper-content {
+        @keyframes jikjakEntrance {
+            0% { transform: scale(1.2) translate(100%, 100%); }
+            100% { transform: scale(1) translate(0, 0); }
+        }
+
+        /* Overlay Text */
+        .slider-content {
             position: absolute;
-            top: 15%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+            width: 100%;
+        }
+
+        .text-jikjak {
+            font-size: clamp(2rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 0.9;
+            color: #fcc334;
+            text-transform: uppercase;
+            text-shadow: 5px 5px 0px white;
+            letter-spacing: -2px;
+        }
+
+        /* First Screenshot-like Countdown Design */
+        .hero-text-section {
+            position: absolute;
+            top: 10%;
             left: 50%;
             transform: translateX(-50%);
             z-index: 50;
@@ -49,109 +83,130 @@
         }
 
         .main-title {
-            font-size: clamp(2.5rem, 8vw, 6rem);
+            font-size: clamp(2rem, 6vw, 4rem);
             color: #fcc334;
+            font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: -2px;
-            line-height: 1;
-            text-shadow: 4px 4px 0px #fff;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 0px white;
         }
 
         .sub-title {
-            font-size: 1.2rem;
-            letter-spacing: 5px;
+            font-size: 1.1rem;
+            letter-spacing: 3px;
             color: white;
-            margin-top: 10px;
-            font-weight: bold;
+            margin-top: 5px;
+            font-weight: 400;
         }
 
-        /* Zigzag Countdown Box (আগের মতো) */
-        .timer-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
+        .glass-timer-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            border-radius: 30px;
             position: absolute;
-            bottom: 15%;
-            width: 100%;
+            bottom: 10%;
+            width: 90%;
+            max-width: 800px;
             z-index: 50;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
         .timer-box {
-            background: #fcc334;
-            color: #082465;
-            padding: 20px;
-            border-radius: 15px;
-            min-width: 100px;
-            transform: rotate(-7deg); /* জিকজ্যাক অ্যাঙ্গেল */
-            box-shadow: 8px 8px 0px white;
             text-align: center;
         }
 
-        .timer-box:nth-child(even) {
-            transform: rotate(7deg);
-            background: white;
-            box-shadow: 8px 8px 0px #fcc334;
+        .timer-val {
+            font-size: clamp(2rem, 6vw, 4rem);
+            font-weight: 900;
         }
 
-        /* Jikjak Delegate Grid */
-        .delegate-grid div:nth-child(even) {
-            margin-top: 60px;
-            transform: rotate(4deg);
+        .timer-box:nth-child(even) {
+            color: white;
         }
-        .delegate-grid div:nth-child(odd) {
-            transform: rotate(-4deg);
+
+        .timer-box:nth-child(odd) {
+            color: #fcc334;
+        }
+
+        /* Delegate Cards Layout */
+        .delegate-grid div:nth-child(even) {
+            margin-top: 40px;
         }
     </style>
 </head>
 <body>
 
-    <div class="upper-content">
+    <div class="hero-text-section">
         <h2 class="sub-title animate__animated animate__fadeInDown">THE SEA QUEEN CALLS</h2>
-        <h1 class="main-title animate__animated animate__rubberBand">KUAKATA 2026</h1>
-        <p class="sub-title text-sm mt-2 opacity-80">Journey to the Sunrise and Sunset Beach</p>
+        <h1 class="main-title animate__animated animate__rubberBand animate__infinite">KUJA Expedition</h1>
+        <p class="sub-title text-sm mt-1 opacity-80">Journey to the Sunrise and Sunset Beach</p>
     </div>
 
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1544731612-de7f96afe55f?q=80&w=2000"></div>
-            <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?q=80&w=2000"></div>
-            <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1583267746897-2cf415888172?q=80&w=2000"></div>
-            <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?q=80&w=2000"></div>
+            <div class="swiper-slide">
+                <img src="https://images.unsplash.com/photo-1544731612-de7f96afe55f?q=80&w=2000" alt="Kuakata Sea">
+                <div class="slider-content">
+                    <h1 class="text-jikjak animate__animated animate__zoomIn">SEA ADVENTURE</h1>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <img src="https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?q=80&w=2000" alt="Rakhain Polli">
+                <div class="slider-content">
+                    <h1 class="text-jikjak animate__animated animate__fadeInLeft">RAKHAIN POLLI</h1>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <img src="https://images.unsplash.com/photo-1583267746897-2cf415888172?q=80&w=2000" alt="Sunrise">
+                <div class="slider-content">
+                    <h1 class="text-jikjak animate__animated animate__fadeInRight">SUNRISE MAGIC</h1>
+                </div>
+            </div>
         </div>
-
-        <div class="timer-container">
-            <div class="timer-box"><span id="days" class="text-4xl font-black">00</span><p class="text-xs font-bold">DAYS</p></div>
-            <div class="timer-box"><span id="hours" class="text-4xl font-black">00</span><p class="text-xs font-bold">HOURS</p></div>
-            <div class="timer-box"><span id="mins" class="text-4xl font-black">00</span><p class="text-xs font-bold">MINS</p></div>
-            <div class="timer-box"><span id="secs" class="text-4xl font-black">00</span><p class="text-xs font-bold">SECS</p></div>
+        
+        <div class="flex justify-center w-full relative z-50">
+            <div class="glass-timer-card animate__animated animate__zoomIn">
+                <h3 class="text-center text-xl font-bold mb-6 tracking-widest text-blue-300">Countdown to Adventure</h3>
+                <div id="countdown" class="flex justify-center gap-4 md:gap-10 font-mono font-black">
+                    <div class="timer-box"><span id="days" class="timer-val">00</span><p class="text-xs uppercase mt-2">Days</p></div>
+                    <span class="timer-val text-white">:</span>
+                    <div class="timer-box"><span id="hours" class="timer-val">00</span><p class="text-xs uppercase mt-2">Hrs</p></div>
+                    <span class="timer-val text-white">:</span>
+                    <div class="timer-box"><span id="mins" class="timer-val">00</span><p class="text-xs uppercase mt-2">Min</p></div>
+                    <span class="timer-val text-white">:</span>
+                    <div class="timer-box text-red-500"><span id="secs" class="timer-val">00</span><p class="text-xs uppercase mt-2 text-white">Sec</p></div>
+                </div>
+            </div>
         </div>
     </div>
 
     <section class="py-24 container mx-auto px-6">
-        <h2 class="text-5xl font-black text-center mb-24 italic text-[#fcc334]">TOUR DELEGATES</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-10 delegate-grid">
-            <div class="bg-white p-2 rounded-2xl shadow-2xl">
-                <img src="Profile/images/advisor/1.jpg" class="h-64 w-full object-cover rounded-xl">
+        <h2 class="text-5xl font-black text-center mb-16 italic text-[#fcc334]">TOUR DELEGATES</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto delegate-grid">
+            <div class="bg-white p-2 rounded-2xl shadow-2xl transform hover:scale-105 transition">
+                <img src="Profile/images/advisor/1.jpg" class="h-60 w-full object-cover rounded-xl">
                 <p class="text-[#082465] font-black text-center mt-3 uppercase text-sm">Romin Al Kama</p>
             </div>
-            <div class="bg-white p-2 rounded-2xl shadow-2xl">
-                <img src="Profile/images/advisor/2.jpg" class="h-64 w-full object-cover rounded-xl">
-                <p class="text-[#082465] font-black text-center mt-3 uppercase text-sm">Masum Hasan</p>
+            <div class="bg-white p-2 rounded-2xl shadow-2xl transform hover:scale-105 transition">
+                <img src="Profile/images/advisor/2.jpg" class="h-60 w-full object-cover rounded-xl">
+                <p class="text-[#082465] font-black text-center mt-3 uppercase text-sm">H.M. Masum Hasan</p>
             </div>
-            <div class="bg-white p-2 rounded-2xl shadow-2xl">
-                <img src="Profile/images/advisor/3.jpg" class="h-64 w-full object-cover rounded-xl">
-                <p class="text-[#082465] font-black text-center mt-3 uppercase text-sm">Mirazul Islam</p>
+            <div class="bg-white p-2 rounded-2xl shadow-2xl transform hover:scale-105 transition">
+                <img src="Profile/images/advisor/3.jpg" class="h-60 w-full object-cover rounded-xl">
+                <p class="text-[#082465] font-black text-center mt-3 uppercase text-sm">Md. Mirazul Islam</p>
             </div>
-            <div class="bg-white p-2 rounded-2xl shadow-2xl">
-                <img src="Profile/images/advisor/4.jpg" class="h-64 w-full object-cover rounded-xl">
+            <div class="bg-white p-2 rounded-2xl shadow-2xl transform hover:scale-105 transition">
+                <img src="Profile/images/advisor/4.jpg" class="h-60 w-full object-cover rounded-xl">
                 <p class="text-[#082465] font-black text-center mt-3 uppercase text-sm">Arko Mondol</p>
             </div>
         </div>
     </section>
 
-    <div class="py-20 text-center">
-        <button class="bg-[#fcc334] text-[#082465] text-4xl font-black px-16 py-6 rounded-full hover:scale-110 transition shadow-[0_0_50px_rgba(252,195,52,0.6)]">
-            JOIN THE JOKJAK!
+    <div class="pb-20 text-center">
+        <button class="bg-[#fcc334] text-[#082465] text-4xl font-black px-12 py-5 rounded-full hover:scale-110 transition animate-pulse shadow-2xl">
+            READY TO ROAR?
         </button>
     </div>
 
@@ -161,12 +216,11 @@
         var swiper = new Swiper(".mySwiper", {
             loop: true,
             autoplay: {
-                delay: 2500, // আরও দ্রুত পরিবর্তনের জন্য ২.৫ সেকেন্ড দেওয়া হয়েছে
+                delay: 3000, // আরও দ্রুত পরিবর্তনের জন্য ৩ সেকেন্ড দেওয়া হয়েছে
                 disableOnInteraction: false,
             },
-            effect: "fade",
-            fadeEffect: { crossFade: true },
-            speed: 800,
+            effect: "fade", // জিকজ্যাক জোকজ্যাক ট্রানজিশনের জন্য ফেইড ইফেক্ট সেরা
+            speed: 1000,
         });
 
         // Countdown Logic (Target: 23rd April 2026)
