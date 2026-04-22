@@ -27,7 +27,7 @@
 
         /* Floating Header */
         .hero-overlay { position: absolute; top: 15%; left: 0; width: 100%; z-index: 500; text-align: center; pointer-events: none; }
-        .main-title { font-size: clamp(2rem, 8vw, 4.5rem); color: #fcc334; font-weight: 900; text-transform: uppercase; text-shadow: 3px 3px 0px white; }
+        .main-title { font-size: clamp(2rem, 8vw, 4.5rem); color: #fcc334; font-weight: 900; text-transform: uppercase; text-shadow: 1px 1px 0px white; }
 
         /* Countdown Box */
         .glass-timer-card { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; border-radius: 25px; position: absolute; bottom: 8%; width: 90%; max-width: 600px; z-index: 500; left: 50%; transform: translateX(-50%); }
@@ -135,7 +135,8 @@
             <div id="id-card-content">
                 <div id="id-header">
                     <img src="images/logo.png" class="h-10 mx-auto mb-2" onerror="this.src='https://via.placeholder.com/50'">
-                    <h4 class="text-[11px] font-black tracking-[2px] uppercase">KUAKATA EXPEDITION 2026</h4>
+                    <h6 class="text-[11px] font-black tracking-[2px] uppercase">The Sea Queen Calls</h4>
+                    <h4 class="text-[11px] font-black tracking-[2px] uppercase">Journey to the Sunrise and Sunset Beach</h4>
                 </div>
                 <div class="p-6">
                     <div class="w-28 h-28 rounded-full border-4 border-[#fcc334] overflow-hidden mx-auto mb-6 shadow-lg">
@@ -147,7 +148,8 @@
                 </div>
                 <div id="id-footer">
                     <strong>Khulna University Journalists' Association</strong><br>
-                    KU Admin Building, Khulna-9208
+                    KU Admin Building, Khulna-9208<br>
+                    kuja2020.21@gmail.com
                 </div>
             </div>
             <div class="mt-6 flex gap-4 justify-center">
@@ -193,8 +195,8 @@
             arr.sort((a,b) => (rank[a.status] || 99) - (rank[b.status] || 99));
 
             const formers = [
-                { subject: "Rezowan Ahmmed", status: "Former President", img: "images/rezowan.jpg" },
-                { subject: "Ekramul Haque", status: "Former President", img: "images/ekramul.jpg" }
+                { subject: "Rezowan Ahmmed", status: "Former President", img: "Profile/images/OldMember/p3.jpg" },
+                { subject: "Ekramul Haque", status: "Former President", img: "Profile/images/OldMember/p4.jpg" }
             ];
 
             const finalData = [...formers, ...arr];
@@ -260,7 +262,7 @@
         };
 
         // Countdown
-        const target = new Date("April 23, 2026 00:00:00").getTime();
+        const target = new Date("April 23, 2026 22:00:00").getTime();
         setInterval(() => {
             const now = new Date().getTime();
             const diff = target - now;
