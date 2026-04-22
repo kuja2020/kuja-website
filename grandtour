@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KUJA Kuakata Tour 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        @keyframes zigzagMove {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(50px, 50px) rotate(5deg); }
+            50% { transform: translate(-50px, 100px) rotate(-5deg); }
+            75% { transform: translate(50px, 150px) rotate(5deg); }
+            100% { transform: translate(0, 200px) rotate(0deg); opacity: 0; }
+        }
+
+        .zigzag-photo {
+            animation: zigzagMove 3s ease-in-out forwards;
+        }
+
+        .zigzag-grid div:nth-child(even) {
+            margin-top: 40px;
+        }
+
+        body {
+            background: linear-gradient(135deg, #082465 0%, #004e92 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="entrance" class="fixed inset-0 z-50 bg-[#082465] flex items-center justify-center">
+        <div class="text-center">
+            <img src="images/logo.png" class="zigzag-photo w-32 h-32 mb-4" alt="KUJA">
+            <h1 class="text-4xl font-bold animate__animated animate__zoomIn">KUJA KUAKATA TOUR</h1>
+        </div>
+    </div>
+
+    <div id="main-content" class="opacity-0 transition-opacity duration-1000 container mx-auto px-4 py-10">
+        
+        <header class="text-center mb-16">
+            <h2 class="text-5xl font-black text-[#fcc334] mb-4 tracking-tighter uppercase italic">The Sea Queen Calls</h2>
+            <p class="text-xl">Journey to the Sunrise and Sunset Beach</p>
+        </header>
+
+        <div class="max-w-4xl mx-auto mb-20 glass-card p-8 rounded-3xl shadow-2xl text-center">
+            <h3 class="text-2xl font-bold mb-6 uppercase tracking-widest text-blue-300">Countdown to Adventure</h3>
+            <div id="timer" class="flex justify-center gap-4 md:gap-8 text-4xl md:text-6xl font-black">
+                <div class="flex flex-col"><span id="days">00</span><small class="text-xs uppercase mt-2">Days</small></div>
+                <span>:</span>
+                <div class="flex flex-col"><span id="hours">00</span><small class="text-xs uppercase mt-2">Hrs</small></div>
+                <span>:</span>
+                <div class="flex flex-col"><span id="minutes">00</span><small class="text-xs uppercase mt-2">Min</small></div>
+                <span>:</span>
+                <div class="flex flex-col text-red-400"><span id="seconds">00</span><small class="text-xs uppercase mt-2 text-white">Sec</small></div>
+            </div>
+        </div>
+
+        <section class="mb-20">
+            <h3 class="text-center text-3xl font-bold mb-12 uppercase">Tour Delegates</h3>
+            <div class="zigzag-grid grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto px-4">
+                <div class="glass-card p-4 rounded-2xl transform hover:scale-105 transition">
+                    <img src="Profile/images/advisor/1.jpg" class="w-full h-48 object-cover rounded-xl mb-4" alt="">
+                    <h4 class="font-bold text-center">Romin Al Kama</h4>
+                    <p class="text-xs text-center text-yellow-400 uppercase">Delegate</p>
+                </div>
+                <div class="glass-card p-4 rounded-2xl transform hover:scale-105 transition">
+                    <img src="Profile/images/advisor/2.jpg" class="w-full h-48 object-cover rounded-xl mb-4" alt="">
+                    <h4 class="font-bold text-center">H.M. Masum Hasan</h4>
+                    <p class="text-xs text-center text-yellow-400 uppercase">Delegate</p>
+                </div>
+                <div class="glass-card p-4 rounded-2xl transform hover:scale-105 transition">
+                    <img src="Profile/images/advisor/3.jpg" class="w-full h-48 object-cover rounded-xl mb-4" alt="">
+                    <h4 class="font-bold text-center">Md. Mirazul Islam</h4>
+                    <p class="text-xs text-center text-yellow-400 uppercase">Delegate</p>
+                </div>
+                <div class="glass-card p-4 rounded-2xl transform hover:scale-105 transition">
+                    <img src="Profile/images/advisor/4.jpg" class="w-full h-48 object-cover rounded-xl mb-4" alt="">
+                    <h4 class="font-bold text-center">Arko Mondol</h4>
+                    <p class="text-xs text-center text-yellow-400 uppercase">Delegate</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="text-center">
+            <button class="bg-[#fcc334] text-[#082465] px-10 py-4 rounded-full font-black text-xl hover:bg-white transition-all shadow-xl animate-bounce">
+                READY TO ROAR?
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Entrance Animation Logic
+        setTimeout(() => {
+            const entrance = document.getElementById('entrance');
+            const mainContent = document.getElementById('main-content');
+            
+            entrance.classList.add('animate__animated', 'animate__fadeOutUp');
+            setTimeout(() => {
+                entrance.style.display = 'none';
+                mainContent.classList.remove('opacity-0');
+            }, 1000);
+        }, 3000);
+
+        // Countdown Timer Logic
+        const tourDate = new Date("April 23, 2026 00:00:00").getTime();
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = tourDate - now;
+
+            const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = d < 10 ? '0' + d : d;
+            document.getElementById("hours").innerText = h < 10 ? '0' + h : h;
+            document.getElementById("minutes").innerText = m < 10 ? '0' + m : m;
+            document.getElementById("seconds").innerText = s < 10 ? '0' + s : s;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("timer").innerHTML = "TOUR HAS STARTED!";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
