@@ -1,244 +1,334 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KUJA Kuakata Tour 2026 | Mega Slider</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:400,700,900&display=swap');
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
 
-        body {
-            background-color: #082465;
-            color: white;
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-        }
+  <title>Members | KUJA</title>
 
-        /* Full Screen Slider */
-        .swiper {
-            width: 100%;
-            height: 100vh;
-        }
 
-        .swiper-slide {
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
 
-        .swiper-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.6);
-            /* স্লাইডারের ছবির জন্য এনিমেশন */
-            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-        }
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <!-- progress barstle -->
+  <link rel="stylesheet" href="css/css-circular-prog-bar.css">
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+  <!-- font wesome stylesheet -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
 
-        /* Jikjak Transition: ডান, বাম, উপর বা নিচ থেকে ছবি আসবে */
-        .swiper-slide-active img {
-            animation: jikjakEntrance 0.8s ease forwards;
-        }
 
-        @keyframes jikjakEntrance {
-            0% { transform: scale(1.2) translate(100%, 100%); }
-            100% { transform: scale(1) translate(0, 0); }
-        }
 
-        /* Overlay Text */
-        .slider-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            z-index: 10;
-            width: 100%;
-        }
 
-        .text-jikjak {
-            font-size: clamp(2rem, 8vw, 6rem);
-            font-weight: 900;
-            line-height: 0.9;
-            color: #fcc334;
-            text-transform: uppercase;
-            text-shadow: 5px 5px 0px white;
-            letter-spacing: -2px;
-        }
+  <link rel="stylesheet" href="css/css-circular-prog-bar.css">
 
-        /* First Screenshot-like Countdown Design */
-        .hero-text-section {
-            position: absolute;
-            top: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 50;
-            text-align: center;
-            width: 100%;
-        }
 
-        .main-title {
-            font-size: clamp(2rem, 6vw, 4rem);
-            color: #fcc334;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 0px white;
-        }
-
-        .sub-title {
-            font-size: 1.1rem;
-            letter-spacing: 3px;
-            color: white;
-            margin-top: 5px;
-            font-weight: 400;
-        }
-
-        .glass-timer-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            padding: 40px;
-            border-radius: 30px;
-            position: absolute;
-            bottom: 10%;
-            width: 90%;
-            max-width: 800px;
-            z-index: 50;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .timer-box {
-            text-align: center;
-        }
-
-        .timer-val {
-            font-size: clamp(2rem, 6vw, 4rem);
-            font-weight: 900;
-        }
-
-        .timer-box:nth-child(even) {
-            color: white;
-        }
-
-        .timer-box:nth-child(odd) {
-            color: #fcc334;
-        }
-
-        /* Delegate Cards Layout */
-        .delegate-grid div:nth-child(even) {
-            margin-top: 40px;
-        }
-    </style>
 </head>
+
 <body>
+  <div class="top_container sub_pages">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="index.html">
+            <img src="images/logo.png" alt="">
+            <span>
+              KUJA
+            </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-    <div class="hero-text-section">
-        <h2 class="sub-title animate__animated animate__fadeInDown">THE SEA QUEEN CALLS</h2>
-        <h1 class="main-title animate__animated animate__rubberBand animate__infinite">KUJA Expedition</h1>
-        <p class="sub-title text-sm mt-1 opacity-80">Journey to the Sunrise and Sunset Beach</p>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+              <ul class="navbar-nav  ">
+<li class="nav-item active">
+                  <a class="nav-link" href="index.html"> Home <span class="sr-only">(current)</span></a>
+                </li>
+
+                <li class="nav-item ">
+                  <a class="nav-link" href="people.html"> People </a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="notices.html"> Notices </a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="gallery.html"> Gallery </a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="contact.html">Contact Us</a>
+                </li>
+
+
+              </ul>
+              <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
+                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
+              </form>
+            </div>
+        </nav>
+      </div>
+</br>
+<div class="d-flex align-items-center justify-content-center">
+  <a href="people.html" class="call_to-btn">
+    <span>Honor Board</span>
+  </a>
+&nbsp;&nbsp;
+  <a href="current.html" class="call_to-btn">
+    <span>Current Board</span>
+  </a>
+&nbsp;&nbsp;
+    <a href="advisor.html" class="call_to-btn">
+    <span>Advisory Board</span>
+  </a>
+
+</div>
+
+
+    </header>
+  </div>
+  <!-- end header section -->
+
+
+
+  <!-- member section -->
+<section class="teacher_section layout_padding-bottom">
+  <div class="container">
+    <h2 class="main-heading">Running Committee Members</h2>
+    <p class="text-center">Meet the team of the current session.</p>
+    
+    <div class="teacher_container layout_padding2">
+      <div class="row justify-content-center" id="member-list">
+        </div>
+    </div>
+  </div>
+</section>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBMMbqW-hZEAGFbLgCkLkwD7-KDR3976lg",
+    authDomain: "kuja-web.firebaseapp.com",
+    projectId: "kuja-web",
+    storageBucket: "kuja-web.firebasestorage.app",
+    messagingSenderId: "66586196424",
+    appId: "1:66586196424:web:d018284928f5e0021068fd"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // পদবী অনুযায়ী প্রায়োরিটি ম্যাপ (Rank sorting)
+  const rankPriority = {
+    "President": 1,
+    "General Secretary": 2,
+    "Vice President": 3,
+    "Joint General Secretary": 4,
+    "Treasurer": 5,
+    "Organizing Secretary": 6,
+    "Office Secretary": 7,
+    "Secretary of Publicity & Publication": 8,
+    "Executive Member": 9,
+    "General Member": 10,
+    "Associate Member": 11
+  };
+
+  const memberList = document.getElementById('member-list');
+
+  onSnapshot(collection(db, "people"), (snapshot) => {
+    let membersArr = [];
+    
+    snapshot.forEach((doc) => {
+      membersArr.push({ id: doc.id, ...doc.data() });
+    });
+
+    // সর্টিং লজিক: প্রথমে র‍্যাঙ্ক, তারপর নাম
+    membersArr.sort((a, b) => {
+      let rankA = rankPriority[a.status] || 99; // লিস্টে না থাকলে সবার নিচে যাবে
+      let rankB = rankPriority[b.status] || 99;
+
+      if (rankA !== rankB) {
+        return rankA - rankB; // ছোট নম্বর (প্রেসিডেন্ট) আগে আসবে
+      } else {
+        // র‍্যাঙ্ক সমান হলে নামের অক্ষরে (A-Z) সর্ট হবে
+        return a.subject.localeCompare(b.subject);
+      }
+    });
+
+    memberList.innerHTML = "";
+    membersArr.forEach((m) => {
+      // লিঙ্ক থাকলে ইমেজ ও নাম ক্লিকযোগ্য হবে
+      const hasLink = m.link && m.link !== "#" && m.link !== "";
+      const imgHTML = hasLink ? `<a href="${m.link}" target="_blank"><img src="${m.img}" class="card-img-top"></a>` : `<img src="${m.img}" class="card-img-top">`;
+      const nameHTML = hasLink ? `<a href="${m.link}" target="_blank" style="text-decoration:none;"><h5 style="color:#082465; font-weight:bold; margin-bottom:2px;">${m.subject}</h5></a>` : `<h5 style="color:#082465; font-weight:bold; margin-bottom:2px;">${m.subject}</h5>`;
+
+      memberList.innerHTML += `
+        <div class="col-6 col-md-4 col-lg-3 mb-4">
+          <div class="card h-100 shadow-sm border-0" style="border-radius:15px; overflow:hidden; transition: 0.3s;">
+            <div style="height: 220px; overflow: hidden;">
+               ${imgHTML}
+            </div>
+            <div class="card-body text-center p-2">
+              ${nameHTML}
+              <p class="text-warning font-weight-bold mb-1" style="font-size:12px; text-transform:uppercase;">${m.status}</p>
+              <p class="text-dark font-italic mb-1" style="font-size:11px; color:#555;">${m.newspaper ? m.newspaper : ''}</p>
+              <p class="text-muted mb-2" style="font-size:11px; line-height:1.2;">${m.discipline || ''}</p>
+              
+              <div class="d-flex justify-content-center border-top pt-2" style="gap:15px;">
+                ${m.phone ? `<a href="tel:${m.phone}" class="text-primary"><i class="fa fa-phone"></i></a>` : ''}
+                ${m.email ? `<a href="mailto:${m.email}" class="text-danger"><i class="fa fa-envelope"></i></a>` : ''}
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+  });
+</script>
+
+<style>
+  .card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+  }
+</style>
+
+  <!-- member section -->
+
+
+  <!-- footer section -->
+<style>
+
+  .footer_col {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+  }
+
+
+  @media (max-width: 768px) {
+    .footer_col {
+      flex: 0 0 100% !important;
+      max-width: 100% !important;
+      text-align: center; 
+    }
+
+    .footer_col p, .footer_col h4 {
+      text-align: center !important;
+      border-left: none !important;
+    }
+  }
+</style>
+
+<footer class="footer_section" style="background-color: #082465; color: #ffffff; padding: 60px 0 30px 0; font-family: 'Poppins', sans-serif;">
+  <div class="container" style="max-width: 1140px; margin: 0 auto; padding: 0 15px;">
+    <div class="row" style="display: flex; flex-wrap: wrap; margin-right: -15px; margin-left: -15px;">
+      
+      <div class="footer_col" style="padding: 0 15px; margin-bottom: 30px;">
+        <h4 style="font-size: 20px; font-weight: 700; margin-bottom: 20px; border-left: 4px solid #fff; padding-left: 10px; color: #fcc334;">Khulna University Journalists' Association (KUJA)</h4>
+        <p style="color: #cbd5e0; line-height: 1.6; font-size: 14px; text-align: left;">
+          Powered by the passion of Khulna University students.
+        </p>
+      </div>
+
+      <div class="footer_col" style="padding: 0 15px; margin-bottom: 30px;">
+        <h4 style="font-size: 20px; font-weight: 700; margin-bottom: 20px; border-left: 4px solid #fff; padding-left: 10px; color: #fff;">Quick Links</h4>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="margin-bottom: 10px;"><a href="index.html" style="color: #cbd5e0; text-decoration: none; font-size: 14px;">Home</a></li>
+          <li style="margin-bottom: 10px;"><a href="about.html" style="color: #cbd5e0; text-decoration: none; font-size: 14px;">About</a></li>
+          <li style="margin-bottom: 10px;"><a href="people.html" style="color: #cbd5e0; text-decoration: none; font-size: 14px;">Honor-board</a></li>
+          <li style="margin-bottom: 10px;"><a href="https://ku.ac.bd/" style="color: #cbd5e0; text-decoration: none; font-size: 14px;">Khulna University</a></li>
+          <li style="margin-bottom: 10px;"><a href="https://ku.ac.bd/all-news" style="color: #cbd5e0; text-decoration: none; font-size: 14px;">Khulna University News</a></li>
+          <li style="margin-bottom: 10px;"><a href="contact.html" style="color: #cbd5e0; text-decoration: none; font-size: 14px;">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer_col" style="padding: 0 15px; margin-bottom: 30px;">
+        <h4 style="font-size: 20px; font-weight: 700; margin-bottom: 20px; border-left: 4px solid #fff; padding-left: 10px; color: #fff;">Contact</h4>
+        <p style="color: #cbd5e0; font-size: 14px; margin-bottom: 10px; text-align: left;">
+          <i class="fa fa-map-marker" aria-hidden="true" style="margin-right: 10px; color: #fff;"></i> Room No: 121, Prof Dr. Golam Rahman Administrative Building, Khulna University, Khulna-9208
+        </p>
+        <p style="color: #cbd5e0; font-size: 14px; margin-bottom: 10px; text-align: left;">
+          <i class="fa fa-envelope" aria-hidden="true" style="margin-right: 10px; color: #fff;"></i> kuja2020.21@gmail.com
+        </p>
+        <div style="margin-top: 20px;">
+          <a href="https://www.facebook.com/kujaofficial2020" style="color: #082465; background: #fff; padding: 8px 12px; margin-right: 5px; border-radius: 4px;"><i class="fa fa-facebook"></i></a>
+          <a href="https://www.linkedin.com/company/kuja2020/" style="color: #082465; background: #fff; padding: 8px 12px; margin-right: 5px; border-radius: 4px;"><i class="fa fa-linkedin"></i></a>
+          <a href="#" style="color: #082465; background: #fff; padding: 8px 12px; border-radius: 4px;"><i class="fa fa-youtube"></i></a>
+        </div>
+      </div>
     </div>
 
-    <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <img src="https://images.unsplash.com/photo-1544731612-de7f96afe55f?q=80&w=2000" alt="Kuakata Sea">
-                <div class="slider-content">
-                    <h1 class="text-jikjak animate__animated animate__zoomIn">SEA ADVENTURE</h1>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <img src="https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?q=80&w=2000" alt="Rakhain Polli">
-                <div class="slider-content">
-                    <h1 class="text-jikjak animate__animated animate__fadeInLeft">RAKHAIN POLLI</h1>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <img src="https://images.unsplash.com/photo-1583267746897-2cf415888172?q=80&w=2000" alt="Sunrise">
-                <div class="slider-content">
-                    <h1 class="text-jikjak animate__animated animate__fadeInRight">SUNRISE MAGIC</h1>
-                </div>
-            </div>
-        </div>
-        
-        <div class="flex justify-center w-full relative z-50">
-            <div class="glass-timer-card animate__animated animate__zoomIn">
-                <h3 class="text-center text-xl font-bold mb-6 tracking-widest text-blue-300">Countdown to Adventure</h3>
-                <div id="countdown" class="flex justify-center gap-4 md:gap-10 font-mono font-black">
-                    <div class="timer-box"><span id="days" class="timer-val">00</span><p class="text-xs uppercase mt-2">Days</p></div>
-                    <span class="timer-val text-white">:</span>
-                    <div class="timer-box"><span id="hours" class="timer-val">00</span><p class="text-xs uppercase mt-2">Hrs</p></div>
-                    <span class="timer-val text-white">:</span>
-                    <div class="timer-box"><span id="mins" class="timer-val">00</span><p class="text-xs uppercase mt-2">Min</p></div>
-                    <span class="timer-val text-white">:</span>
-                    <div class="timer-box text-red-500"><span id="secs" class="timer-val">00</span><p class="text-xs uppercase mt-2 text-white">Sec</p></div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; margin-top: 20px; text-align: center;">
+  <p style="color: #a0aec0; font-size: 13px; line-height: 1.8;">
+    &copy; 
+    <script>document.write(new Date().getFullYear());</script> 
+    All Rights Reserved By <span style="color: #fff; font-weight: bold;">KUJA</span> <br>
+    Made with ❤️ by 
+    <a href="https://kuja-web.live/Profile/e_haque.html" style="color: #fcc334; text-decoration: none; font-weight: bold;">Ekramul Haque</a>
+  </p>
+</div>
+    
+  </div>
+</footer>
+  <!-- footer section -->
 
-    <section class="py-24 container mx-auto px-6">
-        <h2 class="text-5xl font-black text-center mb-16 italic text-[#fcc334]">TOUR DELEGATES</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto delegate-grid">
-            <div class="bg-white p-2 rounded-2xl shadow-2xl transform hover:scale-105 transition">
-                <img src="Profile/images/advisor/1.jpg" class="h-60 w-full object-cover rounded-xl">
-                <p class="text-[#082465] font-black text-center mt-3 uppercase text-sm">Romin Al Kama</p>
-            </div>
-            <div class="bg-white p-2 rounded-2xl shadow-2xl transform hover:scale-105 transition">
-                <img src="Profile/images/advisor/2.jpg" class="h-60 w-full object-cover rounded-xl">
-                <p class="text-[#082465] font-black text-center mt-3 uppercase text-sm">H.M. Masum Hasan</p>
-            </div>
-            <div class="bg-white p-2 rounded-2xl shadow-2xl transform hover:scale-105 transition">
-                <img src="Profile/images/advisor/3.jpg" class="h-60 w-full object-cover rounded-xl">
-                <p class="text-[#082465] font-black text-center mt-3 uppercase text-sm">Md. Mirazul Islam</p>
-            </div>
-            <div class="bg-white p-2 rounded-2xl shadow-2xl transform hover:scale-105 transition">
-                <img src="Profile/images/advisor/4.jpg" class="h-60 w-full object-cover rounded-xl">
-                <p class="text-[#082465] font-black text-center mt-3 uppercase text-sm">Arko Mondol</p>
-            </div>
-        </div>
-    </section>
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <!-- progreesbar script -->
 
-    <div class="pb-20 text-center">
-        <button class="bg-[#fcc334] text-[#082465] text-4xl font-black px-12 py-5 rounded-full hover:scale-110 transition animate-pulse shadow-2xl">
-            READY TO ROAR?
-        </button>
-    </div>
+  </script>
+  <script>
+    // This example adds a marker to indicate the position of Bondi Beach in Sydney,
+    // Australia.
+    function initMap() {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 11,
+        center: {
+          lat: 40.645037,
+          lng: -73.880224
+        },
+      });
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-        // Fast Slider Init
-        var swiper = new Swiper(".mySwiper", {
-            loop: true,
-            autoplay: {
-                delay: 3000, // আরও দ্রুত পরিবর্তনের জন্য ৩ সেকেন্ড দেওয়া হয়েছে
-                disableOnInteraction: false,
-            },
-            effect: "fade", // জিকজ্যাক জোকজ্যাক ট্রানজিশনের জন্য ফেইড ইফেক্ট সেরা
-            speed: 1000,
-        });
-
-        // Countdown Logic (Target: 23rd April 2026)
-        const targetDate = new Date("April 23, 2026 00:00:00").getTime();
-        setInterval(() => {
-            const now = new Date().getTime();
-            const diff = targetDate - now;
-            
-            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((diff % (1000 * 60)) / 1000);
-
-            document.getElementById('days').innerText = d < 0 ? "00" : (d < 10 ? "0" + d : d);
-            document.getElementById('hours').innerText = h < 0 ? "00" : (h < 10 ? "0" + h : h);
-            document.getElementById('mins').innerText = m < 0 ? "00" : (m < 10 ? "0" + m : m);
-            document.getElementById('secs').innerText = s < 0 ? "00" : (s < 10 ? "0" + s : s);
-        }, 1000);
-    </script>
+      var image = 'images/maps-and-flags.png';
+      var beachMarker = new google.maps.Marker({
+        position: {
+          lat: 40.645037,
+          lng: -73.880224
+        },
+        map: map,
+        icon: image
+      });
+    }
+  </script>
+  <!-- google map js -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap">
+  </script>
+  <!-- end google map js -->
 </body>
+
 </html>
