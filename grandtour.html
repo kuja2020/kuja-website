@@ -13,14 +13,14 @@
         body { background-color: #082465; color: white; font-family: 'Poppins', sans-serif; overflow-x: hidden; }
 
         /* Full Screen Slider */
-        .swiper { width: 100%; height: 70vh; } /* Mobile এ উচ্চতা কিছুটা কমানো যাতে ল্যান্ডস্কেপ ভাব থাকে */
+        .swiper { width: 100%; height: 70vh; }
         @media (min-width: 768px) { .swiper { height: 100vh; } }
 
         .swiper-slide img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* ইমেজ ল্যান্ডস্কেপ মোডে সুন্দর দেখাবে */
-            filter: brightness(0.5);
+            object-fit: cover;
+            filter: brightness(0.4);
         }
 
         /* Fixed Upper Content */
@@ -42,37 +42,40 @@
             text-shadow: 2px 2px 0px white;
         }
 
-        /* Glass Countdown Box (First Style) */
+        /* Compact Glass Countdown Box */
         .glass-timer-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 20px;
+            padding: 15px;
             border-radius: 20px;
             position: absolute;
             bottom: 5%;
             width: 90%;
-            max-width: 650px;
+            max-width: 600px;
             z-index: 100;
             left: 50%;
             transform: translateX(-50%);
         }
 
-        .timer-val { font-size: clamp(1.5rem, 5vw, 3.5rem); font-weight: 900; }
+        .timer-val { font-size: clamp(1.5rem, 5vw, 3rem); font-weight: 900; }
         .timer-box { text-align: center; }
-        .timer-box:nth-child(odd) { color: #fcc334; }
-        .timer-box:nth-child(even) { color: white; }
 
-        /* Delegates Style (Same as Member Page) */
+        /* Jikjak Glass Delegate Card */
         .delegate-card {
-            border-radius: 15px;
-            overflow: hidden;
-            background: white;
-            transition: 0.3s;
-            height: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 10px;
+            transition: 0.4s;
+            border-top: 4px solid #fcc334;
         }
-        .delegate-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
-        .delegate-img-container { height: 180px; overflow: hidden; }
+        .delegate-card:hover { 
+            transform: scale(1.05) rotate(2deg); 
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .delegate-img-container { height: 180px; overflow: hidden; border-radius: 15px; }
         .delegate-img-container img { width: 100%; height: 100%; object-fit: cover; }
     </style>
 </head>
@@ -86,23 +89,19 @@
 
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="images/village.jpg?q=80&w=2000"></div>
-            <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?q=80&w=2000"></div>
-            <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1583267746897-2cf415888172?q=80&w=2000"></div>
-            <div class="swiper-slide"><img src="images/village.jpg?q=80&w=2000"></div>
+            <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1544731612-de7f96afe55f?q=80&w=2000"></div>
             <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?q=80&w=2000"></div>
             <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1583267746897-2cf415888172?q=80&w=2000"></div>
         </div>
 
         <div class="glass-timer-card">
-            <h3 class="text-center text-[10px] uppercase tracking-widest text-blue-300 mb-2 font-bold">Countdown to Adventure</h3>
             <div id="countdown" class="flex justify-center items-center gap-4 md:gap-8 font-black">
-                <div class="timer-box"><span id="days" class="timer-val">00</span><p class="text-[9px] uppercase">Days</p></div>
-                <span class="timer-val text-white mb-4">:</span>
-                <div class="timer-box"><span id="hours" class="timer-val">00</span><p class="text-[9px] uppercase">Hrs</p></div>
-                <span class="timer-val text-white mb-4">:</span>
-                <div class="timer-box"><span id="mins" class="timer-val">00</span><p class="text-[9px] uppercase">Min</p></div>
-                <span class="timer-val text-white mb-4">:</span>
+                <div class="timer-box text-[#fcc334]"><span id="days" class="timer-val">00</span><p class="text-[9px] uppercase text-white">Days</p></div>
+                <span class="timer-val text-white mb-2">:</span>
+                <div class="timer-box text-white"><span id="hours" class="timer-val">00</span><p class="text-[9px] uppercase">Hrs</p></div>
+                <span class="timer-val text-white mb-2">:</span>
+                <div class="timer-box text-[#fcc334]"><span id="mins" class="timer-val">00</span><p class="text-[9px] uppercase text-white">Min</p></div>
+                <span class="timer-val text-white mb-2">:</span>
                 <div class="timer-box text-red-500"><span id="secs" class="timer-val">00</span><p class="text-[9px] uppercase text-white">Sec</p></div>
             </div>
         </div>
@@ -110,15 +109,9 @@
 
     <section class="py-16 container mx-auto px-4">
         <h2 class="text-3xl font-black text-center mb-10 italic text-[#fcc334] uppercase tracking-wider">Tour Delegates</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 md:gap-8 max-w-6xl mx-auto" id="delegate-list">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto" id="delegate-list">
             </div>
     </section>
-
-    <div class="pb-20 text-center">
-        <button class="bg-[#fcc334] text-[#082465] text-xl font-black px-10 py-4 rounded-full shadow-2xl animate-pulse">
-            READY TO ROAR?
-        </button>
-    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script type="module">
@@ -137,53 +130,76 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // --- Slider Config (বাম-ডান স্লাইড) ---
+        // --- Fast Slider Config (Speed Increased) ---
         var swiper = new Swiper(".mySwiper", {
             loop: true,
-            autoplay: { delay: 2500, disableOnInteraction: false },
-            speed: 1000,
-            effect: "slide", // এটি নিশ্চিত করে ফটো বাম বা ডান থেকে আসবে
+            autoplay: { delay: 1800, disableOnInteraction: false }, // গতি বাড়ানো হয়েছে
+            speed: 800,
+            effect: "slide",
         });
 
-        // --- Firebase Delegates (Auto Load) ---
+        // --- Rank Priority (সিরিয়াল মেইনটেইন) ---
+        const rankPriority = {
+            "President": 1,
+            "General Secretary": 2,
+            "Vice President": 3,
+            "Joint General Secretary": 4,
+            "Treasurer": 5,
+            "Organizing Secretary": 6,
+            "Office Secretary": 7,
+            "Secretary of Publicity & Publication": 8,
+            "Executive Member": 9,
+            "General Member": 10,
+            "Associate Member": 11
+        };
+
+        // --- Firebase Load ---
         const delegateList = document.getElementById('delegate-list');
         onSnapshot(collection(db, "people"), (snapshot) => {
-            delegateList.innerHTML = "";
-            let count = 0;
+            let membersArr = [];
+            
+            // ১. প্রাক্তন প্রেসিডেন্টদের ম্যানুয়ালি শুরুতে যোগ করা
+            const formers = [
+                { subject: "Rezowan Ahmmed", status: "Former President", img: "images/rezowan.jpg", newspaper: "The Daily Star" },
+                { subject: "Ekramul Haque", status: "Former President", img: "images/ekramul.jpg", newspaper: "Daily Sun" }
+            ];
+
             snapshot.forEach((doc) => {
-                if(count < 8) { // ট্যুর পেজে সব মেম্বার না দেখিয়ে প্রথম ৮ জন বা নির্দিষ্টদের জন্য ফিল্টার করতে পারেন
-                    const m = doc.data();
-                    delegateList.innerHTML += `
-                        <div class="delegate-card shadow-lg">
-                            <div class="delegate-img-container">
-                                <img src="${m.img}">
-                            </div>
-                            <div class="p-3 text-center">
-                                <h4 class="text-[#082465] font-bold text-[13px] mb-1">${m.subject}</h4>
-                                <p class="text-warning font-bold text-[10px] uppercase mb-1">${m.status}</p>
-                                <p class="text-gray-500 text-[9px] font-bold italic">${m.newspaper || ''}</p>
-                            </div>
+                membersArr.push(doc.data());
+            });
+
+            // ২. সিরিয়াল অনুযায়ী সর্টিং
+            membersArr.sort((a, b) => (rankPriority[a.status] || 99) - (rankPriority[b.status] || 99));
+
+            // ৩. প্রাক্তন প্রেসিডেন্টদের সবার আগে ইনসার্ট করা
+            const finalDisplayList = [...formers, ...membersArr];
+
+            delegateList.innerHTML = "";
+            finalDisplayList.forEach((m) => {
+                delegateList.innerHTML += `
+                    <div class="delegate-card shadow-2xl">
+                        <div class="delegate-img-container">
+                            <img src="${m.img}" onerror="this.src='images/logo.png'">
                         </div>
-                    `;
-                    count++;
-                }
+                        <div class="p-3 text-center">
+                            <h4 class="text-white font-bold text-[13px] mb-1">${m.subject}</h4>
+                            <p class="text-[#fcc334] font-bold text-[10px] uppercase mb-1">${m.status}</p>
+                            <p class="text-gray-400 text-[9px] font-bold italic">${m.newspaper || ''}</p>
+                        </div>
+                    </div>
+                `;
             });
         });
 
-        // --- Countdown Logic ---
+        // --- Countdown ---
         const target = new Date("April 23, 2026 00:00:00").getTime();
         setInterval(() => {
             const now = new Date().getTime();
             const diff = target - now;
-            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((diff % (1000 * 60)) / 1000);
-
-            document.getElementById('days').innerText = d < 0 ? "00" : (d < 10 ? "0"+d : d);
-            document.getElementById('hours').innerText = h < 0 ? "00" : (h < 10 ? "0"+h : h);
-            document.getElementById('mins').innerText = m < 0 ? "00" : (m < 10 ? "0"+m : m);
-            document.getElementById('secs').innerText = s < 0 ? "00" : (s < 10 ? "0"+s : s);
+            document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById('mins').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById('secs').innerText = Math.floor((diff % (1000 * 60)) / 1000);
         }, 1000);
     </script>
 </body>
