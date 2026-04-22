@@ -3,27 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KUJA Kuakata Tour 2026 | Ultimate Edition</title>
+    <title>KUJA Kuakata Tour 2026</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:400,700,900&display=swap');
-        body { background-color: #082465; color: white; font-family: 'Poppins', sans-serif; overflow-x: hidden; margin: 0; padding: 0; }
+        body { background-color: #082465; color: white; font-family: 'Poppins', sans-serif; overflow-x: hidden; }
 
-        /* --- Floating Menu --- */
-        #floating-menu { position: fixed; top: 20px; left: 20px; z-index: 200; display: flex; align-items: center; gap: 10px; }
-        #menu-icon { width: 40px; height: 40px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); cursor: pointer; }
-        #three-dots { color: white; font-size: 24px; cursor: pointer; transition: 0.3s; }
-        #three-dots:hover { color: #fcc334; }
-        #main-menu { position: fixed; top: 70px; left: 20px; background: rgba(8, 36, 101, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; padding: 10px; display: none; z-index: 199; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        #main-menu ul { list-style: none; margin: 0; padding: 0; }
-        #main-menu li a { display: block; padding: 8px 15px; color: white; text-decoration: none; font-size: 14px; transition: 0.3s; border-radius: 5px; }
-        #main-menu li a:hover { background: rgba(252, 195, 52, 0.2); color: #fcc334; }
+        /* --- Floating Menu (আরো ছোট আইকন) --- */
+        #floating-menu { position: fixed; top: 15px; left: 15px; z-index: 999; display: flex; align-items: center; gap: 8px; background: rgba(0,0,0,0.3); padding: 5px 10px; border-radius: 30px; }
+        #menu-icon { width: 25px; height: 25px; cursor: pointer; }
+        #three-dots { color: white; font-size: 18px; cursor: pointer; }
+        #main-menu { position: fixed; top: 55px; left: 15px; background: #082465; border: 1px solid #fcc334; border-radius: 10px; padding: 10px; display: none; z-index: 1000; }
+        #main-menu li a { display: block; padding: 5px 15px; color: white; text-decoration: none; font-size: 13px; }
 
-        /* --- Full Screen Slider (Ultra Fast) --- */
-        .swiper-container { width: 100%; height: 70vh; position: relative; }
+        /* --- Full Screen Slider --- */
+        .swiper-container { width: 100%; height: 75vh; }
         @media (min-width: 768px) { .swiper-container { height: 100vh; } }
         .swiper-slide img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.4); }
 
@@ -34,42 +31,30 @@
         /* Glass Countdown Box */
         .glass-timer-card { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; border-radius: 20px; position: absolute; bottom: 5%; width: 90%; max-width: 600px; z-index: 100; left: 50%; transform: translateX(-50%); }
         .timer-val { font-size: clamp(1.5rem, 5vw, 3rem); font-weight: 900; }
-        .timer-box { text-align: center; }
 
         /* --- Horizontal Delegates Slider --- */
-        #delegate-section { position: relative; padding: 60px 0; overflow: hidden; }
-        .delegate-swiper { width: 100%; padding: 20px 50px; }
-        .delegate-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 10px; transition: 0.4s; border-top: 4px solid #fcc334; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-        .delegate-card:hover { transform: translateY(-5px); background: rgba(255, 255, 255, 0.1); }
-        .delegate-img-container { width: 100%; height: 150px; overflow: hidden; border-radius: 15px; margin-bottom: 10px; }
+        .delegate-swiper { width: 100%; padding: 20px 20px; }
+        .delegate-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); border-radius: 20px; padding: 10px; border-top: 4px solid #fcc334; text-align: center; height: 100%; }
+        .delegate-img-container { width: 100%; height: 160px; overflow: hidden; border-radius: 15px; margin-bottom: 10px; }
         .delegate-img-container img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* --- ID Card Generator Popup --- */
-        #id-card-popup { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 300; align-items: center; justify-content: center; padding: 20px; }
-        #id-card-content { background: white; color: #082465; width: 350px; border-radius: 20px; overflow: hidden; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        #id-card-header { background: #082465; color: white; padding: 15px; text-align: center; border-bottom: 4px solid #fcc334; }
-        #id-card-body { padding: 20px; text-align: center; }
-        #id-card-img-container { width: 120px; height: 120px; border-radius: 50%; border: 4px solid #fcc334; overflow: hidden; margin: 0 auto 15px; }
-        #id-card-img { width: 100%; height: 100%; object-fit: cover; }
-
-        /* --- Gallery Section --- */
-        .gallery-img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; border: 3px solid transparent; transition: 0.3s; cursor: pointer; }
-        .gallery-img:hover { border-color: #fcc334; transform: scale(1.05); }
-
+        /* --- ID Card Popup --- */
+        #id-card-popup { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; }
+        #id-card-content { background: white; color: #082465; width: 320px; border-radius: 20px; overflow: hidden; }
+        #id-card-header { background: #082465; color: white; padding: 15px; border-bottom: 4px solid #fcc334; }
     </style>
 </head>
 <body>
 
     <div id="floating-menu">
-        <img src="images/logo.png" id="menu-icon" alt="KUJA Logo">
+        <img src="images/logo.png" id="menu-icon" onerror="this.src='https://via.placeholder.com/25'">
         <i class="fa fa-ellipsis-v" id="three-dots"></i>
     </div>
     <div id="main-menu">
-        <ul>
+        <ul class="list-none m-0 p-0">
             <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
             <li><a href="people.html">People</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="notices.html">Notices</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
     </div>
@@ -80,7 +65,7 @@
         <p class="text-[10px] md:text-xs tracking-widest text-gray-200">Journey to the Sunrise and Sunset Beach</p>
     </div>
 
-    <div class="swiper-container mySwiper">
+    <div class="swiper swiper-main swiper-container">
         <div class="swiper-wrapper">
             <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1544731612-de7f96afe55f?q=80&w=2000"></div>
             <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?q=80&w=2000"></div>
@@ -100,71 +85,56 @@
         </div>
     </div>
 
-    <section id="delegate-section">
-        <h2 class="text-3xl font-black text-center mb-10 italic text-[#fcc334] uppercase tracking-wider">Tour Delegates</h2>
-        <div class="swiper delegate-swiper">
+    <section class="py-10 overflow-hidden">
+        <h2 class="text-3xl font-black text-center mb-6 text-[#fcc334] italic uppercase">Tour Delegates</h2>
+        <div class="swiper swiper-delegates delegate-swiper">
             <div class="swiper-wrapper" id="delegate-list">
                 </div>
-            </div>
+        </div>
     </section>
 
     <section class="py-10 text-center bg-[#fcc334] text-[#082465]">
-        <h3 class="text-2xl font-black mb-5">GENERTE YOUR TOUR ID CARD</h3>
-        <p class="text-sm mb-6 max-w-xl mx-auto px-4">Click below to generate a stylized Kuakata Tour 2026 delegate ID card with your info from our records.</p>
-        <button id="generate-id-btn" class="bg-[#082465] text-white text-lg font-black px-10 py-3 rounded-full shadow-2xl transition hover:scale-105">
-            GENERATE MY ID CARD
-        </button>
+        <h3 class="text-xl font-black mb-4">GENERATE TOUR ID CARD</h3>
+        <button id="generate-id-btn" class="bg-[#082465] text-white px-8 py-3 rounded-full font-bold shadow-xl">CLICK TO GENERATE</button>
     </section>
 
-    <section class="py-16 container mx-auto px-4">
-        <h2 class="text-3xl font-black text-center mb-10 italic text-[#fcc334] uppercase tracking-wider">Kuakata Gallery</h2>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            <img src="https://images.unsplash.com/photo-1583267746897-2cf415888172?q=80&w=600" class="gallery-img" alt="Kuakata 1">
-            <img src="https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?q=80&w=600" class="gallery-img" alt="Kuakata 2">
-            <img src="https://images.unsplash.com/photo-1544731612-de7f96afe55f?q=80&w=600" class="gallery-img" alt="Kuakata 3">
-            <img src="https://images.unsplash.com/photo-1621258673752-92f3922f37c4?q=80&w=600" class="gallery-img" alt="Kuakata 4">
-            <img src="https://images.unsplash.com/photo-1583267746897-2cf415888172?q=80&w=600" class="gallery-img" alt="Kuakata 5">
-            <img src="https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?q=80&w=600" class="gallery-img" alt="Kuakata 6">
+    <section class="py-10 container mx-auto px-4">
+        <h2 class="text-2xl font-black text-center mb-6 text-[#fcc334] uppercase">Kuakata Moments</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <img src="https://images.unsplash.com/photo-1583267746897-2cf415888172?q=80&w=600" class="rounded-lg h-40 w-full object-cover">
+            <img src="https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?q=80&w=600" class="rounded-lg h-40 w-full object-cover">
+            <img src="https://images.unsplash.com/photo-1544731612-de7f96afe55f?q=80&w=600" class="rounded-lg h-40 w-full object-cover">
+            <img src="https://images.unsplash.com/photo-1621258673752-92f3922f37c4?q=80&w=600" class="rounded-lg h-40 w-full object-cover">
         </div>
     </section>
 
     <div id="id-card-popup">
-        <div class="text-center">
-            <div id="id-card-content">
+        <div class="text-center p-4">
+            <div id="id-card-content" class="shadow-2xl">
                 <div id="id-card-header">
-                    <img src="images/logo.png" class="h-10 mx-auto mb-2">
-                    <h4 class="font-black text-lg">KUAKATA EXPEDITION 2026</h4>
-                    <p class="text-[10px] tracking-widest">DELEGATE ID CARD</p>
+                    <img src="images/logo.png" class="h-8 mx-auto mb-1">
+                    <h4 class="text-sm font-black">KUAKATA EXPEDITION 2026</h4>
                 </div>
-                <div id="id-card-body">
-                    <div id="id-card-img-container">
-                        <img src="" id="id-card-img" onerror="this.src='images/logo.png'">
+                <div class="p-6 text-center">
+                    <div class="w-24 h-24 rounded-full border-4 border-[#fcc334] overflow-hidden mx-auto mb-3">
+                        <img id="card-img" src="" class="w-full h-full object-cover">
                     </div>
-                    <h3 class="font-black text-xl mb-1" id="id-card-name">YOUR NAME</h3>
-                    <p class="text-[#fcc334] font-black text-xs uppercase mb-1" id="id-card-status">DESIGNATION</p>
-                    <p class="text-gray-500 text-[10px] italic" id="id-card-newspaper">Newspaper</p>
-                    <div class="mt-4 border-t pt-3 text-[10px]">Valid only for KUJA Kuakata Tour</div>
+                    <h3 id="card-name" class="font-black text-lg uppercase">NAME</h3>
+                    <p id="card-status" class="text-xs font-bold text-blue-800">STATUS</p>
                 </div>
             </div>
-            <div class="mt-5 flex gap-3 justify-center">
-                <button id="download-id-btn" class="bg-[#fcc334] text-[#082465] font-bold px-5 py-2 rounded-full text-sm">Download Image</button>
-                <button id="close-id-popup" class="bg-white text-gray-700 font-bold px-5 py-2 rounded-full text-sm">Close</button>
+            <div class="mt-4 flex gap-2 justify-center">
+                <button id="download-btn" class="bg-[#fcc334] text-[#082465] px-4 py-2 rounded-full font-bold text-xs">Download</button>
+                <button id="close-btn" class="bg-white text-black px-4 py-2 rounded-full font-bold text-xs">Close</button>
             </div>
         </div>
-    </div>
-
-    <div class="pb-20 text-center">
-        <button class="bg-[#fcc334] text-[#082465] text-2xl font-black px-12 py-4 rounded-full shadow-2xl animate-pulse">
-            READY TO ROAR?
-        </button>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, onSnapshot, getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        // --- Firebase Config ---
         const firebaseConfig = {
             apiKey: "AIzaSyBMMbqW-hZEAGFbLgCkLkwD7-KDR3976lg",
             authDomain: "kuja-web.firebaseapp.com",
@@ -175,146 +145,87 @@
         };
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-        const auth = getAuth(app);
 
-        // --- Floating Menu Logic ---
-        const threeDots = document.getElementById('three-dots');
-        const mainMenu = document.getElementById('main-menu');
-        threeDots.addEventListener('click', (e) => {
+        // --- 1. Three Dot Menu Logic (FIXED) ---
+        const dot = document.getElementById('three-dots');
+        const menu = document.getElementById('main-menu');
+        dot.onclick = (e) => {
             e.stopPropagation();
-            mainMenu.style.display = (mainMenu.style.display === 'block') ? 'none' : 'block';
-        });
-        document.addEventListener('click', () => { mainMenu.style.display = 'none'; });
-
-        // --- Ultra Fast Main Slider ---
-        var swiper = new Swiper(".mySwiper", {
-            loop: true,
-            autoplay: { delay: 1500, disableOnInteraction: false }, // গতি আরও বাড়ানো হয়েছে (1.5s)
-            speed: 600,
-            effect: "fade",
-            fadeEffect: { crossFade: true }
-        });
-
-        // --- Rank Priority (সিরিয়াল মেইনটেইন) ---
-        const rankPriority = {
-            "President": 1,
-            "General Secretary": 2,
-            "Vice President": 3,
-            "Joint General Secretary": 4,
-            "Treasurer": 5,
-            "Organizing Secretary": 6,
-            "Office Secretary": 7,
-            "Secretary of Publicity & Publication": 8,
-            "Executive Member": 9,
-            "General Member": 10,
-            "Associate Member": 11
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
         };
+        document.onclick = () => menu.style.display = 'none';
 
-        // --- Firebase Load Delegates in Horizontal Slider ---
-        const delegateList = document.getElementById('delegate-list');
-        let allDelegatesData = []; // ID কার্ড জেনারেটরের জন্য ডেটা স্টোর করা
+        // --- 2. Ultra Fast Photo Slider (FIXED) ---
+        new Swiper(".swiper-main", {
+            loop: true,
+            autoplay: { delay: 1500, disableOnInteraction: false },
+            effect: 'fade',
+            speed: 800
+        });
 
-        onSnapshot(collection(db, "people"), (snapshot) => {
-            let membersArr = [];
-            
-            // ১. প্রাক্তন প্রেসিডেন্টদের ম্যানুয়ালি তথ্য (কোডে ফিক্সড)
+        // --- 3. Delegate Logic (FIXED Firebase + Rank) ---
+        const rankMap = { "President": 1, "General Secretary": 2, "Vice President": 3, "Joint General Secretary": 4 };
+        const list = document.getElementById('delegate-list');
+        let firstMember = null;
+
+        onSnapshot(collection(db, "people"), (snap) => {
+            let dataArr = [];
+            snap.forEach(d => dataArr.push(d.data()));
+            dataArr.sort((a,b) => (rankMap[a.status] || 99) - (rankMap[b.status] || 99));
+
+            // প্রাক্তন প্রেসিডেন্টদের তথ্য
             const formers = [
-                { subject: "Rezowan Ahmmed", status: "Former President", img: "images/rezowan.jpg", newspaper: "The Daily Star" },
-                { subject: "Ekramul Haque", status: "Former President", img: "images/ekramul.jpg", newspaper: "Daily Sun" }
+                { subject: "Rezowan Ahmmed", status: "Former President", img: "images/rezowan.jpg" },
+                { subject: "Ekramul Haque", status: "Former President", img: "images/ekramul.jpg" }
             ];
 
-            snapshot.forEach((doc) => { membersArr.push(doc.data()); });
-
-            // ২. সিরিয়াল অনুযায়ী সর্টিং
-            membersArr.sort((a, b) => (rankPriority[a.status] || 99) - (rankPriority[b.status] || 99));
-
-            // ৩. প্রাক্তন প্রেসিডেন্টদের সবার আগে ইনসার্ট করা
-            const finalDisplayList = [...formers, ...membersArr];
-            allDelegatesData = finalDisplayList; // আইডি কার্ডের জন্য কপি রাখা
-
-            delegateList.innerHTML = "";
-            finalDisplayList.forEach((m) => {
-                delegateList.innerHTML += `
-                    <div class="swiper-slide h-auto p-2">
-                        <div class="delegate-card shadow-2xl glass-card">
-                            <div class="delegate-img-container">
-                                <img src="${m.img}" onerror="this.src='images/logo.png'">
-                            </div>
-                            <div class="p-3 text-center">
-                                <h4 class="text-white font-bold text-[13px] mb-1">${m.subject}</h4>
-                                <p class="text-[#fcc334] font-bold text-[10px] uppercase mb-1">${m.status}</p>
-                                <p class="text-gray-400 text-[9px] font-bold italic">${m.newspaper || ''}</p>
-                            </div>
-                        </div>
+            const final = [...formers, ...dataArr];
+            firstMember = final[0]; // ID কার্ডের জন্য
+            list.innerHTML = "";
+            final.forEach(m => {
+                list.innerHTML += `<div class="swiper-slide w-auto p-2">
+                    <div class="delegate-card">
+                        <div class="delegate-img-container"><img src="${m.img}" onerror="this.src='https://via.placeholder.com/150'"></div>
+                        <h4 class="text-[12px] font-bold mt-2">${m.subject}</h4>
+                        <p class="text-[9px] text-[#fcc334] font-bold uppercase">${m.status}</p>
                     </div>
-                `;
+                </div>`;
             });
 
-            // ৪. Delegates Slider Init (বাম-ডান স্ক্রল)
-            var delegateSwiper = new Swiper(".delegate-swiper", {
-                slidesPerView: 2, // মোবাইলে ২ টা সম্পূর্ণ দেখা যাবে
+            new Swiper(".swiper-delegates", {
+                slidesPerView: 2.2,
                 spaceBetween: 10,
-                grabCursor: true,
-                breakpoints: {
-                    640: { slidesPerView: 3, spaceBetween: 15 },
-                    768: { slidesPerView: 3, spaceBetween: 20 }, // ৩ টা সম্পূর্ণ দেখা যাবে
-                    1024: { slidesPerView: 4, spaceBetween: 25 },
-                }
+                breakpoints: { 768: { slidesPerView: 4.5 } }
             });
         });
 
-        // --- ID Card Generator Logic ---
-        const generateBtn = document.getElementById('generate-id-btn');
-        const popup = document.getElementById('id-card-popup');
-        const closePopup = document.getElementById('close-id-popup');
-        const downloadBtn = document.getElementById('download-id-btn');
+        // --- 4. ID Card Generate (FIXED) ---
+        document.getElementById('generate-id-btn').onclick = () => {
+            if(!firstMember) return;
+            document.getElementById('card-img').src = firstMember.img;
+            document.getElementById('card-name').innerText = firstMember.subject;
+            document.getElementById('card-status').innerText = firstMember.status;
+            document.getElementById('id-card-popup').style.display = 'flex';
+        };
+        document.getElementById('close-btn').onclick = () => document.getElementById('id-card-popup').style.display = 'none';
 
-        generateBtn.addEventListener('click', () => {
-            // নিশ্চিত করুন ইউজার লগইন করা আছে কিনা (লগইন করা ইউজারের ইমেইল দিয়ে আইডি কার্ড বের করার লজিক)
-            // আপনার প্রজেক্টের অ্যাডমিন প্যানেল তৈরির সময় ব্যবহৃত Firebase Auth ব্যবহার করতে হবে।
-            // এখানে ডেমো হিসেবে আমরা Rezowan Ahmmed এর আইডি কার্ড জেনারেট করে দেখাচ্ছি।
-            // আসল ইমপ্লিমেন্টেশনে dynamic ডাটা আসবে।
-
-            onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    // লগইন করা ইউজারের তথ্য Firebase 'admins' সংগ্রহ থেকে খুঁজে বের করার লজিক এখানে হবে।
-                    // তারপর dynamic ডাটা বসাতে হবে।
-                    alert("Generating ID Card for: " + user.email + " (Logic requires user data linkage)");
-                    popup.style.display = 'flex';
-                } else {
-                    alert("Please Login First through Admin Panel to generate your ID card.");
-                    // ডেমো হিসেবে Popup দেখানো হচ্ছে
-                    const demoData = allDelegatesData[0]; // Rezowan Ahmmed
-                    document.getElementById('id-card-img').src = demoData.img;
-                    document.getElementById('id-card-name').innerText = demoData.subject;
-                    document.getElementById('id-card-status').innerText = demoData.status;
-                    document.getElementById('id-card-newspaper').innerText = demoData.newspaper;
-                    popup.style.display = 'flex';
-                }
+        document.getElementById('download-btn').onclick = () => {
+            html2canvas(document.getElementById('id-card-content')).then(canvas => {
+                const a = document.createElement('a');
+                a.href = canvas.toDataURL();
+                a.download = 'KUJA_Kuakata_ID.png';
+                a.click();
             });
-        });
+        };
 
-        closePopup.addEventListener('click', () => { popup.style.display = 'none'; });
-
-        downloadBtn.addEventListener('click', () => {
-            const cardContent = document.getElementById('id-card-content');
-            html2canvas(cardContent, { scale: 2, backgroundColor: '#ffffff' }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = 'KUJA_Kuakata_ID_Card.png';
-                link.href = canvas.toDataURL();
-                link.click();
-            });
-        });
-
-        // --- Countdown Logic ---
+        // --- 5. Countdown ---
         const target = new Date("April 23, 2026 00:00:00").getTime();
         setInterval(() => {
-            const now = new Date().getTime();
-            const diff = target - now;
-            document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-            document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            document.getElementById('mins').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById('secs').innerText = Math.floor((diff % (1000 * 60)) / 1000);
+            const diff = target - new Date().getTime();
+            document.getElementById('days').innerText = Math.floor(diff / 86400000);
+            document.getElementById('hours').innerText = Math.floor((diff % 86400000) / 3600000);
+            document.getElementById('mins').innerText = Math.floor((diff % 3600000) / 60000);
+            document.getElementById('secs').innerText = Math.floor((diff % 60000) / 1000);
         }, 1000);
     </script>
 </body>
