@@ -3,154 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KUJA KUAKATA TOUR | Jikjak</title>
+    <title>KUJA Kuakata Tour 2026 | Jikjak</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:900&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/scrollreveal"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:900&display=swap');
+
         body {
-            background-color: #082465;
+            background: #082465;
             color: white;
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
         }
 
-        /* জিকজ্যাক বড় ইমেজের সেকশন */
-        .zikzak-container {
+        /* Zigzag Entrance Animation */
+        @keyframes ultraJikjak {
+            0% { transform: translate(-100%, -100%) rotate(-45deg); }
+            25% { transform: translate(50%, -50%) rotate(20deg); }
+            50% { transform: translate(-30%, 20%) rotate(-10deg); }
+            75% { transform: translate(20%, 50%) rotate(15deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        .jikjak-photo-entrance {
+            animation: ultraJikjak 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+            border: 8px solid #fcc334;
+        }
+
+        /* Zigzag Background Layout */
+        .zigzag-row {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            margin-bottom: 150px;
-            gap: 50px;
+            margin-bottom: 100px;
         }
+        .zigzag-row:nth-child(even) { flex-direction: row-reverse; }
 
-        .zikzak-container:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .big-photo {
-            width: 60%;
-            height: 500px;
+        .big-img {
+            width: 55%;
+            height: 400px;
             object-fit: cover;
-            border: 10px solid #fcc334;
             border-radius: 20px;
-            box-shadow: 20px 20px 0px rgba(0,0,0,0.5);
-            transition: 0.5s;
+            border: 6px solid #fcc334;
+            box-shadow: 15px 15px 0px rgba(0,0,0,0.4);
+            transition: 0.4s;
+        }
+        .big-img:hover { transform: scale(1.05) rotate(2deg); }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
         }
 
-        .big-photo:hover {
-            transform: scale(1.05) rotate(2deg);
-            box-shadow: 0px 0px 50px rgba(252, 195, 52, 0.5);
-        }
-
-        .timer-hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1544731612-de7f96afe55f?q=80&w=2000') center/cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .text-stroke {
-            -webkit-text-stroke: 2px #fcc334;
-            color: transparent;
-        }
-
-        /* কাউন্টডাউন ডিজাইন */
-        .countdown-item {
-            background: #fcc334;
-            color: #082465;
-            padding: 20px;
-            border-radius: 15px;
-            min-width: 120px;
-            box-shadow: 10px 10px 0px #fff;
-        }
+        .delegate-card:nth-child(even) { margin-top: 50px; transform: rotate(5deg); }
+        .delegate-card:nth-child(odd) { transform: rotate(-5deg); }
     </style>
 </head>
 <body>
 
-    <section class="timer-hero">
-        <h1 class="text-7xl md:text-9xl font-black italic animate-bounce">KUAKATA 2026</h1>
-        <h2 class="text-4xl md:text-6xl font-black text-stroke uppercase mb-10">Jikjak Expedition</h2>
-        
-        <div id="countdown" class="flex gap-4 md:gap-8 text-4xl md:text-6xl font-black">
-            <div class="countdown-item"><span id="days">00</span><p class="text-xs font-bold">DAYS</p></div>
-            <div class="countdown-item"><span id="hours">00</span><p class="text-xs font-bold">HOURS</p></div>
-            <div class="countdown-item"><span id="mins">00</span><p class="text-xs font-bold">MINS</p></div>
-            <div class="countdown-item" style="background: white;"><span id="secs">00</span><p class="text-xs font-bold text-[#082465]">SECS</p></div>
+    <div id="entrance" class="fixed inset-0 z-[100] bg-[#082465] flex items-center justify-center p-10">
+        <div class="text-center">
+            <img src="https://images.unsplash.com/photo-1544731612-de7f96afe55f" class="jikjak-photo-entrance w-[500px] h-[300px] object-cover rounded-3xl" alt="Kuakata">
+            <h1 class="text-6xl md:text-8xl font-black mt-10 animate__animated animate__rubberBand animate__infinite">KUAKATA!</h1>
         </div>
-        
-        <p class="mt-10 text-2xl font-bold tracking-widest animate-pulse">Starts: 23rd April</p>
-    </section>
-
-    <section class="py-20 px-10">
-        
-        <div class="zikzak-container reveal-left">
-            <img src="https://images.unsplash.com/photo-1583267746897-2cf415888172?q=80&w=1500" class="big-photo" alt="Sea">
-            <div class="text-right w-1/3">
-                <h3 class="text-6xl font-black text-[#fcc334]">THE BLUE SEA</h3>
-                <p class="text-xl mt-4">সমুদ্রের নীল জলরাশি আর বিশাল আকাশ।</p>
-            </div>
-        </div>
-
-        <div class="zikzak-container reveal-right">
-            <img src="https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?q=80&w=1500" class="big-photo" alt="Rakhain">
-            <div class="text-left w-1/3">
-                <h3 class="text-6xl font-black text-[#fcc334]">RAKHAIN POLLI</h3>
-                <p class="text-xl mt-4">রাখাইনদের বৈচিত্র্যময় জীবন ও ঐতিহ্য।</p>
-            </div>
-        </div>
-
-        <div class="zikzak-container reveal-left">
-            <img src="https://images.unsplash.com/photo-1544731612-de7f96afe55f?q=80&w=1500" class="big-photo" alt="Sunset">
-            <div class="text-right w-1/3">
-                <h3 class="text-6xl font-black text-[#fcc334]">SUNSET MAGIC</h3>
-                <p class="text-xl mt-4">সূর্যোদয় আর সূর্যাস্তের অপূর্ব মিলনমেলা।</p>
-            </div>
-        </div>
-
-    </section>
-
-    <section class="py-20 bg-[#fcc334] text-[#082465]">
-        <h2 class="text-center text-6xl font-black mb-20">TOUR DELEGATES</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 px-10">
-            <div class="bg-white p-4 rounded-3xl transform -rotate-6 shadow-2xl">
-                <img src="Profile/images/advisor/1.jpg" class="rounded-2xl h-60 w-full object-cover">
-                <h4 class="text-center mt-4 font-bold">Romin Al Kama</h4>
-            </div>
-            <div class="bg-white p-4 rounded-3xl transform rotate-6 shadow-2xl mt-10">
-                <img src="Profile/images/advisor/2.jpg" class="rounded-2xl h-60 w-full object-cover">
-                <h4 class="text-center mt-4 font-bold">H.M. Masum Hasan</h4>
-            </div>
-            <div class="bg-white p-4 rounded-3xl transform -rotate-6 shadow-2xl">
-                <img src="Profile/images/advisor/3.jpg" class="rounded-2xl h-60 w-full object-cover">
-                <h4 class="text-center mt-4 font-bold">Md. Mirazul Islam</h4>
-            </div>
-            <div class="bg-white p-4 rounded-3xl transform rotate-6 shadow-2xl mt-10">
-                <img src="Profile/images/advisor/4.jpg" class="rounded-2xl h-60 w-full object-cover">
-                <h4 class="text-center mt-4 font-bold">Arko Mondol</h4>
-            </div>
-        </div>
-    </section>
-
-    <div class="py-20 text-center">
-        <button class="bg-[#fcc334] text-[#082465] text-4xl font-black px-12 py-6 rounded-full hover:scale-110 transition shadow-2xl">
-            GET READY FOR KUAKATA!
-        </button>
     </div>
 
+    <main id="main-content" class="opacity-0 transition-opacity duration-1000">
+        <section class="h-screen flex flex-col justify-center items-center text-center px-4 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-20 pointer-events-none">
+                <img src="https://images.unsplash.com/photo-1583267746897-2cf415888172" class="absolute top-10 left-[-10%] w-96 rotate-12">
+                <img src="https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff" class="absolute bottom-10 right-[-10%] w-96 -rotate-12">
+            </div>
+
+            <h2 class="text-7xl md:text-9xl font-black italic text-[#fcc334] mb-6 tracking-tighter">JIKJAK TOUR</h2>
+            
+            <div class="glass-card p-10 rounded-[40px] shadow-2xl animate__animated animate__zoomIn">
+                <p class="mb-4 uppercase font-bold tracking-[5px]">Adventure Starts In</p>
+                <div id="timer" class="flex gap-4 md:gap-10 text-5xl md:text-8xl font-black">
+                    <div><span id="days">00</span><p class="text-xs mt-2">DAYS</p></div>
+                    <span class="text-[#fcc334]">:</span>
+                    <div><span id="hours">00</span><p class="text-xs mt-2">HRS</p></div>
+                    <span class="text-[#fcc334]">:</span>
+                    <div><span id="mins">00</span><p class="text-xs mt-2">MINS</p></div>
+                    <span class="text-[#fcc334]">:</span>
+                    <div class="text-red-500"><span id="secs">00</span><p class="text-xs mt-2 text-white">SECS</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 container mx-auto px-6">
+            <div class="zigzag-row animate__animated animate__fadeInLeft">
+                <img src="https://images.unsplash.com/photo-1544731612-de7f96afe55f" class="big-img" alt="Sunset">
+                <div class="p-10">
+                    <h3 class="text-5xl font-black text-[#fcc334]">SUNRISE POINT</h3>
+                    <p class="text-xl mt-4 opacity-80 italic">The magic of sea meeting the sun.</p>
+                </div>
+            </div>
+
+            <div class="zigzag-row animate__animated animate__fadeInRight">
+                <img src="https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff" class="big-img" alt="Rakhain">
+                <div class="p-10">
+                    <h3 class="text-5xl font-black text-[#fcc334]">RAKHAIN POLLI</h3>
+                    <p class="text-xl mt-4 opacity-80 italic">Discover the indigenous heritage.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-[#fcc334] text-[#082465]">
+            <h3 class="text-center text-5xl font-black mb-20 uppercase italic">Tour Delegates</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto px-4">
+                <div class="delegate-card bg-white p-3 rounded-2xl shadow-xl">
+                    <img src="Profile/images/advisor/1.jpg" class="w-full h-60 object-cover rounded-xl" alt="">
+                    <p class="mt-4 font-black text-center uppercase">Romin Al Kama</p>
+                </div>
+                <div class="delegate-card bg-white p-3 rounded-2xl shadow-xl">
+                    <img src="Profile/images/advisor/2.jpg" class="w-full h-60 object-cover rounded-xl" alt="">
+                    <p class="mt-4 font-black text-center uppercase">H.M. Masum Hasan</p>
+                </div>
+                <div class="delegate-card bg-white p-3 rounded-2xl shadow-xl">
+                    <img src="Profile/images/advisor/3.jpg" class="w-full h-60 object-cover rounded-xl" alt="">
+                    <p class="mt-4 font-black text-center uppercase">Md. Mirazul Islam</p>
+                </div>
+                <div class="delegate-card bg-white p-3 rounded-2xl shadow-xl">
+                    <img src="Profile/images/advisor/4.jpg" class="w-full h-60 object-cover rounded-xl" alt="">
+                    <p class="mt-4 font-black text-center uppercase">Arko Mondol</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="py-20 text-center">
+            <button class="bg-[#fcc334] text-[#082465] text-4xl font-black px-16 py-8 rounded-full hover:bg-white transition-all transform hover:scale-110 shadow-[0_0_50px_rgba(252,195,52,0.5)]">
+                JOIN THE JIKJAK!
+            </button>
+        </div>
+    </main>
+
     <script>
-        // Scroll Animation Logic
-        ScrollReveal().reveal('.reveal-left', { origin: 'left', distance: '200px', duration: 1500, delay: 200 });
-        ScrollReveal().reveal('.reveal-right', { origin: 'right', distance: '200px', duration: 1500, delay: 200 });
+        // Entrance Logic
+        setTimeout(() => {
+            const entrance = document.getElementById('entrance');
+            const main = document.getElementById('main-content');
+            entrance.style.transition = '0.8s';
+            entrance.style.transform = 'translateY(-100%)';
+            setTimeout(() => {
+                entrance.style.display = 'none';
+                main.classList.remove('opacity-0');
+            }, 800);
+        }, 2500);
 
         // Countdown Logic
-        const targetDate = new Date("April 23, 2026 00:00:00").getTime();
+        const tourDate = new Date("April 23, 2026 00:00:00").getTime();
         setInterval(() => {
             const now = new Date().getTime();
-            const diff = targetDate - now;
+            const diff = tourDate - now;
             document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
             document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             document.getElementById('mins').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
