@@ -3,135 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KUJA Kuakata Tour 2026</title>
+    <title>KUJA Kuakata Expedition 2026</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
-        @keyframes zigzagMove {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(50px, 50px) rotate(5deg); }
-            50% { transform: translate(-50px, 100px) rotate(-5deg); }
-            75% { transform: translate(50px, 150px) rotate(5deg); }
-            100% { transform: translate(0, 200px) rotate(0deg); opacity: 0; }
+        /* ফ্লোটিং ফটো অ্যানিমেশন */
+        @keyframes floatEffect {
+            0% { transform: translateY(0px) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.8; }
+            80% { opacity: 0.8; }
+            100% { transform: translateY(-500px) rotate(20deg); opacity: 0; }
         }
 
-        .zigzag-photo {
-            animation: zigzagMove 3s ease-in-out forwards;
+        .floating-photo {
+            position: fixed;
+            width: 250px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 4px solid #fcc334;
+            z-index: 60;
+            pointer-events: none;
+            animation: floatEffect 5s linear infinite;
         }
 
-        .zigzag-grid div:nth-child(even) {
-            margin-top: 40px;
+        /* জিকজ্যাক লেআউট */
+        .zigzag-row:nth-child(even) {
+            flex-direction: row-reverse;
         }
 
         body {
-            background: linear-gradient(135deg, #082465 0%, #004e92 100%);
+            background-color: #082465;
             color: white;
             overflow-x: hidden;
+            font-family: 'Poppins', sans-serif;
         }
 
-        .glass-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        .timer-box {
+            background: rgba(252, 195, 52, 0.1);
+            border: 2px solid #fcc334;
+            backdrop-filter: blur(15px);
+        }
+
+        .delegate-card:nth-child(even) {
+            margin-top: 60px;
         }
     </style>
 </head>
 <body>
 
-    <div id="entrance" class="fixed inset-0 z-50 bg-[#082465] flex items-center justify-center">
-        <div class="text-center">
-            <img src="images/logo.png" class="zigzag-photo w-32 h-32 mb-4" alt="KUJA">
-            <h1 class="text-4xl font-bold animate__animated animate__zoomIn">KUJA KUAKATA TOUR</h1>
-        </div>
+    <div id="entrance-overlay" class="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center overflow-hidden">
+        <h1 class="text-6xl font-black text-white animate__animated animate__pulse animate__infinite z-[110]">KUAKATA 2026</h1>
+        <p class="mt-4 text-[#fcc334] tracking-[10px] uppercase font-bold animate__animated animate__fadeInUp">The Tour of a Lifetime</p>
+        
+        <img src="https://images.unsplash.com/photo-1583267746897-2cf415888172" class="floating-photo" style="left: 10%; bottom: -200px; animation-delay: 0s;">
+        <img src="https://images.unsplash.com/photo-1621258673752-92f3922f37c4" class="floating-photo" style="left: 60%; bottom: -200px; animation-delay: 1s;">
+        <img src="https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff" class="floating-photo" style="left: 30%; bottom: -200px; animation-delay: 2s;">
+        <img src="https://images.unsplash.com/photo-1544731612-de7f96afe55f" class="floating-photo" style="left: 80%; bottom: -200px; animation-delay: 0.5s;">
     </div>
 
-    <div id="main-content" class="opacity-0 transition-opacity duration-1000 container mx-auto px-4 py-10">
+    <main id="main-content" class="hidden opacity-0 transition-opacity duration-1000">
         
-        <header class="text-center mb-16">
-            <h2 class="text-5xl font-black text-[#fcc334] mb-4 tracking-tighter uppercase italic">The Sea Queen Calls</h2>
-            <p class="text-xl">Journey to the Sunrise and Sunset Beach</p>
-        </header>
-
-        <div class="max-w-4xl mx-auto mb-20 glass-card p-8 rounded-3xl shadow-2xl text-center">
-            <h3 class="text-2xl font-bold mb-6 uppercase tracking-widest text-blue-300">Countdown to Adventure</h3>
-            <div id="timer" class="flex justify-center gap-4 md:gap-8 text-4xl md:text-6xl font-black">
-                <div class="flex flex-col"><span id="days">00</span><small class="text-xs uppercase mt-2">Days</small></div>
-                <span>:</span>
-                <div class="flex flex-col"><span id="hours">00</span><small class="text-xs uppercase mt-2">Hrs</small></div>
-                <span>:</span>
-                <div class="flex flex-col"><span id="minutes">00</span><small class="text-xs uppercase mt-2">Min</small></div>
-                <span>:</span>
-                <div class="flex flex-col text-red-400"><span id="seconds">00</span><small class="text-xs uppercase mt-2 text-white">Sec</small></div>
+        <div class="h-screen flex flex-col justify-center items-center text-center px-4" style="background: linear-gradient(rgba(8,36,101,0.8), rgba(8,36,101,0.8)), url('https://images.unsplash.com/photo-1544731612-de7f96afe55f') center/cover;">
+            <h2 class="text-7xl md:text-9xl font-black italic tracking-tighter animate__animated animate__fadeInDown">JOKJAK TOUR</h2>
+            <div class="mt-10 timer-box p-10 rounded-2xl animate__animated animate__zoomIn">
+                <p class="mb-4 uppercase font-bold tracking-widest text-[#fcc334]">Tour Starts In</p>
+                <div id="countdown" class="flex gap-6 text-5xl md:text-7xl font-mono font-bold">
+                    <div><span id="days">00</span><p class="text-xs">DAYS</p></div>
+                    <span>:</span>
+                    <div><span id="hours">00</span><p class="text-xs">HRS</p></div>
+                    <span>:</span>
+                    <div><span id="mins">00</span><p class="text-xs">MINS</p></div>
+                    <span>:</span>
+                    <div class="text-[#fcc334]"><span id="secs">00</span><p class="text-xs text-white">SECS</p></div>
+                </div>
             </div>
         </div>
 
-        <section class="mb-20">
-            <h3 class="text-center text-3xl font-bold mb-12 uppercase">Tour Delegates</h3>
-            <div class="zigzag-grid grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto px-4">
-                <div class="glass-card p-4 rounded-2xl transform hover:scale-105 transition">
-                    <img src="Profile/images/advisor/1.jpg" class="w-full h-48 object-cover rounded-xl mb-4" alt="">
-                    <h4 class="font-bold text-center">Romin Al Kama</h4>
-                    <p class="text-xs text-center text-yellow-400 uppercase">Delegate</p>
+        <section class="py-24 container mx-auto">
+            <h3 class="text-center text-4xl font-black mb-20 uppercase tracking-tighter">Tour Delegates</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 px-6">
+                
+                <div class="delegate-card bg-white text-[#082465] p-2 rounded-3xl shadow-2xl transform hover:rotate-3 transition duration-300">
+                    <img src="Profile/images/advisor/1.jpg" class="w-full h-64 object-cover rounded-2xl" alt="">
+                    <div class="p-4 text-center">
+                        <h4 class="text-xl font-bold">Romin Al Kama</h4>
+                        <p class="text-sm font-bold opacity-70">EXECUTIVE DELEGATE</p>
+                    </div>
                 </div>
-                <div class="glass-card p-4 rounded-2xl transform hover:scale-105 transition">
-                    <img src="Profile/images/advisor/2.jpg" class="w-full h-48 object-cover rounded-xl mb-4" alt="">
-                    <h4 class="font-bold text-center">H.M. Masum Hasan</h4>
-                    <p class="text-xs text-center text-yellow-400 uppercase">Delegate</p>
+
+                <div class="delegate-card bg-[#fcc334] text-[#082465] p-2 rounded-3xl shadow-2xl transform hover:-rotate-3 transition duration-300">
+                    <img src="Profile/images/advisor/2.jpg" class="w-full h-64 object-cover rounded-2xl" alt="">
+                    <div class="p-4 text-center">
+                        <h4 class="text-xl font-bold">H.M. Masum Hasan</h4>
+                        <p class="text-sm font-bold opacity-70">EXECUTIVE DELEGATE</p>
+                    </div>
                 </div>
-                <div class="glass-card p-4 rounded-2xl transform hover:scale-105 transition">
-                    <img src="Profile/images/advisor/3.jpg" class="w-full h-48 object-cover rounded-xl mb-4" alt="">
-                    <h4 class="font-bold text-center">Md. Mirazul Islam</h4>
-                    <p class="text-xs text-center text-yellow-400 uppercase">Delegate</p>
+
+                <div class="delegate-card bg-white text-[#082465] p-2 rounded-3xl shadow-2xl transform hover:rotate-3 transition duration-300">
+                    <img src="Profile/images/advisor/3.jpg" class="w-full h-64 object-cover rounded-2xl" alt="">
+                    <div class="p-4 text-center">
+                        <h4 class="text-xl font-bold">Md. Mirazul Islam</h4>
+                        <p class="text-sm font-bold opacity-70">EXECUTIVE DELEGATE</p>
+                    </div>
                 </div>
-                <div class="glass-card p-4 rounded-2xl transform hover:scale-105 transition">
-                    <img src="Profile/images/advisor/4.jpg" class="w-full h-48 object-cover rounded-xl mb-4" alt="">
-                    <h4 class="font-bold text-center">Arko Mondol</h4>
-                    <p class="text-xs text-center text-yellow-400 uppercase">Delegate</p>
+
+                <div class="delegate-card bg-[#fcc334] text-[#082465] p-2 rounded-3xl shadow-2xl transform hover:-rotate-3 transition duration-300">
+                    <img src="Profile/images/advisor/4.jpg" class="w-full h-64 object-cover rounded-2xl" alt="">
+                    <div class="p-4 text-center">
+                        <h4 class="text-xl font-bold">Arko Mondol</h4>
+                        <p class="text-sm font-bold opacity-70">EXECUTIVE DELEGATE</p>
+                    </div>
                 </div>
+
             </div>
         </section>
 
-        <div class="text-center">
-            <button class="bg-[#fcc334] text-[#082465] px-10 py-4 rounded-full font-black text-xl hover:bg-white transition-all shadow-xl animate-bounce">
-                READY TO ROAR?
+        <footer class="py-20 text-center bg-[#fcc334] text-[#082465]">
+            <h3 class="text-5xl font-black italic mb-6">READY FOR THE SUNRISE?</h3>
+            <p class="text-lg font-bold mb-8">April 23, 2026 - Save the Date!</p>
+            <button class="bg-[#082465] text-white px-12 py-4 rounded-full font-black text-xl hover:scale-110 transition shadow-2xl">
+                JOIN THE JOURNEY
             </button>
-        </div>
-    </div>
+        </footer>
+    </main>
 
     <script>
-        // Entrance Animation Logic
-        setTimeout(() => {
-            const entrance = document.getElementById('entrance');
-            const mainContent = document.getElementById('main-content');
-            
-            entrance.classList.add('animate__animated', 'animate__fadeOutUp');
+        // Entrance Logic
+        window.addEventListener('load', () => {
             setTimeout(() => {
-                entrance.style.display = 'none';
-                mainContent.classList.remove('opacity-0');
-            }, 1000);
-        }, 3000);
+                const overlay = document.getElementById('entrance-overlay');
+                const main = document.getElementById('main-content');
+                
+                overlay.style.transition = '1s';
+                overlay.style.opacity = '0';
+                
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    main.classList.remove('hidden');
+                    setTimeout(() => main.style.opacity = '1', 50);
+                }, 1000);
+            }, 4000); // ৪ সেকেন্ড পর মূল পেজ আসবে
+        });
 
-        // Countdown Timer Logic
-        const tourDate = new Date("April 23, 2026 00:00:00").getTime();
+        // Countdown Logic
+        const targetDate = new Date("April 23, 2026 00:00:00").getTime();
 
-        const timer = setInterval(function() {
+        setInterval(() => {
             const now = new Date().getTime();
-            const distance = tourDate - now;
+            const diff = targetDate - now;
 
-            const d = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((distance % (1000 * 60)) / 1000);
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-            document.getElementById("days").innerText = d < 10 ? '0' + d : d;
-            document.getElementById("hours").innerText = h < 10 ? '0' + h : h;
-            document.getElementById("minutes").innerText = m < 10 ? '0' + m : m;
-            document.getElementById("seconds").innerText = s < 10 ? '0' + s : s;
-
-            if (distance < 0) {
-                clearInterval(timer);
-                document.getElementById("timer").innerHTML = "TOUR HAS STARTED!";
-            }
+            document.getElementById('days').innerText = d < 10 ? '0'+d : d;
+            document.getElementById('hours').innerText = h < 10 ? '0'+h : h;
+            document.getElementById('mins').innerText = m < 10 ? '0'+m : m;
+            document.getElementById('secs').innerText = s < 10 ? '0'+s : s;
         }, 1000);
     </script>
 </body>
