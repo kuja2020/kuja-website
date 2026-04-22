@@ -12,37 +12,36 @@
         @import url('https://fonts.googleapis.com/css2?family=Poppins:400,700,900&display=swap');
         body { background-color: #082465; color: white; font-family: 'Poppins', sans-serif; overflow-x: hidden; }
 
-        /* Floating Menu Icon */
-        #floating-menu { position: fixed; top: 15px; left: 15px; z-index: 1000; display: flex; align-items: center; gap: 8px; background: rgba(0,0,0,0.5); padding: 5px 12px; border-radius: 30px; border: 1px solid #fcc334; }
+        /* --- Floating Menu (Small Icon) --- */
+        #floating-menu { position: fixed; top: 15px; left: 15px; z-index: 1000; display: flex; align-items: center; gap: 8px; background: rgba(0,0,0,0.6); padding: 5px 12px; border-radius: 30px; border: 1px solid #fcc334; }
         #menu-icon { width: 22px; height: 22px; }
         #three-dots { color: #fcc334; font-size: 18px; cursor: pointer; }
         #main-menu { position: fixed; top: 60px; left: 15px; background: #082465; border: 2px solid #fcc334; border-radius: 12px; padding: 10px; display: none; z-index: 1001; min-width: 150px; }
         #main-menu a { display: block; padding: 8px 15px; color: white; text-decoration: none; font-size: 13px; font-weight: bold; }
-        #main-menu a:hover { background: #fcc334; color: #082465; border-radius: 8px; }
 
-        /* Main Full Screen Slider */
+        /* --- Full Screen Fast Slider --- */
         .hero-slider { width: 100%; height: 75vh; }
         @media (min-width: 768px) { .hero-slider { height: 100vh; } }
         .hero-slider img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); }
 
-        /* Fixed Upper Content */
-        .hero-overlay { position: absolute; top: 15%; left: 0; width: 100%; z-index: 500; text-align: center; pointer-events: none; }
+        /* Header Text */
+        .hero-overlay { position: absolute; top: 12%; left: 0; width: 100%; z-index: 500; text-align: center; pointer-events: none; }
         .main-title { font-size: clamp(2rem, 8vw, 4.5rem); color: #fcc334; font-weight: 900; text-transform: uppercase; text-shadow: 3px 3px 0px white; }
 
-        /* Compact Glass Countdown Box */
-        .glass-timer-card { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; border-radius: 25px; position: absolute; bottom: 8%; width: 90%; max-width: 600px; z-index: 500; left: 50%; transform: translateX(-50%); }
-        .timer-val { font-size: clamp(1.8rem, 6vw, 3.5rem); font-weight: 900; line-height: 1; }
+        /* Compact Countdown Box */
+        .glass-timer-card { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; border-radius: 25px; position: absolute; bottom: 5%; width: 90%; max-width: 600px; z-index: 500; left: 50%; transform: translateX(-50%); }
+        .timer-val { font-size: clamp(1.8rem, 6vw, 3rem); font-weight: 900; line-height: 1; }
 
-        /* Delegate Slider */
-        .delegate-swiper { width: 100%; padding: 30px 20px; }
-        .delegate-card { background: white; border-radius: 20px; padding: 10px; border-bottom: 5px solid #fcc334; text-align: center; transition: 0.3s; color: #082465; }
-        .delegate-img-box { width: 100%; height: 170px; overflow: hidden; border-radius: 15px; margin-bottom: 10px; }
+        /* Delegate List Scroll */
+        .delegate-swiper { width: 100%; padding: 20px; }
+        .delegate-card { background: white; border-radius: 20px; padding: 10px; border-bottom: 5px solid #fcc334; text-align: center; color: #082465; min-width: 160px; height: 100%; }
+        .delegate-img-box { width: 100%; height: 160px; overflow: hidden; border-radius: 15px; margin-bottom: 8px; }
         .delegate-img-box img { width: 100%; height: 100%; object-fit: cover; }
 
         /* ID Card Popup */
-        #id-card-popup { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; }
-        #id-card-content { background: white; color: #082465; width: 340px; border-radius: 25px; overflow: hidden; text-align: center; border: 2px solid #fcc334; }
-        #id-header { background: #082465; padding: 20px; border-bottom: 5px solid #fcc334; color: white; }
+        #id-card-popup { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; overflow-y: auto; }
+        #id-card-content { background: white; color: #082465; width: 320px; border-radius: 25px; overflow: hidden; text-align: center; position: relative; border: 3px solid #fcc334; }
+        #id-header { background: #082465; padding: 15px; color: white; border-bottom: 5px solid #fcc334; }
     </style>
 </head>
 <body>
@@ -55,7 +54,6 @@
         <a href="index.html">Home</a>
         <a href="people.html">People</a>
         <a href="notices.html">Notices</a>
-        <a href="contact.html">Contact</a>
     </div>
 
     <div class="hero-overlay">
@@ -73,60 +71,60 @@
 
         <div class="glass-timer-card">
             <div id="countdown" class="flex justify-center items-center gap-4 md:gap-8 font-black">
-                <div class="text-[#fcc334] text-center"><span id="days" class="timer-val">00</span><p class="text-[10px] uppercase text-white">Days</p></div>
-                <span class="timer-val text-white mb-4">:</span>
-                <div class="text-white text-center"><span id="hours" class="timer-val">00</span><p class="text-[10px] uppercase">Hrs</p></div>
-                <span class="timer-val text-white mb-4">:</span>
-                <div class="text-[#fcc334] text-center"><span id="mins" class="timer-val">00</span><p class="text-[10px] uppercase text-white">Min</p></div>
-                <span class="timer-val text-white mb-4">:</span>
-                <div class="text-red-500 text-center"><span id="secs" class="timer-val">00</span><p class="text-[10px] uppercase text-white">Sec</p></div>
+                <div class="text-[#fcc334] text-center"><span id="days" class="timer-val">00</span><p class="text-[9px] uppercase text-white">Days</p></div>
+                <span class="timer-val text-white mb-2">:</span>
+                <div class="text-white text-center"><span id="hours" class="timer-val">00</span><p class="text-[9px] uppercase">Hrs</p></div>
+                <span class="timer-val text-white mb-2">:</span>
+                <div class="text-[#fcc334] text-center"><span id="mins" class="timer-val">00</span><p class="text-[9px] uppercase text-white">Min</p></div>
+                <span class="timer-val text-white mb-2">:</span>
+                <div class="text-red-500 text-center"><span id="secs" class="timer-val">00</span><p class="text-[9px] uppercase text-white">Sec</p></div>
             </div>
         </div>
     </div>
 
-    <section class="py-12 px-4">
-        <h2 class="text-3xl font-black text-center mb-6 text-[#fcc334] italic uppercase tracking-wider">Tour Delegates</h2>
+    <section class="py-12 px-2">
+        <h2 class="text-3xl font-black text-center mb-6 text-[#fcc334] italic uppercase">Tour Delegates</h2>
         <div class="swiper delegate-swiper">
             <div class="swiper-wrapper" id="delegate-list">
                 </div>
         </div>
     </section>
 
-    <section class="py-12 text-center bg-[#fcc334] text-[#082465]">
-        <h3 class="text-2xl font-black mb-4">GENERATE YOUR TOUR ID CARD</h3>
-        <button id="generate-id-btn" class="bg-[#082465] text-white px-10 py-4 rounded-full font-bold shadow-2xl transition hover:scale-105 active:scale-95">CLICK TO GENERATE</button>
+    <section class="py-12 text-center bg-[#fcc334] text-[#082465] px-4">
+        <h3 class="text-2xl font-black mb-6 uppercase">Generate Your ID Card</h3>
+        <div class="max-w-sm mx-auto space-y-3 mb-6">
+            <input type="text" id="user-name" placeholder="Enter Full Name" class="w-full p-3 rounded-lg border-none shadow-md">
+            <input type="text" id="user-status" placeholder="Designation (e.g. Delegate)" class="w-full p-3 rounded-lg border-none shadow-md">
+            <input type="file" id="user-img" class="w-full bg-white p-2 rounded-lg text-sm">
+        </div>
+        <button id="generate-id-btn" class="bg-[#082465] text-white px-10 py-4 rounded-full font-bold shadow-2xl">GENERATE & DOWNLOAD</button>
     </section>
 
-    <section class="py-12 container mx-auto px-4">
-        <h2 class="text-2xl font-black text-center mb-8 text-[#fcc334] uppercase">Kuakata Moments</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <img src="https://images.unsplash.com/photo-1583267746897-2cf415888172?q=80&w=600" class="rounded-2xl h-48 w-full object-cover">
-            <img src="https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?q=80&w=600" class="rounded-2xl h-48 w-full object-cover">
-            <img src="https://images.unsplash.com/photo-1544731612-de7f96afe55f?q=80&w=600" class="rounded-2xl h-48 w-full object-cover">
-            <img src="https://images.unsplash.com/photo-1621258673752-92f3922f37c4?q=80&w=600" class="rounded-2xl h-48 w-full object-cover">
-        </div>
+    <section class="py-10 container mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <img src="https://images.unsplash.com/photo-1583267746897-2cf415888172?q=80&w=600" class="rounded-xl h-40 w-full object-cover">
+        <img src="https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?q=80&w=600" class="rounded-xl h-40 w-full object-cover">
+        <img src="https://images.unsplash.com/photo-1544731612-de7f96afe55f?q=80&w=600" class="rounded-xl h-40 w-full object-cover">
+        <img src="https://images.unsplash.com/photo-1621258673752-92f3922f37c4?q=80&w=600" class="rounded-xl h-40 w-full object-cover">
     </section>
 
     <div id="id-card-popup">
         <div class="p-4">
-            <div id="id-card-content" class="shadow-2xl bg-white">
+            <div id="id-card-content" class="shadow-2xl">
                 <div id="id-header">
-                    <img src="images/logo.png" class="h-10 mx-auto mb-2">
-                    <h4 class="text-sm font-black tracking-widest">KUAKATA EXPEDITION 2026</h4>
-                    <p class="text-[9px] uppercase opacity-80">Official Delegate</p>
+                    <img src="images/logo.png" class="h-8 mx-auto mb-1" onerror="this.src='https://via.placeholder.com/50'">
+                    <h4 class="text-xs font-black tracking-widest">KUAKATA EXPEDITION 2026</h4>
                 </div>
-                <div class="p-8">
-                    <div class="w-28 h-28 rounded-full border-4 border-[#fcc334] overflow-hidden mx-auto mb-4 shadow-lg">
-                        <img id="card-img" src="" class="w-full h-full object-cover">
+                <div class="p-6">
+                    <div class="w-24 h-24 rounded-full border-4 border-[#fcc334] overflow-hidden mx-auto mb-3">
+                        <img id="card-img-preview" src="" class="w-full h-full object-cover">
                     </div>
-                    <h3 id="card-name" class="font-black text-xl uppercase tracking-tighter text-[#082465]">NAME</h3>
-                    <p id="card-status" class="text-xs font-bold text-yellow-600 mb-1">STATUS</p>
-                    <p id="card-newspaper" class="text-[10px] text-gray-500 italic">NEWSPAPER</p>
+                    <h3 id="card-name-preview" class="font-black text-lg uppercase text-[#082465]">NAME</h3>
+                    <p id="card-status-preview" class="text-xs font-bold text-yellow-600">STATUS</p>
                 </div>
             </div>
-            <div class="mt-6 flex gap-4 justify-center">
-                <button id="download-btn" class="bg-[#fcc334] text-[#082465] px-6 py-2 rounded-full font-bold">Download Image</button>
-                <button id="close-btn" class="bg-white text-black px-6 py-2 rounded-full font-bold">Close</button>
+            <div class="mt-4 flex gap-3 justify-center">
+                <button id="download-final-btn" class="bg-[#fcc334] text-[#082465] px-6 py-2 rounded-full font-bold">SAVE NOW</button>
+                <button onclick="document.getElementById('id-card-popup').style.display='none'" class="bg-white text-black px-6 py-2 rounded-full font-bold">CLOSE</button>
             </div>
         </div>
     </div>
@@ -150,87 +148,83 @@
         // --- 1. Three Dot Menu ---
         const dot = document.getElementById('three-dots');
         const menu = document.getElementById('main-menu');
-        dot.addEventListener('click', (e) => {
-            e.stopPropagation();
-            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-        });
-        document.addEventListener('click', () => menu.style.display = 'none');
+        dot.onclick = (e) => { e.stopPropagation(); menu.style.display = menu.style.display === 'block' ? 'none' : 'block'; };
+        document.onclick = () => menu.style.display = 'none';
 
-        // --- 2. Main Photo Slider (FIXED) ---
+        // --- 2. Ultra Fast Photo Slider (Fixed Slide Effect) ---
         new Swiper(".hero-slider", {
             loop: true,
-            autoplay: { delay: 1800, disableOnInteraction: false },
-            effect: 'fade',
-            fadeEffect: { crossFade: true },
-            speed: 800
+            autoplay: { delay: 1500, disableOnInteraction: false },
+            speed: 800,
+            effect: 'slide' // ছবি ডান/বাম থেকে আসার জন্য
         });
 
-        // --- 3. Delegate Logic (FIXED Firebase + Former Logic) ---
-        const rankPriority = { "President": 1, "General Secretary": 2, "Vice President": 3, "Joint General Secretary": 4, "Treasurer": 5, "Organizing Secretary": 6, "Office Secretary": 7, "Secretary of Publicity & Publication": 8, "Executive Member": 9, "General Member": 10 };
+        // --- 3. Delegate List (Firebase + Former First) ---
         const dList = document.getElementById('delegate-list');
-        let currentDelegate = null;
-
+        const rank = { "President": 1, "General Secretary": 2, "Vice President": 3 };
+        
         onSnapshot(collection(db, "people"), (snap) => {
-            let dataArr = [];
-            snap.forEach(d => dataArr.push(d.data()));
-            dataArr.sort((a,b) => (rankPriority[a.status] || 99) - (rankPriority[b.status] || 99));
+            let arr = [];
+            snap.forEach(d => arr.push(d.data()));
+            arr.sort((a,b) => (rank[a.status] || 99) - (rank[b.status] || 99));
 
             const formers = [
-                { subject: "Rezowan Ahmmed", status: "Former President", img: "images/rezowan.jpg", newspaper: "The Daily Star" },
-                { subject: "Ekramul Haque", status: "Former President", img: "images/ekramul.jpg", newspaper: "Daily Sun" }
+                { subject: "Rezowan Ahmmed", status: "Former President", img: "images/rezowan.jpg" },
+                { subject: "Ekramul Haque", status: "Former President", img: "images/ekramul.jpg" }
             ];
 
-            const finalData = [...formers, ...dataArr];
-            currentDelegate = finalData[0]; // জেনারেটরের জন্য ডিফল্ট প্রথমজন
-
+            const final = [...formers, ...arr];
             dList.innerHTML = "";
-            finalData.forEach(m => {
-                dList.innerHTML += `
-                <div class="swiper-slide w-auto">
-                    <div class="delegate-card w-40 md:w-52 h-full shadow-lg">
+            final.forEach(m => {
+                dList.innerHTML += `<div class="swiper-slide w-auto">
+                    <div class="delegate-card">
                         <div class="delegate-img-box"><img src="${m.img}" onerror="this.src='https://via.placeholder.com/150'"></div>
-                        <h4 class="text-[13px] font-black">${m.subject}</h4>
-                        <p class="text-[10px] text-yellow-600 font-bold uppercase">${m.status}</p>
+                        <h4 class="text-[12px] font-bold">${m.subject}</h4>
+                        <p class="text-[9px] text-yellow-600 font-bold uppercase">${m.status}</p>
                     </div>
                 </div>`;
             });
 
-            new Swiper(".delegate-swiper", {
-                slidesPerView: "auto",
-                spaceBetween: 15,
-                freeMode: true
-            });
+            new Swiper(".delegate-swiper", { slidesPerView: "auto", spaceBetween: 15, freeMode: true });
         });
 
-        // --- 4. Card Generator (FIXED) ---
+        // --- 4. ID Card Generator Logic (FIXED) ---
         document.getElementById('generate-id-btn').onclick = () => {
-            if(!currentDelegate) return;
-            document.getElementById('card-img').src = currentDelegate.img;
-            document.getElementById('card-name').innerText = currentDelegate.subject;
-            document.getElementById('card-status').innerText = currentDelegate.status;
-            document.getElementById('card-newspaper').innerText = currentDelegate.newspaper || "";
-            document.getElementById('id-card-popup').style.display = 'flex';
+            const name = document.getElementById('user-name').value;
+            const status = document.getElementById('user-status').value;
+            const imgInput = document.getElementById('user-img').files[0];
+
+            if(!name || !status) { alert("Please enter Name and Designation!"); return; }
+
+            document.getElementById('card-name-preview').innerText = name;
+            document.getElementById('card-status-preview').innerText = status;
+
+            if (imgInput) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    document.getElementById('card-img-preview').src = e.target.result;
+                    document.getElementById('id-card-popup').style.display = 'flex';
+                };
+                reader.readAsDataURL(imgInput);
+            } else {
+                document.getElementById('card-img-preview').src = "https://via.placeholder.com/100";
+                document.getElementById('id-card-popup').style.display = 'flex';
+            }
         };
 
-        document.getElementById('close-btn').onclick = () => document.getElementById('id-card-popup').style.display = 'none';
-
-        document.getElementById('download-btn').onclick = () => {
-            const btn = document.getElementById('download-btn');
-            btn.innerText = "Processing...";
-            html2canvas(document.getElementById('id-card-content'), { useCORS: true, scale: 2 }).then(canvas => {
+        document.getElementById('download-final-btn').onclick = () => {
+            html2canvas(document.getElementById('id-card-content')).then(canvas => {
                 const a = document.createElement('a');
-                a.href = canvas.toDataURL("image/png");
-                a.download = `KUJA_Tour_ID_${currentDelegate.subject}.png`;
+                a.href = canvas.toDataURL();
+                a.download = 'KUJA_ID_Card.png';
                 a.click();
-                btn.innerText = "Download Image";
             });
         };
 
         // --- 5. Countdown ---
-        const targetTime = new Date("April 23, 2026 00:00:00").getTime();
+        const target = new Date("April 23, 2026 00:00:00").getTime();
         setInterval(() => {
-            const now = new Date().getTime();
-            const diff = targetTime - now;
+            const diff = target - new Date().getTime();
             document.getElementById('days').innerText = Math.floor(diff / 86400000);
             document.getElementById('hours').innerText = Math.floor((diff % 86400000) / 3600000);
             document.getElementById('mins').innerText = Math.floor((diff % 3600000) / 60000);
