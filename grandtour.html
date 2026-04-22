@@ -3,153 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KUJA Kuakata Tour 2026 | Jikjak</title>
+    <title>KUJA Kuakata Tour | Mega Slider</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:900&display=swap');
 
         body {
-            background: #082465;
+            background-color: #082465;
             color: white;
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
         }
 
-        /* Zigzag Entrance Animation */
-        @keyframes ultraJikjak {
-            0% { transform: translate(-100%, -100%) rotate(-45deg); }
-            25% { transform: translate(50%, -50%) rotate(20deg); }
-            50% { transform: translate(-30%, 20%) rotate(-10deg); }
-            75% { transform: translate(20%, 50%) rotate(15deg); }
-            100% { transform: translate(0, 0) rotate(0deg); }
+        /* Full Screen Slider */
+        .swiper {
+            width: 100%;
+            height: 100vh;
         }
 
-        .jikjak-photo-entrance {
-            animation: ultraJikjak 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
-            border: 8px solid #fcc334;
+        .swiper-slide {
+            position: relative;
+            overflow: hidden;
         }
 
-        /* Zigzag Background Layout */
-        .zigzag-row {
-            display: flex;
-            align-items: center;
-            margin-bottom: 100px;
-        }
-        .zigzag-row:nth-child(even) { flex-direction: row-reverse; }
-
-        .big-img {
-            width: 55%;
-            height: 400px;
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border-radius: 20px;
-            border: 6px solid #fcc334;
-            box-shadow: 15px 15px 0px rgba(0,0,0,0.4);
-            transition: 0.4s;
-        }
-        .big-img:hover { transform: scale(1.05) rotate(2deg); }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            filter: brightness(0.5);
+            transform: scale(1.1);
+            transition: transform 5s ease;
         }
 
-        .delegate-card:nth-child(even) { margin-top: 50px; transform: rotate(5deg); }
-        .delegate-card:nth-child(odd) { transform: rotate(-5deg); }
+        .swiper-slide-active img {
+            transform: scale(1);
+        }
+
+        /* Overlay Text */
+        .slider-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+            width: 100%;
+        }
+
+        .text-jikjak {
+            font-size: clamp(3rem, 10vw, 8rem);
+            line-height: 0.9;
+            text-shadow: 10px 10px 0px #fcc334;
+            letter-spacing: -5px;
+        }
+
+        /* Countdown Zigzag Style */
+        .timer-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .timer-box {
+            background: #fcc334;
+            color: #082465;
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 80px;
+            transform: rotate(-5deg);
+            box-shadow: 5px 5px 0px white;
+        }
+
+        .timer-box:nth-child(even) {
+            transform: rotate(5deg);
+            background: white;
+        }
+
+        /* Delegate Jikjak */
+        .delegate-grid div:nth-child(even) {
+            margin-top: 40px;
+        }
     </style>
 </head>
 <body>
 
-    <div id="entrance" class="fixed inset-0 z-[100] bg-[#082465] flex items-center justify-center p-10">
-        <div class="text-center">
-            <img src="https://images.unsplash.com/photo-1544731612-de7f96afe55f" class="jikjak-photo-entrance w-[500px] h-[300px] object-cover rounded-3xl" alt="Kuakata">
-            <h1 class="text-6xl md:text-8xl font-black mt-10 animate__animated animate__rubberBand animate__infinite">KUAKATA!</h1>
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="https://images.unsplash.com/photo-1544731612-de7f96afe55f?q=80&w=2000" alt="Kuakata Sea">
+                <div class="slider-content">
+                    <h1 class="text-jikjak animate__animated animate__zoomIn">SEA ADVENTURE</h1>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <img src="https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?q=80&w=2000" alt="Rakhain Polli">
+                <div class="slider-content">
+                    <h1 class="text-jikjak animate__animated animate__fadeInLeft">RAKHAIN LIFE</h1>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <img src="https://images.unsplash.com/photo-1583267746897-2cf415888172?q=80&w=2000" alt="Sunrise">
+                <div class="slider-content">
+                    <h1 class="text-jikjak animate__animated animate__fadeInRight">SUNRISE MAGIC</h1>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-0 w-full z-20">
+            <div class="timer-container">
+                <div class="timer-box"><span id="days" class="text-3xl font-black">00</span><p class="text-[10px]">DAYS</p></div>
+                <div class="timer-box"><span id="hours" class="text-3xl font-black">00</span><p class="text-[10px]">HOURS</p></div>
+                <div class="timer-box"><span id="mins" class="text-3xl font-black">00</span><p class="text-[10px]">MINS</p></div>
+                <div class="timer-box"><span id="secs" class="text-3xl font-black">00</span><p class="text-[10px]">SECS</p></div>
+            </div>
         </div>
     </div>
 
-    <main id="main-content" class="opacity-0 transition-opacity duration-1000">
-        <section class="h-screen flex flex-col justify-center items-center text-center px-4 relative overflow-hidden">
-            <div class="absolute inset-0 opacity-20 pointer-events-none">
-                <img src="https://images.unsplash.com/photo-1583267746897-2cf415888172" class="absolute top-10 left-[-10%] w-96 rotate-12">
-                <img src="https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff" class="absolute bottom-10 right-[-10%] w-96 -rotate-12">
+    <section class="py-20 container mx-auto px-6">
+        <h2 class="text-5xl font-black text-center mb-16 italic text-[#fcc334]">TOUR DELEGATES</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 delegate-grid">
+            <div class="bg-white p-2 rounded-xl shadow-2xl transform -rotate-3">
+                <img src="Profile/images/advisor/1.jpg" class="h-60 w-full object-cover rounded-lg">
+                <p class="text-[#082465] font-black text-center mt-2 uppercase text-sm">Romin Al Kama</p>
             </div>
-
-            <h2 class="text-7xl md:text-9xl font-black italic text-[#fcc334] mb-6 tracking-tighter">JIKJAK TOUR</h2>
-            
-            <div class="glass-card p-10 rounded-[40px] shadow-2xl animate__animated animate__zoomIn">
-                <p class="mb-4 uppercase font-bold tracking-[5px]">Adventure Starts In</p>
-                <div id="timer" class="flex gap-4 md:gap-10 text-5xl md:text-8xl font-black">
-                    <div><span id="days">00</span><p class="text-xs mt-2">DAYS</p></div>
-                    <span class="text-[#fcc334]">:</span>
-                    <div><span id="hours">00</span><p class="text-xs mt-2">HRS</p></div>
-                    <span class="text-[#fcc334]">:</span>
-                    <div><span id="mins">00</span><p class="text-xs mt-2">MINS</p></div>
-                    <span class="text-[#fcc334]">:</span>
-                    <div class="text-red-500"><span id="secs">00</span><p class="text-xs mt-2 text-white">SECS</p></div>
-                </div>
+            <div class="bg-[#fcc334] p-2 rounded-xl shadow-2xl transform rotate-3">
+                <img src="Profile/images/advisor/2.jpg" class="h-60 w-full object-cover rounded-lg">
+                <p class="text-[#082465] font-black text-center mt-2 uppercase text-sm">Masum Hasan</p>
             </div>
-        </section>
-
-        <section class="py-20 container mx-auto px-6">
-            <div class="zigzag-row animate__animated animate__fadeInLeft">
-                <img src="https://images.unsplash.com/photo-1544731612-de7f96afe55f" class="big-img" alt="Sunset">
-                <div class="p-10">
-                    <h3 class="text-5xl font-black text-[#fcc334]">SUNRISE POINT</h3>
-                    <p class="text-xl mt-4 opacity-80 italic">The magic of sea meeting the sun.</p>
-                </div>
+            <div class="bg-white p-2 rounded-xl shadow-2xl transform -rotate-3">
+                <img src="Profile/images/advisor/3.jpg" class="h-60 w-full object-cover rounded-lg">
+                <p class="text-[#082465] font-black text-center mt-2 uppercase text-sm">Mirazul Islam</p>
             </div>
-
-            <div class="zigzag-row animate__animated animate__fadeInRight">
-                <img src="https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff" class="big-img" alt="Rakhain">
-                <div class="p-10">
-                    <h3 class="text-5xl font-black text-[#fcc334]">RAKHAIN POLLI</h3>
-                    <p class="text-xl mt-4 opacity-80 italic">Discover the indigenous heritage.</p>
-                </div>
+            <div class="bg-[#fcc334] p-2 rounded-xl shadow-2xl transform rotate-3">
+                <img src="Profile/images/advisor/4.jpg" class="h-60 w-full object-cover rounded-lg">
+                <p class="text-[#082465] font-black text-center mt-2 uppercase text-sm">Arko Mondol</p>
             </div>
-        </section>
-
-        <section class="py-20 bg-[#fcc334] text-[#082465]">
-            <h3 class="text-center text-5xl font-black mb-20 uppercase italic">Tour Delegates</h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto px-4">
-                <div class="delegate-card bg-white p-3 rounded-2xl shadow-xl">
-                    <img src="Profile/images/advisor/1.jpg" class="w-full h-60 object-cover rounded-xl" alt="">
-                    <p class="mt-4 font-black text-center uppercase">Romin Al Kama</p>
-                </div>
-                <div class="delegate-card bg-white p-3 rounded-2xl shadow-xl">
-                    <img src="Profile/images/advisor/2.jpg" class="w-full h-60 object-cover rounded-xl" alt="">
-                    <p class="mt-4 font-black text-center uppercase">H.M. Masum Hasan</p>
-                </div>
-                <div class="delegate-card bg-white p-3 rounded-2xl shadow-xl">
-                    <img src="Profile/images/advisor/3.jpg" class="w-full h-60 object-cover rounded-xl" alt="">
-                    <p class="mt-4 font-black text-center uppercase">Md. Mirazul Islam</p>
-                </div>
-                <div class="delegate-card bg-white p-3 rounded-2xl shadow-xl">
-                    <img src="Profile/images/advisor/4.jpg" class="w-full h-60 object-cover rounded-xl" alt="">
-                    <p class="mt-4 font-black text-center uppercase">Arko Mondol</p>
-                </div>
-            </div>
-        </section>
-
-        <div class="py-20 text-center">
-            <button class="bg-[#fcc334] text-[#082465] text-4xl font-black px-16 py-8 rounded-full hover:bg-white transition-all transform hover:scale-110 shadow-[0_0_50px_rgba(252,195,52,0.5)]">
-                JOIN THE JIKJAK!
-            </button>
         </div>
-    </main>
+    </section>
 
+    <div class="pb-20 text-center">
+        <button class="bg-[#fcc334] text-[#082465] text-3xl font-black px-12 py-5 rounded-full hover:scale-110 transition animate-pulse shadow-2xl">
+            LET'S GO JIKJAK!
+        </button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // Entrance Logic
-        setTimeout(() => {
-            const entrance = document.getElementById('entrance');
-            const main = document.getElementById('main-content');
-            entrance.style.transition = '0.8s';
-            entrance.style.transform = 'translateY(-100%)';
-            setTimeout(() => {
-                entrance.style.display = 'none';
-                main.classList.remove('opacity-0');
-            }, 800);
-        }, 2500);
+        // Swiper Slider Init
+        var swiper = new Swiper(".mySwiper", {
+            loop: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            effect: "fade", // জিকজ্যাক জোকজ্যাক ট্রানজিশনের জন্য ফেইড ইফেক্ট সেরা
+            speed: 1000,
+        });
 
         // Countdown Logic
         const tourDate = new Date("April 23, 2026 00:00:00").getTime();
