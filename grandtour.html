@@ -3,83 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KUJA Kuakata Tour 2026</title>
+    <title>KUJA Kuakata Tour 2026 | Ultimate Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:400,700,900&display=swap');
+        body { background-color: #082465; color: white; font-family: 'Poppins', sans-serif; overflow-x: hidden; margin: 0; padding: 0; }
 
-        body { background-color: #082465; color: white; font-family: 'Poppins', sans-serif; overflow-x: hidden; }
+        /* --- Floating Menu --- */
+        #floating-menu { position: fixed; top: 20px; left: 20px; z-index: 200; display: flex; align-items: center; gap: 10px; }
+        #menu-icon { width: 40px; height: 40px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); cursor: pointer; }
+        #three-dots { color: white; font-size: 24px; cursor: pointer; transition: 0.3s; }
+        #three-dots:hover { color: #fcc334; }
+        #main-menu { position: fixed; top: 70px; left: 20px; background: rgba(8, 36, 101, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; padding: 10px; display: none; z-index: 199; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        #main-menu ul { list-style: none; margin: 0; padding: 0; }
+        #main-menu li a { display: block; padding: 8px 15px; color: white; text-decoration: none; font-size: 14px; transition: 0.3s; border-radius: 5px; }
+        #main-menu li a:hover { background: rgba(252, 195, 52, 0.2); color: #fcc334; }
 
-        /* Full Screen Slider */
-        .swiper { width: 100%; height: 70vh; }
-        @media (min-width: 768px) { .swiper { height: 100vh; } }
-
-        .swiper-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.4);
-        }
+        /* --- Full Screen Slider (Ultra Fast) --- */
+        .swiper-container { width: 100%; height: 70vh; position: relative; }
+        @media (min-width: 768px) { .swiper-container { height: 100vh; } }
+        .swiper-slide img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.4); }
 
         /* Fixed Upper Content */
-        .hero-text-section {
-            position: absolute;
-            top: 8%;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 100;
-            text-align: center;
-            width: 100%;
-        }
+        .hero-text-section { position: absolute; top: 15%; left: 50%; transform: translateX(-50%); z-index: 100; text-align: center; width: 100%; pointer-events: none; }
+        .main-title { font-size: clamp(1.8rem, 6vw, 4rem); color: #fcc334; font-weight: 900; text-transform: uppercase; text-shadow: 2px 2px 0px white; }
 
-        .main-title {
-            font-size: clamp(1.8rem, 6vw, 4rem);
-            color: #fcc334;
-            font-weight: 900;
-            text-transform: uppercase;
-            text-shadow: 2px 2px 0px white;
-        }
-
-        /* Compact Glass Countdown Box */
-        .glass-timer-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 15px;
-            border-radius: 20px;
-            position: absolute;
-            bottom: 5%;
-            width: 90%;
-            max-width: 600px;
-            z-index: 100;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
+        /* Glass Countdown Box */
+        .glass-timer-card { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; border-radius: 20px; position: absolute; bottom: 5%; width: 90%; max-width: 600px; z-index: 100; left: 50%; transform: translateX(-50%); }
         .timer-val { font-size: clamp(1.5rem, 5vw, 3rem); font-weight: 900; }
         .timer-box { text-align: center; }
 
-        /* Jikjak Glass Delegate Card */
-        .delegate-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 10px;
-            transition: 0.4s;
-            border-top: 4px solid #fcc334;
-        }
-        .delegate-card:hover { 
-            transform: scale(1.05) rotate(2deg); 
-            background: rgba(255, 255, 255, 0.15);
-        }
-        .delegate-img-container { height: 180px; overflow: hidden; border-radius: 15px; }
+        /* --- Horizontal Delegates Slider --- */
+        #delegate-section { position: relative; padding: 60px 0; overflow: hidden; }
+        .delegate-swiper { width: 100%; padding: 20px 50px; }
+        .delegate-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 10px; transition: 0.4s; border-top: 4px solid #fcc334; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+        .delegate-card:hover { transform: translateY(-5px); background: rgba(255, 255, 255, 0.1); }
+        .delegate-img-container { width: 100%; height: 150px; overflow: hidden; border-radius: 15px; margin-bottom: 10px; }
         .delegate-img-container img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* --- ID Card Generator Popup --- */
+        #id-card-popup { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 300; align-items: center; justify-content: center; padding: 20px; }
+        #id-card-content { background: white; color: #082465; width: 350px; border-radius: 20px; overflow: hidden; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        #id-card-header { background: #082465; color: white; padding: 15px; text-align: center; border-bottom: 4px solid #fcc334; }
+        #id-card-body { padding: 20px; text-align: center; }
+        #id-card-img-container { width: 120px; height: 120px; border-radius: 50%; border: 4px solid #fcc334; overflow: hidden; margin: 0 auto 15px; }
+        #id-card-img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* --- Gallery Section --- */
+        .gallery-img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; border: 3px solid transparent; transition: 0.3s; cursor: pointer; }
+        .gallery-img:hover { border-color: #fcc334; transform: scale(1.05); }
+
     </style>
 </head>
 <body>
+
+    <div id="floating-menu">
+        <img src="images/logo.png" id="menu-icon" alt="KUJA Logo">
+        <i class="fa fa-ellipsis-v" id="three-dots"></i>
+    </div>
+    <div id="main-menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="people.html">People</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
 
     <div class="hero-text-section">
         <h2 class="text-[10px] md:text-sm tracking-[5px] uppercase font-bold text-white mb-1">THE SEA QUEEN CALLS</h2>
@@ -87,7 +80,7 @@
         <p class="text-[10px] md:text-xs tracking-widest text-gray-200">Journey to the Sunrise and Sunset Beach</p>
     </div>
 
-    <div class="swiper mySwiper">
+    <div class="swiper-container mySwiper">
         <div class="swiper-wrapper">
             <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1544731612-de7f96afe55f?q=80&w=2000"></div>
             <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?q=80&w=2000"></div>
@@ -107,17 +100,71 @@
         </div>
     </div>
 
-    <section class="py-16 container mx-auto px-4">
+    <section id="delegate-section">
         <h2 class="text-3xl font-black text-center mb-10 italic text-[#fcc334] uppercase tracking-wider">Tour Delegates</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto" id="delegate-list">
+        <div class="swiper delegate-swiper">
+            <div class="swiper-wrapper" id="delegate-list">
+                </div>
             </div>
     </section>
+
+    <section class="py-10 text-center bg-[#fcc334] text-[#082465]">
+        <h3 class="text-2xl font-black mb-5">GENERTE YOUR TOUR ID CARD</h3>
+        <p class="text-sm mb-6 max-w-xl mx-auto px-4">Click below to generate a stylized Kuakata Tour 2026 delegate ID card with your info from our records.</p>
+        <button id="generate-id-btn" class="bg-[#082465] text-white text-lg font-black px-10 py-3 rounded-full shadow-2xl transition hover:scale-105">
+            GENERATE MY ID CARD
+        </button>
+    </section>
+
+    <section class="py-16 container mx-auto px-4">
+        <h2 class="text-3xl font-black text-center mb-10 italic text-[#fcc334] uppercase tracking-wider">Kuakata Gallery</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <img src="https://images.unsplash.com/photo-1583267746897-2cf415888172?q=80&w=600" class="gallery-img" alt="Kuakata 1">
+            <img src="https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?q=80&w=600" class="gallery-img" alt="Kuakata 2">
+            <img src="https://images.unsplash.com/photo-1544731612-de7f96afe55f?q=80&w=600" class="gallery-img" alt="Kuakata 3">
+            <img src="https://images.unsplash.com/photo-1621258673752-92f3922f37c4?q=80&w=600" class="gallery-img" alt="Kuakata 4">
+            <img src="https://images.unsplash.com/photo-1583267746897-2cf415888172?q=80&w=600" class="gallery-img" alt="Kuakata 5">
+            <img src="https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?q=80&w=600" class="gallery-img" alt="Kuakata 6">
+        </div>
+    </section>
+
+    <div id="id-card-popup">
+        <div class="text-center">
+            <div id="id-card-content">
+                <div id="id-card-header">
+                    <img src="images/logo.png" class="h-10 mx-auto mb-2">
+                    <h4 class="font-black text-lg">KUAKATA EXPEDITION 2026</h4>
+                    <p class="text-[10px] tracking-widest">DELEGATE ID CARD</p>
+                </div>
+                <div id="id-card-body">
+                    <div id="id-card-img-container">
+                        <img src="" id="id-card-img" onerror="this.src='images/logo.png'">
+                    </div>
+                    <h3 class="font-black text-xl mb-1" id="id-card-name">YOUR NAME</h3>
+                    <p class="text-[#fcc334] font-black text-xs uppercase mb-1" id="id-card-status">DESIGNATION</p>
+                    <p class="text-gray-500 text-[10px] italic" id="id-card-newspaper">Newspaper</p>
+                    <div class="mt-4 border-t pt-3 text-[10px]">Valid only for KUJA Kuakata Tour</div>
+                </div>
+            </div>
+            <div class="mt-5 flex gap-3 justify-center">
+                <button id="download-id-btn" class="bg-[#fcc334] text-[#082465] font-bold px-5 py-2 rounded-full text-sm">Download Image</button>
+                <button id="close-id-popup" class="bg-white text-gray-700 font-bold px-5 py-2 rounded-full text-sm">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="pb-20 text-center">
+        <button class="bg-[#fcc334] text-[#082465] text-2xl font-black px-12 py-4 rounded-full shadow-2xl animate-pulse">
+            READY TO ROAR?
+        </button>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, collection, onSnapshot, getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
+        // --- Firebase Config ---
         const firebaseConfig = {
             apiKey: "AIzaSyBMMbqW-hZEAGFbLgCkLkwD7-KDR3976lg",
             authDomain: "kuja-web.firebaseapp.com",
@@ -126,16 +173,26 @@
             messagingSenderId: "66586196424",
             appId: "1:66586196424:web:d018284928f5e0021068fd"
         };
-
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+        const auth = getAuth(app);
 
-        // --- Fast Slider Config (Speed Increased) ---
+        // --- Floating Menu Logic ---
+        const threeDots = document.getElementById('three-dots');
+        const mainMenu = document.getElementById('main-menu');
+        threeDots.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mainMenu.style.display = (mainMenu.style.display === 'block') ? 'none' : 'block';
+        });
+        document.addEventListener('click', () => { mainMenu.style.display = 'none'; });
+
+        // --- Ultra Fast Main Slider ---
         var swiper = new Swiper(".mySwiper", {
             loop: true,
-            autoplay: { delay: 1800, disableOnInteraction: false }, // গতি বাড়ানো হয়েছে
-            speed: 800,
-            effect: "slide",
+            autoplay: { delay: 1500, disableOnInteraction: false }, // গতি আরও বাড়ানো হয়েছে (1.5s)
+            speed: 600,
+            effect: "fade",
+            fadeEffect: { crossFade: true }
         });
 
         // --- Rank Priority (সিরিয়াল মেইনটেইন) ---
@@ -153,45 +210,103 @@
             "Associate Member": 11
         };
 
-        // --- Firebase Load ---
+        // --- Firebase Load Delegates in Horizontal Slider ---
         const delegateList = document.getElementById('delegate-list');
+        let allDelegatesData = []; // ID কার্ড জেনারেটরের জন্য ডেটা স্টোর করা
+
         onSnapshot(collection(db, "people"), (snapshot) => {
             let membersArr = [];
             
-            // ১. প্রাক্তন প্রেসিডেন্টদের ম্যানুয়ালি শুরুতে যোগ করা
+            // ১. প্রাক্তন প্রেসিডেন্টদের ম্যানুয়ালি তথ্য (কোডে ফিক্সড)
             const formers = [
                 { subject: "Rezowan Ahmmed", status: "Former President", img: "images/rezowan.jpg", newspaper: "The Daily Star" },
                 { subject: "Ekramul Haque", status: "Former President", img: "images/ekramul.jpg", newspaper: "Daily Sun" }
             ];
 
-            snapshot.forEach((doc) => {
-                membersArr.push(doc.data());
-            });
+            snapshot.forEach((doc) => { membersArr.push(doc.data()); });
 
             // ২. সিরিয়াল অনুযায়ী সর্টিং
             membersArr.sort((a, b) => (rankPriority[a.status] || 99) - (rankPriority[b.status] || 99));
 
             // ৩. প্রাক্তন প্রেসিডেন্টদের সবার আগে ইনসার্ট করা
             const finalDisplayList = [...formers, ...membersArr];
+            allDelegatesData = finalDisplayList; // আইডি কার্ডের জন্য কপি রাখা
 
             delegateList.innerHTML = "";
             finalDisplayList.forEach((m) => {
                 delegateList.innerHTML += `
-                    <div class="delegate-card shadow-2xl">
-                        <div class="delegate-img-container">
-                            <img src="${m.img}" onerror="this.src='images/logo.png'">
-                        </div>
-                        <div class="p-3 text-center">
-                            <h4 class="text-white font-bold text-[13px] mb-1">${m.subject}</h4>
-                            <p class="text-[#fcc334] font-bold text-[10px] uppercase mb-1">${m.status}</p>
-                            <p class="text-gray-400 text-[9px] font-bold italic">${m.newspaper || ''}</p>
+                    <div class="swiper-slide h-auto p-2">
+                        <div class="delegate-card shadow-2xl glass-card">
+                            <div class="delegate-img-container">
+                                <img src="${m.img}" onerror="this.src='images/logo.png'">
+                            </div>
+                            <div class="p-3 text-center">
+                                <h4 class="text-white font-bold text-[13px] mb-1">${m.subject}</h4>
+                                <p class="text-[#fcc334] font-bold text-[10px] uppercase mb-1">${m.status}</p>
+                                <p class="text-gray-400 text-[9px] font-bold italic">${m.newspaper || ''}</p>
+                            </div>
                         </div>
                     </div>
                 `;
             });
+
+            // ৪. Delegates Slider Init (বাম-ডান স্ক্রল)
+            var delegateSwiper = new Swiper(".delegate-swiper", {
+                slidesPerView: 2, // মোবাইলে ২ টা সম্পূর্ণ দেখা যাবে
+                spaceBetween: 10,
+                grabCursor: true,
+                breakpoints: {
+                    640: { slidesPerView: 3, spaceBetween: 15 },
+                    768: { slidesPerView: 3, spaceBetween: 20 }, // ৩ টা সম্পূর্ণ দেখা যাবে
+                    1024: { slidesPerView: 4, spaceBetween: 25 },
+                }
+            });
         });
 
-        // --- Countdown ---
+        // --- ID Card Generator Logic ---
+        const generateBtn = document.getElementById('generate-id-btn');
+        const popup = document.getElementById('id-card-popup');
+        const closePopup = document.getElementById('close-id-popup');
+        const downloadBtn = document.getElementById('download-id-btn');
+
+        generateBtn.addEventListener('click', () => {
+            // নিশ্চিত করুন ইউজার লগইন করা আছে কিনা (লগইন করা ইউজারের ইমেইল দিয়ে আইডি কার্ড বের করার লজিক)
+            // আপনার প্রজেক্টের অ্যাডমিন প্যানেল তৈরির সময় ব্যবহৃত Firebase Auth ব্যবহার করতে হবে।
+            // এখানে ডেমো হিসেবে আমরা Rezowan Ahmmed এর আইডি কার্ড জেনারেট করে দেখাচ্ছি।
+            // আসল ইমপ্লিমেন্টেশনে dynamic ডাটা আসবে।
+
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    // লগইন করা ইউজারের তথ্য Firebase 'admins' সংগ্রহ থেকে খুঁজে বের করার লজিক এখানে হবে।
+                    // তারপর dynamic ডাটা বসাতে হবে।
+                    alert("Generating ID Card for: " + user.email + " (Logic requires user data linkage)");
+                    popup.style.display = 'flex';
+                } else {
+                    alert("Please Login First through Admin Panel to generate your ID card.");
+                    // ডেমো হিসেবে Popup দেখানো হচ্ছে
+                    const demoData = allDelegatesData[0]; // Rezowan Ahmmed
+                    document.getElementById('id-card-img').src = demoData.img;
+                    document.getElementById('id-card-name').innerText = demoData.subject;
+                    document.getElementById('id-card-status').innerText = demoData.status;
+                    document.getElementById('id-card-newspaper').innerText = demoData.newspaper;
+                    popup.style.display = 'flex';
+                }
+            });
+        });
+
+        closePopup.addEventListener('click', () => { popup.style.display = 'none'; });
+
+        downloadBtn.addEventListener('click', () => {
+            const cardContent = document.getElementById('id-card-content');
+            html2canvas(cardContent, { scale: 2, backgroundColor: '#ffffff' }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'KUJA_Kuakata_ID_Card.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        });
+
+        // --- Countdown Logic ---
         const target = new Date("April 23, 2026 00:00:00").getTime();
         setInterval(() => {
             const now = new Date().getTime();
