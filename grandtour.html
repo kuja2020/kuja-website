@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KUJA Kuakata Tour 2026 | Full Master</title>
+    <title>KUJA Kuakata Tour 2026</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -13,51 +13,46 @@
         body { background-color: #082465; color: white; font-family: 'Poppins', sans-serif; overflow-x: hidden; }
 
         /* Floating Menu */
-        #floating-menu { position: fixed; top: 15px; left: 15px; z-index: 1000; display: flex; align-items: center; gap: 8px; background: rgba(0,0,0,0.6); padding: 5px 12px; border-radius: 30px; border: 1px solid #fcc334; }
-        #menu-icon { width: 22px; height: 22px; }
-        #three-dots { color: #fcc334; font-size: 18px; cursor: pointer; }
-        #main-menu { position: fixed; top: 60px; left: 15px; background: #082465; border: 2px solid #fcc334; border-radius: 12px; padding: 10px; display: none; z-index: 1001; min-width: 150px; }
-        #main-menu a { display: block; padding: 8px 15px; color: white; text-decoration: none; font-size: 13px; font-weight: bold; }
+        #floating-menu { position: fixed; top: 12px; left: 12px; z-index: 1000; display: flex; align-items: center; gap: 6px; background: rgba(0,0,0,0.5); padding: 4px 10px; border-radius: 30px; border: 1px solid #fcc334; }
+        #menu-icon { width: 18px; height: 18px; }
+        #three-dots { color: #fcc334; font-size: 14px; cursor: pointer; }
+        #main-menu { position: fixed; top: 55px; left: 12px; background: #082465; border: 1px solid #fcc334; border-radius: 10px; padding: 10px; display: none; z-index: 1001; min-width: 140px; }
+        #main-menu a { display: block; padding: 8px 12px; color: white; text-decoration: none; font-size: 12px; font-weight: bold; }
 
-        /* Main Fast Slider */
-        .hero-slider { width: 100%; height: 75vh; }
+        /* Hero Slider */
+        .hero-slider { width: 100%; height: 70vh; }
         @media (min-width: 768px) { .hero-slider { height: 100vh; } }
         .hero-slider img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.45); }
+        .hero-overlay { position: absolute; top: 10%; left: 0; width: 100%; z-index: 500; text-align: center; pointer-events: none; }
+        .main-title { font-size: clamp(1.8rem, 6vw, 4rem); color: #fcc334; font-weight: 900; text-transform: uppercase; text-shadow: 2px 2px 0px white; }
 
-        .hero-overlay { position: absolute; top: 12%; left: 0; width: 100%; z-index: 500; text-align: center; pointer-events: none; }
-        .main-title { font-size: clamp(2rem, 8vw, 4.5rem); color: #fcc334; font-weight: 900; text-transform: uppercase; text-shadow: 3px 3px 0px white; }
+        /* Countdown */
+        .glass-timer-card { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); padding: 12px; border-radius: 20px; position: absolute; bottom: 5%; width: 90%; max-width: 550px; z-index: 500; left: 50%; transform: translateX(-50%); }
+        .timer-val { font-size: clamp(1.4rem, 5vw, 2.8rem); font-weight: 900; line-height: 1; }
 
-        /* Compact Countdown */
-        .glass-timer-card { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; border-radius: 25px; position: absolute; bottom: 5%; width: 90%; max-width: 600px; z-index: 500; left: 50%; transform: translateX(-50%); }
-        .timer-val { font-size: clamp(1.8rem, 6vw, 3rem); font-weight: 900; line-height: 1; }
-
-        /* Delegate Slider & Navigation Indicators */
-        .delegate-container { position: relative; width: 100%; padding: 0 40px; }
+        /* Delegates Slider */
         .delegate-swiper { width: 100%; padding: 20px 0; }
-        .delegate-card { background: white; border-radius: 20px; padding: 10px; border-bottom: 5px solid #fcc334; text-align: center; color: #082465; min-width: 160px; height: 100%; }
-        .delegate-img-box { width: 100%; height: 160px; overflow: hidden; border-radius: 15px; margin-bottom: 8px; }
+        .delegate-card { background: white; border-radius: 15px; padding: 8px; border-bottom: 4px solid #fcc334; text-align: center; color: #082465; transition: 0.3s; height: 100%; }
+        .delegate-img-box { width: 100%; height: 140px; overflow: hidden; border-radius: 10px; margin-bottom: 6px; }
         .delegate-img-box img { width: 100%; height: 100%; object-fit: cover; }
         
-        /* Swipe Sign */
-        .swiper-button-next, .swiper-button-prev { color: #fcc334 !important; }
-        .scroll-hint { font-size: 10px; color: #fcc334; text-align: center; margin-top: -10px; animation: bounceX 2s infinite; }
-        @keyframes bounceX { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); } }
+        /* Small Scroll Sign */
+        .scroll-hint { font-size: 8px; color: #fcc334; text-align: center; margin-top: -15px; opacity: 0.8; letter-spacing: 1px; }
+        .swiper-button-next, .swiper-button-prev { scale: 0.4; color: #fcc334 !important; font-weight: bold; }
 
         /* ID Card Popup (Standard Vertical) */
-        #id-card-popup { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; padding: 20px; }
-        #id-card-content { background: white; color: #082465; width: 300px; height: 500px; border-radius: 20px; overflow: hidden; text-align: center; position: relative; border: 4px solid #fcc334; }
-        #id-header { background: #082465; padding: 20px; color: white; border-bottom: 5px solid #fcc334; }
-        #id-footer { position: absolute; bottom: 0; width: 100%; background: #f8fafc; padding: 12px; font-size: 9px; color: #64748b; border-top: 1px solid #e2e8f0; }
+        #id-card-popup { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; overflow-y: auto; padding: 10px; }
+        #id-card-content { background: white; color: #082465; width: 280px; height: 460px; border-radius: 20px; overflow: hidden; text-align: center; position: relative; border: 3px solid #fcc334; }
+        #id-header { background: #082465; padding: 15px; color: white; border-bottom: 3px solid #fcc334; }
+        #id-footer { position: absolute; bottom: 0; width: 100%; background: #f8fafc; padding: 10px; font-size: 8px; color: #64748b; border-top: 1px solid #e2e8f0; }
 
-        /* Gallery */
-        .gallery-img { height: 200px; width: 100%; object-fit: cover; border-radius: 15px; border: 2px solid transparent; transition: 0.3s; }
-        .gallery-img:hover { border-color: #fcc334; transform: scale(1.03); }
+        .gallery-img { height: 150px; width: 100%; object-fit: cover; border-radius: 12px; }
     </style>
 </head>
 <body>
 
     <div id="floating-menu">
-        <img src="images/logo.png" id="menu-icon" onerror="this.src='https://via.placeholder.com/25'">
+        <img src="images/logo.png" id="menu-icon" onerror="this.src='https://via.placeholder.com/20'">
         <i class="fa fa-ellipsis-v" id="three-dots"></i>
     </div>
     <div id="main-menu">
@@ -67,9 +62,9 @@
     </div>
 
     <div class="hero-overlay">
-        <h2 class="text-[10px] md:text-sm tracking-[5px] uppercase font-bold text-white mb-1">THE SEA QUEEN CALLS</h2>
+        <h2 class="text-[9px] md:text-sm tracking-[4px] uppercase font-bold text-white mb-1">THE SEA QUEEN CALLS</h2>
         <h1 class="main-title">KUJA Expedition</h1>
-        <p class="text-[10px] md:text-xs tracking-widest text-gray-200">Journey to the Sunrise and Sunset Beach</p>
+        <p class="text-[9px] md:text-xs tracking-widest text-gray-200">Journey to the Sunrise and Sunset Beach</p>
     </div>
 
     <div class="swiper hero-slider">
@@ -80,88 +75,76 @@
         </div>
 
         <div class="glass-timer-card">
-            <div id="countdown" class="flex justify-center items-center gap-4 md:gap-8 font-black">
-                <div class="text-[#fcc334] text-center"><span id="days" class="timer-val">00</span><p class="text-[9px] uppercase text-white">Days</p></div>
+            <div id="countdown" class="flex justify-center items-center gap-3 md:gap-8 font-black">
+                <div class="text-[#fcc334] text-center"><span id="days" class="timer-val">00</span><p class="text-[8px] uppercase text-white">Days</p></div>
                 <span class="timer-val text-white mb-2">:</span>
-                <div class="text-white text-center"><span id="hours" class="timer-val">00</span><p class="text-[9px] uppercase">Hrs</p></div>
+                <div class="text-white text-center"><span id="hours" class="timer-val">00</span><p class="text-[8px] uppercase">Hrs</p></div>
                 <span class="timer-val text-white mb-2">:</span>
-                <div class="text-[#fcc334] text-center"><span id="mins" class="timer-val">00</span><p class="text-[9px] uppercase text-white">Min</p></div>
+                <div class="text-[#fcc334] text-center"><span id="mins" class="timer-val">00</span><p class="text-[8px] uppercase text-white">Min</p></div>
                 <span class="timer-val text-white mb-2">:</span>
-                <div class="text-red-500 text-center"><span id="secs" class="timer-val">00</span><p class="text-[9px] uppercase text-white">Sec</p></div>
+                <div class="text-red-500 text-center"><span id="secs" class="timer-val">00</span><p class="text-[8px] uppercase text-white">Sec</p></div>
             </div>
         </div>
     </div>
 
-    <section class="py-12">
-        <h2 class="text-3xl font-black text-center mb-6 text-[#fcc334] italic uppercase">Tour Delegates</h2>
-        <div class="delegate-container">
+    <section class="py-10">
+        <h2 class="text-2xl font-black text-center mb-4 text-[#fcc334] italic uppercase">Tour Delegates</h2>
+        <div class="px-2">
             <div class="swiper delegate-swiper">
                 <div class="swiper-wrapper" id="delegate-list"></div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
             </div>
-            <p class="scroll-hint"><i class="fa fa-chevron-left mr-1"></i> Swipe to see more <i class="fa fa-chevron-right ml-1"></i></p>
+            <p class="scroll-hint"><i class="fa fa-exchange mr-1"></i> SWIPE FOR MORE</p>
         </div>
     </section>
 
-    <section class="py-12 text-center bg-[#fcc334] text-[#082465] px-4">
-        <h3 class="text-2xl font-black mb-6 uppercase">Get Your Tour ID Card</h3>
-        <div class="max-w-sm mx-auto space-y-4 mb-6 text-left">
-            <div>
-                <label class="text-xs font-bold uppercase ml-1">Your Name</label>
-                <input type="text" id="user-name" placeholder="Ex: Ekramul Haque" class="w-full p-3 rounded-xl border-none shadow-md">
-            </div>
-            <div>
-                <label class="text-xs font-bold uppercase ml-1">Designation</label>
-                <input type="text" id="user-status" placeholder="Ex: Delegate" class="w-full p-3 rounded-xl border-none shadow-md">
-            </div>
-            <div>
-                <label class="text-xs font-bold uppercase ml-1">Select Photo</label>
-                <input type="file" id="user-img" accept="image/*" class="w-full bg-white p-2 rounded-xl text-sm">
-            </div>
+    <section class="py-10 text-center bg-[#fcc334] text-[#082465] px-4">
+        <h3 class="text-xl font-black mb-5 uppercase">Generate Tour ID Card</h3>
+        <div class="max-w-xs mx-auto space-y-3 mb-5 text-left">
+            <input type="text" id="user-name" placeholder="Full Name" class="w-full p-2 rounded-lg border-none shadow-sm text-sm">
+            <input type="text" id="user-status" placeholder="Designation" class="w-full p-2 rounded-lg border-none shadow-sm text-sm">
+            <input type="file" id="user-img" accept="image/*" class="w-full bg-white p-1 rounded-lg text-[10px]">
         </div>
-        <button id="generate-id-btn" class="bg-[#082465] text-white px-10 py-4 rounded-full font-bold shadow-2xl transition hover:scale-105">GENERATE CARD</button>
+        <button id="generate-id-btn" class="bg-[#082465] text-white px-8 py-3 rounded-full font-bold text-sm shadow-xl">GENERATE CARD</button>
     </section>
 
-    <section class="py-12 container mx-auto px-4">
-        <h2 class="text-3xl font-black text-center mb-8 text-[#fcc334] uppercase tracking-tighter">Kuakata Gallery</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <img src="https://images.unsplash.com/photo-1583267746897-2cf415888172?q=80&w=600" class="gallery-img shadow-lg">
-            <img src="https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?q=80&w=600" class="gallery-img shadow-lg">
-            <img src="https://images.unsplash.com/photo-1544731612-de7f96afe55f?q=80&w=600" class="gallery-img shadow-lg">
-            <img src="https://images.unsplash.com/photo-1621258673752-92f3922f37c4?q=80&w=600" class="gallery-img shadow-lg">
-        </div>
+    <section class="py-10 container mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-3">
+        <img src="https://images.unsplash.com/photo-1583267746897-2cf415888172?q=80&w=500" class="gallery-img shadow-md">
+        <img src="https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?q=80&w=500" class="gallery-img shadow-md">
+        <img src="https://images.unsplash.com/photo-1544731612-de7f96afe55f?q=80&w=500" class="gallery-img shadow-md">
+        <img src="https://images.unsplash.com/photo-1621258673752-92f3922f37c4?q=80&w=500" class="gallery-img shadow-md">
     </section>
 
     <div id="id-card-popup">
-        <div class="p-4 text-center">
+        <div class="text-center">
             <div id="id-card-content" class="bg-white">
                 <div id="id-header">
-                    <img src="images/logo.png" class="h-10 mx-auto mb-2" onerror="this.src='https://via.placeholder.com/50'">
-                    <h4 class="text-[11px] font-black tracking-[2px] uppercase">KUAKATA EXPEDITION 2026</h4>
+                    <img src="images/logo.png" class="h-8 mx-auto mb-1" onerror="this.src='https://via.placeholder.com/30'">
+                    <h4 class="text-[9px] font-black tracking-[2px] uppercase">KUAKATA EXPEDITION 2026</h4>
                 </div>
-                <div class="p-8">
-                    <div class="w-28 h-28 rounded-full border-4 border-[#fcc334] overflow-hidden mx-auto mb-6 shadow-md">
-                        <img id="card-img-preview" src="" class="w-full h-full object-cover">
+                <div class="p-5">
+                    <div class="w-24 h-24 rounded-full border-4 border-[#fcc334] overflow-hidden mx-auto mb-4 shadow-md">
+                        <img id="card-img-preview" src="" style="width:100%; height:100%; object-fit:cover;">
                     </div>
-                    <h3 id="card-name-preview" class="font-black text-xl uppercase tracking-tighter text-[#082465] mb-1">NAME</h3>
-                    <p id="card-status-preview" class="text-xs font-bold text-yellow-600 mb-6 uppercase">STATUS</p>
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=KUJA-TOUR-2026" class="mx-auto w-16 opacity-60">
+                    <h3 id="card-name-preview" class="font-black text-lg uppercase text-[#082465] mb-1">NAME</h3>
+                    <p id="card-status-preview" class="text-[10px] font-bold text-yellow-600 mb-6 uppercase">STATUS</p>
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=KUJA-TOUR" class="mx-auto w-12 opacity-50">
                 </div>
                 <div id="id-footer">
-                    <strong>Khulna University Journalists' Association (KUJA)</strong><br>
-                    Admin Building, Khulna University, Khulna-9208
+                    <strong>Khulna University Journalists' Association</strong><br>
+                    KU Admin Building, Khulna-9208
                 </div>
             </div>
-            <div class="mt-6 flex gap-3 justify-center">
-                <button id="download-final-btn" class="bg-[#fcc334] text-[#082465] px-6 py-2 rounded-full font-bold shadow-lg">DOWNLOAD PNG</button>
-                <button onclick="document.getElementById('id-card-popup').style.display='none'" class="bg-white text-black px-6 py-2 rounded-full font-bold">CLOSE</button>
+            <div class="mt-4 flex gap-2 justify-center">
+                <button id="download-final-btn" class="bg-[#fcc334] text-[#082465] px-5 py-2 rounded-full font-bold text-xs shadow-lg">SAVE PNG</button>
+                <button onclick="document.getElementById('id-card-popup').style.display='none'" class="bg-white text-black px-5 py-2 rounded-full font-bold text-xs">CLOSE</button>
             </div>
         </div>
     </div>
 
-    <div class="pb-20 text-center">
-        <button class="bg-[#fcc334] text-[#082465] text-3xl font-black px-12 py-5 rounded-full shadow-2xl animate-pulse">READY TO ROAR?</button>
+    <div class="pb-16 text-center">
+        <button class="bg-[#fcc334] text-[#082465] text-2xl font-black px-10 py-4 rounded-full shadow-2xl animate-pulse">READY TO ROAR?</button>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -180,22 +163,19 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // --- Menu Logic ---
+        // Menu
         const dot = document.getElementById('three-dots');
         const menu = document.getElementById('main-menu');
         dot.onclick = (e) => { e.stopPropagation(); menu.style.display = menu.style.display === 'block' ? 'none' : 'block'; };
         document.onclick = () => menu.style.display = 'none';
 
-        // --- Hero Fast Slider ---
-        new Swiper(".hero-slider", { loop: true, autoplay: { delay: 1800 }, speed: 800, effect: 'slide' });
+        // Hero Slider
+        new Swiper(".hero-slider", { loop: true, autoplay: { delay: 1800 }, speed: 800 });
 
-        // --- Delegate Logic ---
+        // Delegate Logic (Infinite Loop + 2.5 slides)
         const rank = { "President": 1, "General Secretary": 2, "Vice President": 3 };
-        const dList = document.getElementById('delegate-list');
-
         onSnapshot(collection(db, "people"), (snap) => {
-            let arr = [];
-            snap.forEach(d => arr.push(d.data()));
+            let arr = []; snap.forEach(d => arr.push(d.data()));
             arr.sort((a,b) => (rank[a.status] || 99) - (rank[b.status] || 99));
 
             const formers = [
@@ -204,55 +184,82 @@
             ];
 
             const final = [...formers, ...arr];
-            dList.innerHTML = "";
-            final.forEach(m => {
-                dList.innerHTML += `<div class="swiper-slide w-auto">
-                    <div class="delegate-card shadow-lg">
-                        <div class="delegate-img-box"><img src="${m.img}" onerror="this.src='https://via.placeholder.com/150'"></div>
-                        <h4 class="text-[12px] font-bold">${m.subject}</h4>
-                        <p class="text-[9px] text-yellow-600 font-bold uppercase">${m.status}</p>
+            const dList = document.getElementById('delegate-list');
+            dList.innerHTML = final.map(m => `
+                <div class="swiper-slide w-auto px-2">
+                    <div class="delegate-card w-36 md:w-48 shadow-md">
+                        <div class="delegate-img-box"><img src="${m.img}" onerror="this.src='https://via.placeholder.com/100'"></div>
+                        <h4 class="text-[11px] font-bold truncate px-1">${m.subject}</h4>
+                        <p class="text-[8px] text-yellow-600 font-bold uppercase">${m.status}</p>
                     </div>
-                </div>`;
+                </div>`).join('');
+
+            new Swiper(".delegate-swiper", { 
+                slidesPerView: 2.5, 
+                spaceBetween: 10, 
+                loop: true, // এটি ডানে বামে স্ক্রল করলে কখনোই শেষ হবে না
+                centeredSlides: false,
+                navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+                breakpoints: { 768: { slidesPerView: 4.5 } }
             });
-            new Swiper(".delegate-swiper", { slidesPerView: "auto", spaceBetween: 15, freeMode: true, navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" } });
         });
 
-        // --- ID Card Logic ---
+        // Fixed ID Card Logic
         document.getElementById('generate-id-btn').onclick = () => {
             const name = document.getElementById('user-name').value;
             const status = document.getElementById('user-status').value;
-            const imgFile = document.getElementById('user-img').files[0];
-            if(!name || !status) return alert("Fill Name & Status!");
-            
+            const imgInput = document.getElementById('user-img').files[0];
+            if(!name || !status) return alert("Fill Name & Designation");
+
             document.getElementById('card-name-preview').innerText = name;
             document.getElementById('card-status-preview').innerText = status;
-            
-            if (imgFile) {
+
+            if (imgInput) {
                 const reader = new FileReader();
                 reader.onload = (e) => {
                     document.getElementById('card-img-preview').src = e.target.result;
                     document.getElementById('id-card-popup').style.display = 'flex';
                 };
-                reader.readAsDataURL(imgFile);
+                reader.readAsDataURL(imgInput);
             } else {
-                document.getElementById('card-img-preview').src = "https://via.placeholder.com/150";
+                document.getElementById('card-img-preview').src = "https://via.placeholder.com/100";
                 document.getElementById('id-card-popup').style.display = 'flex';
             }
         };
 
-        document.getElementById('download-final-btn').onclick = () => {
-            const btn = document.getElementById('download-final-btn');
-            btn.innerText = "Processing...";
-            html2canvas(document.getElementById('id-card-content'), { scale: 3, useCORS: true }).then(canvas => {
+        // Standard Download Fix
+        document.getElementById('download-final-btn').onclick = function() {
+            const btn = this;
+            btn.innerText = "Please wait...";
+            btn.disabled = true;
+            
+            const card = document.getElementById('id-card-content');
+            
+            html2canvas(card, {
+                scale: 2,
+                useCORS: true,
+                allowTaint: true,
+                backgroundColor: "#ffffff",
+                logging: false
+            }).then(canvas => {
+                const imgData = canvas.toDataURL("image/png");
                 const link = document.createElement('a');
-                link.download = 'KUJA_Kuakata_ID.png';
-                link.href = canvas.toDataURL("image/png");
+                link.href = imgData;
+                link.download = `KUJA_Tour_ID_${Date.now()}.png`;
+                document.body.appendChild(link);
                 link.click();
-                btn.innerText = "DOWNLOAD PNG";
+                document.body.removeChild(link);
+                
+                btn.innerText = "SAVE PNG";
+                btn.disabled = false;
+            }).catch(err => {
+                alert("Mobile Error: Try taking a screenshot or use a PC.");
+                btn.innerText = "SAVE PNG";
+                btn.disabled = false;
             });
         };
 
-        // --- Countdown ---
+        // Countdown
         const target = new Date("April 23, 2026 00:00:00").getTime();
         setInterval(() => {
             const diff = target - new Date().getTime();
