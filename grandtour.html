@@ -189,7 +189,19 @@
         new Swiper(".hero-slider", { loop: true, autoplay: { delay: 1800 }, speed: 900, effect: 'slide' });
 
         // Delegate Logic (Infinite Loop + Proper Mobile Spacing)
-        const rank = { "President": 1, "General Secretary": 2, "Vice President": 3 };
+        const rank = { 
+                        "President": 1,
+                        "General Secretary": 2,
+                        "Vice President": 3,
+                        "Joint General Secretary": 4,
+                        "Treasurer": 5,
+                        "Organizing Secretary": 6,
+                        "Office Secretary": 7,
+                        "Secretary of Publicity & Publication": 8,
+                        "Executive Member": 9,
+                        "General Member": 10,
+                        "Associate Member": 11
+                      };
         onSnapshot(collection(db, "people"), (snap) => {
             let arr = []; snap.forEach(d => arr.push(d.data()));
             arr.sort((a,b) => (rank[a.status] || 99) - (rank[b.status] || 99));
