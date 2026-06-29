@@ -154,14 +154,14 @@
             const catSelect = document.getElementById('category');
             const superSec = document.getElementById('super-admin-section');
             if (role === 'super_admin') {
-                catSelect.innerHTML = '<option value="notices">Notice Board</option><option value="people">Committee Member</option>';
+                catSelect.innerHTML = '<option value="notices">Notice Board</option><option value="people">Committee Member</option><option value="ticker_updates">Live Updates Ticker</option>';
                 superSec.classList.remove('hidden');
                 loadManager();
             } else if (role === 'editor_admin') {
-                catSelect.innerHTML = '<option value="notices">Notice Board</option><option value="people">Committee Member</option>';
+                catSelect.innerHTML = '<option value="notices">Notice Board</option><option value="people">Committee Member</option><option value="ticker_updates">Live Updates Ticker</option>';
                 superSec.classList.add('hidden');
             } else if (role === 'only_notice') {
-                catSelect.innerHTML = '<option value="notices">Notice Board</option>';
+                catSelect.innerHTML = '<option value="notices">Notice Board</option><option value="ticker_updates">Live Updates Ticker</option>';
                 superSec.classList.add('hidden');
             } else if (role === 'only_member') {
                 catSelect.innerHTML = '<option value="people">Committee Member</option>';
@@ -232,7 +232,7 @@
         function loadManager() {
             const list = document.getElementById('manage-list');
             list.innerHTML = "";
-            ['notices', 'people'].forEach(cat => {
+            ['notices', 'people', 'ticker_updates'].forEach(cat => {
                 onSnapshot(query(collection(db, cat), orderBy("createdAt", "desc")), (snaps) => {
                     snaps.docChanges().forEach(change => {
                         const id = change.doc.id;
@@ -240,7 +240,7 @@
                             const tr = document.createElement('tr');
                             tr.id = `row-${id}`;
                             tr.className = "border-b hover:bg-gray-50";
-                            tr.innerHTML = `<td class="p-3">${change.doc.data().subject}</td><td class="p-3 uppercase text-xs font-bold">${cat}</td>
+                            tr.innerHTML = `<td class="p-3">${change.doc.data().subject}</td><td class="p-3 uppercase text-xs font-bold">${cat === 'ticker_updates' ? 'Ticker' : cat}</td>
                                 <td class="p-3 text-center"><button onclick="del('${cat}','${id}')" class="text-red-600 font-bold text-xs hover:underline">DELETE</button></td>`;
                             list.appendChild(tr);
                         }
