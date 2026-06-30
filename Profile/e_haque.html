@@ -220,11 +220,11 @@ Currently, Ekramul is preparing for competitive government positions, fact-check
         </thead>
         <tbody style="color: #444; font-size: 14px;">
           <tr>
-            <td style="font-weight: bold; color: #777; padding: 15px;">01</td>
-            <td style="font-weight: 600; color: #082465; padding: 15px;">President</td>
-            <td style="padding: 15px;">8 Feb 2024</td>
-            <td style="padding: 15px;">11 May 2025</td>
-            <td style="padding: 15px;">
+            <td data-label="Serial" style="font-weight: bold; color: #777; padding: 15px;">01</td>
+            <td data-label="Role" style="font-weight: 600; color: #082465; padding: 15px;">President</td>
+            <td data-label="From" style="padding: 15px;">8 Feb 2024</td>
+            <td data-label="To" style="padding: 15px;">11 May 2025</td>
+            <td data-label="Activities" style="padding: 15px;">
               <ul style="padding-left: 20px; margin-bottom: 0;">
                 <li>Organized journalism training with national media experts.</li>
                 <li>Led PR, partnerships, and press coordination.</li>
@@ -236,11 +236,11 @@ Currently, Ekramul is preparing for competitive government positions, fact-check
             </td>
           </tr>
           <tr style="background-color: #fcfcfc;">
-            <td style="font-weight: bold; color: #777; padding: 15px;">02</td>
-            <td style="font-weight: 600; color: #082465; padding: 15px;">Organizing Secretary</td>
-            <td style="padding: 15px;">22 Jan 2023</td>
-            <td style="padding: 15px;">8 Feb 2024</td>
-            <td style="padding: 15px;">
+            <td data-label="Serial" style="font-weight: bold; color: #777; padding: 15px;">02</td>
+            <td data-label="Role" style="font-weight: 600; color: #082465; padding: 15px;">Organizing Secretary</td>
+            <td data-label="From" style="padding: 15px;">22 Jan 2023</td>
+            <td data-label="To" style="padding: 15px;">8 Feb 2024</td>
+            <td data-label="Activities" style="padding: 15px;">
               <ul style="padding-left: 20px; margin-bottom: 0;">
                 <li>Led member-selection and disciplinary sub-committees.</li>
                 <li>Evaluated membership applications for new recruitment.</li>
@@ -249,11 +249,11 @@ Currently, Ekramul is preparing for competitive government positions, fact-check
             </td>
           </tr>
           <tr>
-            <td style="font-weight: bold; color: #777; padding: 15px;">03</td>
-            <td style="font-weight: 600; color: #082465; padding: 15px;">Secretary of Publicity & Publication</td>
-            <td style="padding: 15px;">17 May 2022</td>
-            <td style="padding: 15px;">22 Jan 2023</td>
-            <td style="padding: 15px;">
+            <td data-label="Serial" style="font-weight: bold; color: #777; padding: 15px;">03</td>
+            <td data-label="Role" style="font-weight: 600; color: #082465; padding: 15px;">Secretary of Publicity & Publication</td>
+            <td data-label="From" style="padding: 15px;">17 May 2022</td>
+            <td data-label="To" style="padding: 15px;">22 Jan 2023</td>
+            <td data-label="Activities" style="padding: 15px;">
               <ul style="padding-left: 20px; margin-bottom: 0;">
                 <li>Produced press releases and publicity content.</li>
                 <li>Managed social media communication strategies.</li>
@@ -261,11 +261,11 @@ Currently, Ekramul is preparing for competitive government positions, fact-check
             </td>
           </tr>
           <tr style="background-color: #fcfcfc;">
-            <td style="font-weight: bold; color: #777; padding: 15px;">04</td>
-            <td style="font-weight: 600; color: #082465; padding: 15px;">Member</td>
-            <td style="padding: 15px;">27 Oct 2020</td>
-            <td style="padding: 15px;">15 May 2025</td>
-            <td style="padding: 15px;">
+            <td data-label="Serial" style="font-weight: bold; color: #777; padding: 15px;">04</td>
+            <td data-label="Role" style="font-weight: 600; color: #082465; padding: 15px;">Member</td>
+            <td data-label="From" style="padding: 15px;">27 Oct 2020</td>
+            <td data-label="To" style="padding: 15px;">15 May 2025</td>
+            <td data-label="Activities" style="padding: 15px;">
               <ul style="padding-left: 20px; margin-bottom: 0;">
                 <li>Participated in journalism and organizing activities.</li>
                 <li>Developed practical experience in campus media coordination.</li>
@@ -504,16 +504,16 @@ Currently, Ekramul is preparing for competitive government positions, fact-check
   newsData.forEach(news => {
     const row = `
       <tr style="border-bottom: 1px solid #e2e8f0;">
-        <td class="p-3 text-secondary" style="color: var(--gray-mid) !important;">${news.sl}</td>
-        <td class="p-3" style="font-weight: 600; color: var(--brand-navy) !important;">${news.title}</td>
-        <td class="p-3"><span class="badge" style="background: #eef2ff; color: var(--brand-navy); padding: 6px 12px; font-weight: 600;">${news.paper}</span></td>
-        <td class="p-3 text-muted" style="font-size: 13px; color: var(--gray-mid) !important;">${news.date}</td>
-        <td class="p-3 text-center">
+        <td data-label="Sl" class="p-3 text-secondary" style="color: var(--gray-mid) !important;">${news.sl}</td>
+        <td data-label="Title" class="p-3" style="font-weight: 600; color: var(--brand-navy) !important;">${news.title}</td>
+        <td data-label="Newspaper" class="p-3"><span class="badge" style="background: #eef2ff; color: var(--brand-navy); padding: 6px 12px; font-weight: 600;">${news.paper}</span></td>
+        <td data-label="Date" class="p-3 text-muted" style="font-size: 13px; color: var(--gray-mid) !important;">${news.date}</td>
+        <td data-label="View" class="p-3">
           <button onclick="viewImage('${news.img}')" class="btn btn-sm" style="background: var(--brand-navy); color: white; border-radius: 20px; padding: 5px 15px; border: none; font-size: 11px; font-weight: 600;">
             <i class="fa fa-eye"></i> View
           </button>
         </td>
-        <td class="p-3 text-center">
+        <td data-label="Link" class="p-3">
           <a href="${news.url}" target="_blank" class="btn btn-sm ${news.url === '#' ? 'disabled' : ''}" 
              style="background: var(--brand-gold); color: var(--brand-navy); border-radius: 20px; padding: 5px 15px; font-weight: bold; border: none; font-size: 11px;">
             <i class="fa fa-link"></i> Link
@@ -551,6 +551,90 @@ Currently, Ekramul is preparing for competitive government positions, fact-check
     background: #ddd !important;
     color: #999 !important;
     pointer-events: none;
+  }
+
+  /* ====== MOBILE TABLE — CARD STYLE ====== */
+  @media (max-width: 768px) {
+
+    /* Remove horizontal scroll wrapper */
+    .activity_history_section .table-responsive,
+    .news_section .table-responsive {
+      overflow-x: visible !important;
+    }
+
+    /* ---- KUJA History Table ---- */
+    .activity_history_section table,
+    .activity_history_section thead,
+    .activity_history_section tbody,
+    .activity_history_section th,
+    .activity_history_section td,
+    .activity_history_section tr { display: block; width: 100%; }
+
+    .activity_history_section thead { display: none; }
+
+    .activity_history_section tbody tr {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-left: 5px solid #082465;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      padding: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+
+    .activity_history_section tbody td {
+      padding: 6px 8px !important;
+      border: none !important;
+      position: relative;
+    }
+
+    .activity_history_section tbody td::before {
+      content: attr(data-label);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #888;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* ---- News Coverage Table ---- */
+    .news_section table,
+    .news_section thead,
+    .news_section tbody,
+    .news_section th,
+    .news_section td,
+    .news_section tr { display: block; width: 100%; }
+
+    .news_section thead { display: none; }
+
+    .news_section tbody tr {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-left: 5px solid #fcc334;
+      border-radius: 8px;
+      margin-bottom: 14px;
+      padding: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+
+    .news_section tbody td {
+      padding: 5px 8px !important;
+      border: none !important;
+      text-align: left !important;
+    }
+
+    .news_section tbody td::before {
+      content: attr(data-label);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #888;
+      display: block;
+      margin-bottom: 2px;
+    }
   }
 </style>
             </div>
