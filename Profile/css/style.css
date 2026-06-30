@@ -1192,7 +1192,9 @@ p { margin-bottom: 1rem; }
   .kuja-message-block { padding: 28px 20px; }
   .kuja-message-block__photo { flex-direction: column; text-align: center; }
   .section-pad { padding: 50px 0; }
-  .profile_tabs_section img { margin-left: auto; margin-right: auto; display: block; }
+  .profile_tabs_section img { margin-left: auto !important; margin-right: auto !important; display: block !important; }
+  .profile_tabs_section .col-md-3 { display: flex; flex-direction: column; align-items: center; }
+  .profile_tabs_section .col-md-3 .text-center { width: 100%; display: flex; flex-direction: column; align-items: center; }
   .kuja-constitution-nav { position: relative; top: 0; margin-bottom: 24px; }
 }
 
