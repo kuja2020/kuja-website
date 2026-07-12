@@ -13,6 +13,98 @@
 </head>
 <body>
 
+<!-- ===== ENTRANCE POPUP MODAL ===== -->
+<div id="kuja-popup-overlay" style="
+  position: fixed; inset: 0; z-index: 99999;
+  background: rgba(8, 36, 101, 0.85);
+  backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  animation: popupFadeIn 0.4s ease;
+">
+  <div style="
+    position: relative;
+    max-width: 680px; width: 92%;
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    animation: popupSlideUp 0.45s cubic-bezier(0.16,1,0.3,1);
+  ">
+    <!-- Gold top bar -->
+    <div style="height: 5px; background: linear-gradient(90deg, #082465, #fcc334, #082465);"></div>
+
+    <!-- Header -->
+    <div style="
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 20px 10px;
+      background: #082465;
+    ">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <img src="images/logo.png" alt="KUJA" style="height: 36px; width: auto;">
+        <div>
+          <div style="color: #fcc334; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">সংবাদ মাধ্যমে কুজা</div>
+          <div style="color: #fff; font-size: 13px; font-weight: 600;">Press Coverage</div>
+        </div>
+      </div>
+      <!-- Close button -->
+      <button onclick="closeKujaPopup()" id="kuja-popup-close" style="
+        background: rgba(255,255,255,0.12);
+        border: 1px solid rgba(255,255,255,0.25);
+        color: #fff; border-radius: 50%;
+        width: 36px; height: 36px;
+        font-size: 18px; line-height: 1;
+        cursor: pointer; display: flex; align-items: center; justify-content: center;
+        transition: background 0.2s, transform 0.2s;
+      "
+      onmouseover="this.style.background='#fcc334'; this.style.color='#082465';"
+      onmouseout="this.style.background='rgba(255,255,255,0.12)'; this.style.color='#fff';"
+      >&times;</button>
+    </div>
+
+    <!-- Newspaper image -->
+    <div style="overflow: hidden; max-height: 70vh; display: flex; align-items: center; justify-content: center; background: #f8f9fa;">
+      <img src="images/newspaper_popup.jpg" alt="KUJA News Coverage — মন ভাসাতে সাগরকন্যার দেশে"
+        style="width: 100%; height: auto; display: block; object-fit: contain; max-height: 70vh; cursor: zoom-in;"
+        onclick="window.open(this.src,'_blank')">
+    </div>
+
+    <!-- Footer hint -->
+    <div style="
+      padding: 10px 20px;
+      text-align: center;
+      background: #f8f9fa;
+      border-top: 1px solid #e9ecef;
+      font-size: 12px; color: #888;
+    ">
+      ছবিতে ক্লিক করুন বড় করে দেখতে &nbsp;|&nbsp;
+      <span onclick="closeKujaPopup()" style="color: #082465; font-weight: 600; cursor: pointer; text-decoration: underline;">ওয়েবসাইটে যান →</span>
+    </div>
+  </div>
+</div>
+
+<style>
+@keyframes popupFadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes popupSlideUp { from { opacity: 0; transform: translateY(40px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+</style>
+
+<script>
+function closeKujaPopup() {
+  var overlay = document.getElementById('kuja-popup-overlay');
+  overlay.style.transition = 'opacity 0.3s ease';
+  overlay.style.opacity = '0';
+  setTimeout(function(){ overlay.style.display = 'none'; document.body.style.overflow = ''; }, 300);
+}
+// Close on backdrop click
+document.getElementById('kuja-popup-overlay').addEventListener('click', function(e){
+  if (e.target === this) closeKujaPopup();
+});
+// Close with Escape key
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeKujaPopup(); });
+// Prevent body scroll while popup is open
+document.body.style.overflow = 'hidden';
+</script>
+<!-- ===== END POPUP ===== -->
+
 <!-- ===== TOP UTILITY BAR ===== -->
 <div class="kuja-topbar">
   <div class="container kuja-topbar__inner">
