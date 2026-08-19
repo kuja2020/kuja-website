@@ -786,6 +786,15 @@ Currently, Ekramul is preparing for competitive government positions, fact-check
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap">
   </script>
   <!-- end google map js -->
+
+	<script>
+  $(document).ready(function () {
+    var hash = window.location.hash;
+    if (hash) {
+      $('.nav-pills a[href="' + hash + '"]').tab('show');
+    }
+  });
+</script>
 </body>
 
 </html>
