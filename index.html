@@ -14,7 +14,7 @@
 <body>
 
 <!-- ===== ENTRANCE POPUP MODAL ===== -->
-<div id="kuja-popup-overlay" style="
+<!-- <div id="kuja-popup-overlay" style="
   position: fixed; inset: 0; z-index: 99999;
   background: rgba(8, 36, 101, 0.85);
   backdrop-filter: blur(6px);
@@ -98,7 +98,7 @@ function closeKujaPopup() {
 document.getElementById('kuja-popup-overlay').addEventListener('click', function(e){
   if (e.target === this) closeKujaPopup();
 });
-// Close with Escape key
+// Close with Escape key -->
 document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeKujaPopup(); });
 // Prevent body scroll while popup is open
 document.body.style.overflow = 'hidden';
